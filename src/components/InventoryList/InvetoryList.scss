@@ -68,7 +68,13 @@
   &__list-content {
     margin: 1rem;
     display: flex;
+
     gap: 5rem;
+  }
+
+  &__list-content-left,
+  &__list-content-right {
+    text-align: left;
   }
 
   &__list-title {
@@ -78,14 +84,25 @@
     margin-bottom: 0.7rem;
   }
 
+  &__product-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.8rem;
+  }
+
   &__list-text-item {
     font-size: 0.8rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 
     &--product {
       color: #2e66e5;
       font-weight: 600;
+      margin: 0;
     }
+  }
+
+  &__product-item_chevron {
+    margin-top: 0.15rem;
   }
 
   &__list-actions {

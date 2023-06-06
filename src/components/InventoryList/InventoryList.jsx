@@ -1,9 +1,11 @@
 import searchImg from "../../assets/Icons/search-24px.svg";
 import deleteImg from "../../assets/Icons/delete_outline-24px.svg";
 import editImg from "../../assets/Icons/edit-24px.svg";
+import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import "../InventoryList.scss";
+import { Link } from "react-router-dom";
 
-function InventoryList() {
+function InventoryList(inventoryList) {
   return (
     <section className="card">
       <div className="card__bgBlue">
@@ -34,40 +36,49 @@ function InventoryList() {
             </div>
           </div>
           <ul>
-            <li className="card__list">
-              <div className="card__list-content">
-                <div className="card__list-content-left">
-                  <div className="card__list-wrap">
-                    <h4 className="card__list-title ">Invetory Item</h4>
-                    <p className="card__list-text-item card__list-text-item--product">
-                      Television
-                    </p>
+            {inventoryList.map((inventory) => (
+              <li key={inventory.id} className="card__list">
+                <div className="card__list-content">
+                  <div className="card__list-content-left">
+                    <div className="card__list-wrap">
+                      <h4 className="card__list-title ">Inventory Item</h4>
+                      <Link to="/" className="card__product-item">
+                        <p className="card__list-text-item card__list-text-item--product">
+                          Television
+                        </p>
+                        <img
+                          src={chevronRight}
+                          alt={chevronRight}
+                          className="card__product-item_chevron"
+                        />
+                      </Link>
+                    </div>
+                    <div className="card__list-wrap">
+                      <h4 className="card__list-title">Category</h4>
+                      <p className="card__list-text-item">Eletronics</p>
+                    </div>
                   </div>
-                  <div className="card__list-wrap">
-                    <h4 className="card__list-title">Category</h4>
-                    <p className="card__list-text-item">Eletronics</p>
+                  <div className="card__list-content-right">
+                    <div className="card__list-wrap">
+                      <h4 className="card__list-title">Status</h4>
+                      <p className="card__list-text-item">In stock</p>
+                    </div>
+                    <div className="card__list-wrap">
+                      <h4 className="card__list-title">Qty</h4>
+                      <p className="card__list-text-item">500</p>
+                    </div>
+                    <div className="card__list-wrap">
+                      <h4 className="card__list-title">Warehouse</h4>
+                      <p className="card__list-text-item">Manhattan</p>
+                    </div>
                   </div>
                 </div>
-                <div className="card__list-content-right">
-                  <div className="card__list-wrap">
-                    <h4 className="card__list-title">Status</h4>
-                    <p className="card__list-text-item">In stock</p>
-                  </div>
-                  <div className="card__list-wrap">
-                    <h4 className="card__list-title">Qty</h4>
-                    <p className="card__list-text-item">500</p>
-                  </div>
-                  <div className="card__list-wrap">
-                    <h4 className="card__list-title">Warehouse</h4>
-                    <p className="card__list-text-item">Manhattan</p>
-                  </div>
+                <div className="card__list-actions">
+                  <img src={deleteImg} alt={deleteImg} className="deleteImg" />
+                  <img src={editImg} alt={editImg} className="editImg" />
                 </div>
-              </div>
-              <div className="card__list-actions">
-                <img src={deleteImg} alt={deleteImg} className="deleteImg" />
-                <img src={editImg} alt={editImg} className="editImg" />
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
