@@ -1,0 +1,16 @@
+@use "../../styles/mixin.scss";
+@use "../../styles/variables.scss";
+
+.footer {
+  background-color: $Light-Grey;
+  padding: 3rem 0;
+
+  &__text {
+    font-size: 0.75rem;
+    color: $Slate;
+
+    @include tablet {
+      font-size: 0.8rem;
+    }
+  }
+}
