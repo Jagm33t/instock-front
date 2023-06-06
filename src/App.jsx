@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-import logo from "./logo.svg";
-import "./App.css";
-=======
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
-
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
->>>>>>> develop
 
 function App() {
   return (
