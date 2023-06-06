@@ -1,7 +1,9 @@
+import InventoryList from "../../components/InventoryList/InventoryList";
+
 function InventoryPage() {
   return (
     <div>
-      <h1>Inventory</h1>
+      <InventoryList />
     </div>
   );
 }
