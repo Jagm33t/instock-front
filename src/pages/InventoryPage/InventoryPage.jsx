@@ -1,8 +1,4 @@
 function InventoryPage() {
-  return (
-    <div>
-      <h1>Inventory</h1>
-    </div>
-  );
+  return <div></div>;
 }
 export default InventoryPage;

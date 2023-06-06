@@ -1,16 +1,11 @@
-<<<<<<< HEAD
-import logo from "./logo.svg";
-import "./App.css";
-=======
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
-
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
->>>>>>> develop
+import Header from "./components/Header/Header";
 
 function App() {
   return (
@@ -18,17 +13,7 @@ function App() {
       {/* Initial router set up */}
       <BrowserRouter>
         {/* Navigation links to pages */}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Warehouses</Link>
-            </li>
-            <li>
-              <Link to="/inventory">Inventory</Link>
-            </li>
-          </ul>
-        </nav>
-
+        <Header />
         <Routes>
           <Route path="/" element={<WareHousesPage />} />
           <Route path="/warehouses" element={<Navigate to="/" />} />
