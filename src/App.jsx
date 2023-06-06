@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import logo from "./logo.svg";
-import "./App.css";
-=======
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
@@ -10,7 +6,8 @@ import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
->>>>>>> develop
+
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -38,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
