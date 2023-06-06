@@ -1,0 +1,18 @@
+
+
+//Tablet display
+@mixin tablet {
+  @media(min-width: 768px){
+   @content;
+    
+  }
+}
+
+//Desktop display
+@mixin desktop {
+  @media(min-width:1280px){
+    @content;
+  }
+    
+  
+}
