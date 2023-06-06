@@ -15,12 +15,8 @@ function DeleteInventory() {
         list. You won’t be able to undo this action.
       </div>
       <div className="deleteInventory__buttonContainer">
-        <button className="deleteInventory__cancelButton">
-          <p>Cancel</p>
-        </button>
-        <button className="deleteInventory__deleteButton">
-          <p>Delete</p>
-        </button>
+        <button className="deleteInventory__cancelButton">Cancel</button>
+        <button className="deleteInventory__deleteButton">Delete</button>
       </div>
     </div>
   );

@@ -3,15 +3,22 @@
 
 .deleteInventory {
   font-family: "TitilliumWeb", sans-serif;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 
   &__closeIconContainer {
     text-align: right;
+    padding-top: 21px;
   }
 
   &__titleContainer {
     font-weight: 600;
     font-size: 28px;
     line-height: 36px;
+    padding-bottom: 16px;
   }
 
   &__messageContainer {
@@ -22,36 +29,41 @@
   &__buttonContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 8px 63px;
     gap: 10px;
+    margin-top: auto;
+    justify-content: flex-end;
+    padding-bottom: 24px;
   }
 
   &__cancelButton {
     background: #ffffff;
     border: 1px solid #bdc5d5;
     border-radius: 20px;
+    width: 163px;
+    height: 36px;
+    padding: 8px 63px;
 
-    > p {
-      font-weight: 600;
-      font-size: 13px;
-      line-height: 20px;
-      color: #5c667e;
-    }
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: #5c667e;
   }
 
   &__deleteButton {
     background: #c94515;
     border: none;
     border-radius: 20px;
+    width: 163px;
+    height: 36px;
+    padding: 8px 63px;
 
-    > p {
-      font-weight: 600;
-      font-size: 13px;
-      line-height: 20px;
-      color: #ffffff;
-    }
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: #ffffff;
   }
+
+  //phone: 375 * 667
 
   @include tablet {
     width: 70%;
