@@ -12,7 +12,8 @@ function DeleteInventory() {
       </div>
       <div className="deleteInventory__messageContainer">
         Please confirm that you’d like to delete Television from the inventory
-        list. You won’t be able to undo this action.
+        list. <br id="hideLineBreak"></br>
+        You won’t be able to undo this action.
       </div>
       <div className="deleteInventory__buttonContainer">
         <button className="deleteInventory__cancelButton">Cancel</button>

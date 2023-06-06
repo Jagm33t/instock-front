@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
 
   &__closeIconContainer {
     text-align: right;
@@ -31,8 +30,8 @@
     flex-direction: row;
     gap: 10px;
     margin-top: auto;
-    justify-content: flex-end;
-    padding-bottom: 24px;
+    justify-content: space-around;
+    margin-bottom: 24px;
   }
 
   &__cancelButton {
@@ -64,10 +63,54 @@
   }
 
   //phone: 375 * 667
+  //table: 672 * 262
+
+  @mixin phone() {
+    @media all and (max-width: 767px) {
+      @content;
+    }
+  }
+
+  @include phone {
+    height: 100vh;
+
+    #hideLineBreak {
+      display: none;
+    }
+  }
 
   @include tablet {
-    width: 70%;
-    margin: 0 auto;
+    width: 672px;
+    height: 262px;
+
+    &__titleContainer {
+      padding: 0 64px;
+      font-size: 32px;
+      line-height: 40px;
+    }
+    &__messageContainer {
+      padding: 0 64px;
+      font-size: 16px;
+      line-height: 28px;
+    }
+    &__buttonContainer {
+      padding: 0 64px;
+      font-size: 14px;
+      line-height: 22px;
+
+      justify-content: flex-end;
+    }
+
+    &__cancelButton {
+      padding: 8px 16px;
+      width: 72px;
+      height: 38px;
+    }
+    &__deleteButton {
+      padding: 8px 16px;
+      width: 72px;
+      height: 38px;
+    }
   }
 
   @include desktop {
