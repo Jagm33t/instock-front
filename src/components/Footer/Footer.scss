@@ -1,0 +1,20 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables";
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $Light-Grey;
+  padding: 3rem 0 1rem 0;
+  text-align: center;
+
+  &__text {
+    font-size: 0.75rem;
+    color: $Slate;
+
+    @include tablet {
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -7,6 +7,8 @@ import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
 
+import Footer from "./components/Footer/Footer";
+
 function App() {
   return (
     <div>
@@ -33,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
