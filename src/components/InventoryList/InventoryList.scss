@@ -1,5 +1,5 @@
-@use "../../styles/variables";
-@use "../../styles/mixin";
+@import "../../styles/variables";
+@import "../../styles/mixin";
 
 * {
   padding: 0;
@@ -7,19 +7,25 @@
 }
 
 .card {
-  background-color: #f7f8f9;
+  background-color: $Light-Grey;
+  width: 100%;
+  height: 100vh;
 
-  //   &__bgBlue {
-  //     background-color: #13182c;
-  //     width: 100%;
-  //     height: 5em;
-  //     margin: 0;
-  //     padding: 0;
-  //   }
+  &__bgBlue {
+    background-color: $Graphite;
+
+    height: 4em;
+    margin: 0;
+    padding: 0;
+  }
 
   &__wrapper {
-    background-color: white;
+    background-color: $White;
     margin: 0 1rem;
+    border-radius: 0.2rem;
+    position: absolute;
+    top: 9rem;
+    width: 93%;
   }
 
   &__header {
@@ -46,7 +52,7 @@
     position: relative;
     width: 100%;
     padding: 0.65rem 1rem;
-    border: 1px solid #bdc5d5;
+    border: 1px solid $Cloud;
     border-radius: 2rem;
   }
 
@@ -58,10 +64,10 @@
 
   &__list {
     list-style-type: none;
-    border-bottom: 1.5px solid #bdc5d5;
+    border-bottom: 1.5px solid $Cloud;
 
     &:first-child {
-      border-top: 1.5px solid #bdc5d5;
+      border-top: 1.5px solid $Cloud;
     }
   }
 
@@ -84,10 +90,19 @@
     margin-bottom: 0.7rem;
   }
 
+  // &__list-title-inventory {
+  //   font-size: 0.7rem;
+  //   text-transform: uppercase;
+  //   color: #5c667e;
+  //   margin-bottom: 0.3rem;
+  // }
+
   &__product-item {
     display: flex;
     flex-direction: row;
     margin-bottom: 0.8rem;
+    text-decoration: none;
+    align-items: center;
   }
 
   &__list-text-item {
@@ -99,6 +114,30 @@
       font-weight: 600;
       margin: 0;
     }
+  }
+
+  &__list-text-item-inStock {
+    color: $Green;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(21, 132, 99, 0.07);
+    border-radius: 1rem;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 0.9rem;
+    text-align: center;
+  }
+
+  &__list-text-item-outStock {
+    color: $Red;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(201, 69, 21, 0.07);
+    border-radius: 1rem;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 0.9rem;
+    text-align: center;
   }
 
   &__product-item_chevron {
