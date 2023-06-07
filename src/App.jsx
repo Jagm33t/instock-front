@@ -5,6 +5,9 @@ import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import "./App.scss";
 
 function App() {
   return (
@@ -12,17 +15,7 @@ function App() {
       {/* Initial router set up */}
       <BrowserRouter>
         {/* Navigation links to pages */}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Warehouses</Link>
-            </li>
-            <li>
-              <Link to="/inventory">Inventory</Link>
-            </li>
-          </ul>
-        </nav>
-
+        <Header />
         <Routes>
           <Route path="/" element={<WareHousesPage />} />
           <Route path="/warehouses" element={<Navigate to="/" />} />
@@ -32,6 +25,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
