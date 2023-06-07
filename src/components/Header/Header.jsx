@@ -10,7 +10,6 @@ function Header() {
   useEffect(() => {
     setActiveLink(location.pathname);
   }, [location]);
-  console.log(location);
 
   return (
     <header className="header">
