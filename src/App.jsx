@@ -6,8 +6,8 @@ import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
 import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
 import Header from "./components/Header/Header";
-
 import Footer from "./components/Footer/Footer";
+import "./App.scss";
 
 function App() {
   return (
