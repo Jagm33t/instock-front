@@ -8,12 +8,26 @@
   src: url(../assets/fonts/TitilliumWeb-SemiBold.ttf) format("truetype");
   font-weight: 600;
 }
+.popUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+}
+
 .deleteInventory {
   font-family: "TitilliumWeb", sans-serif;
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: white;
 }
 .deleteInventory__closeIconContainer {
   text-align: right;
