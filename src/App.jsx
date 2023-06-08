@@ -8,6 +8,7 @@ import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesF
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
+import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import "./App.scss";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Navigate to="/warehouses" />} />
           <Route path="/warehouses/details" element={<WarehouseDetails />} />
           <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/inventory/details" element={<InventoryDetailsPage/>} />
           <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/add" element={<AddNewWareHousesForm />} />
           <Route path="*" element={<NotFoundPage />} />
