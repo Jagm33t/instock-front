@@ -1,0 +1,57 @@
+.btn {
+  display: flex;
+  margin: 0.2rem 0;
+  position: relative;
+}
+.btn__style {
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.85rem 0rem;
+  width: 100%;
+  background-color: #0095ff;
+  align-items: center;
+  border-radius: 0.25rem;
+  border: none;
+  transition: all 0.3s ease-out;
+}
+@media (min-width: 768px) {
+  .btn__style {
+    height: 2.5rem;
+    width: 9.375rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    align-self: self-end;
+  }
+}
+.btn__style:hover {
+  cursor: pointer;
+  background-color: #0065ad;
+}
+.btn__style:disabled {
+  background-color: #e1e1e1;
+}
+.btn__style--cancel {
+  color: #0095ff;
+  background-color: transparent;
+}
+.btn__style--cancel:hover {
+  color: #ffffff;
+  background-color: red;
+}
+.btn__img {
+  display: flex;
+  height: 1.125rem;
+  padding-left: 0.5rem;
+  position: absolute;
+  left: 0.2rem;
+}
+@media (min-width: 768px) {
+  .btn__img {
+    height: 1.375rem;
+  }
+}/*# sourceMappingURL=Button.css.map */
