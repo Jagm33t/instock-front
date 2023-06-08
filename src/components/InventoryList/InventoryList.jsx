@@ -5,9 +5,27 @@ import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./InventoryList.scss";
 
 function InventoryList() {
+  const [inventoryList, setInventoryList] = useState([]);
+  const displayInventory = () => {
+    axios
+      .get("http://127.0.0.1:8080/api/inventories")
+      .then((response) => {
+        console.log(response.data);
+        setInventoryList(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    displayInventory();
+  }, []);
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
@@ -97,94 +115,63 @@ function InventoryList() {
         </div>
 
         <ul>
-          {/* {inventoryList.map((inventory) => ( ))} */}
-          <li className="card__list">
-            <div className="card__list-content">
-              <div className="card__list-content-left">
-                <div className="card__list-wrap">
-                  <h4 className=" card__list-title  ">Inventory Item</h4>
-                  <Link to="/" className="card__product-item">
-                    <p className="card__list-text-item card__list-text-item--product">
-                      Television
-                    </p>
+          {inventoryList.length === 0
+            ? null
+            : inventoryList.map((inventory) => (
+                <li className="card__list" key={inventory.id}>
+                  <div className="card__list-content">
+                    <div className="card__list-content-left">
+                      <div className="card__list-wrap">
+                        <h4 className=" card__list-title  ">Inventory Item</h4>
+                        <Link to="/" className="card__product-item">
+                          <p className="card__list-text-item card__list-text-item--product">
+                            {inventory.category}
+                          </p>
+                          <img
+                            src={chevronRight}
+                            alt={chevronRight}
+                            className="card__product-item_chevron"
+                          />
+                        </Link>
+                      </div>
+                      <div className="card__list-wrap">
+                        <h4 className="card__list-title">Category</h4>
+                        <p className="card__list-text-item">
+                          {inventory.item_name}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card__list-content-right">
+                      <div className="card__list-wrap">
+                        <h4 className="card__list-title">Status</h4>
+                        <p className="card__list-text-item-inStock card__list-text-item-outStock">
+                          {inventory.status}
+                        </p>
+                      </div>
+                      <div className="card__list-wrap">
+                        <h4 className="card__list-title">Qty</h4>
+                        <p className="card__list-text-item">
+                          {inventory.quantity}
+                        </p>
+                      </div>
+                      <div className="card__list-wrap">
+                        <h4 className="card__list-title">Warehouse</h4>
+                        <p className="card__list-text-item">
+                          {inventory.warehouse_name}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card__list-actions">
                     <img
-                      src={chevronRight}
-                      alt={chevronRight}
-                      className="card__product-item_chevron"
+                      src={deleteImg}
+                      alt={deleteImg}
+                      className="deleteImg"
                     />
-                  </Link>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Category</h4>
-                  <p className="card__list-text-item">Eletronics</p>
-                </div>
-              </div>
-              <div className="card__list-content-right">
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Status</h4>
-                  <p className="card__list-text-item-inStock card__list-text-item-outStock">
-                    In stock
-                  </p>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Qty</h4>
-                  <p className="card__list-text-item">500</p>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Warehouse</h4>
-                  <p className="card__list-text-item">Manhattan</p>
-                </div>
-              </div>
-            </div>
-            <div className="card__list-actions">
-              <img src={deleteImg} alt={deleteImg} className="deleteImg" />
-              <img src={editImg} alt={editImg} className="editImg" />
-            </div>
-          </li>
-          <li className="card__list">
-            <div className="card__list-content">
-              <div className="card__list-content-left">
-                <div className="card__list-wrap">
-                  <h4 className=" card__list-title  ">Inventory Item</h4>
-                  <Link to="/" className="card__product-item">
-                    <p className="card__list-text-item card__list-text-item--product">
-                      Television
-                    </p>
-
-                    <img
-                      src={chevronRight}
-                      alt={chevronRight}
-                      className="card__product-item_chevron"
-                    />
-                  </Link>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Category</h4>
-                  <p className="card__list-text-item">Eletronics</p>
-                </div>
-              </div>
-              <div className="card__list-content-right">
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Status</h4>
-                  <p className="card__list-text-item-inStock card__list-text-item-outStock">
-                    Outstock
-                  </p>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Qty</h4>
-                  <p className="card__list-text-item">500</p>
-                </div>
-                <div className="card__list-wrap">
-                  <h4 className="card__list-title">Wareh</h4>
-                  <p className="card__list-text-item">Manh</p>
-                </div>
-              </div>
-            </div>
-            <div className="card__list-actions">
-              <img src={deleteImg} alt={deleteImg} className="deleteImg" />
-              <img src={editImg} alt={editImg} className="editImg" />
-            </div>
-          </li>
+                    <img src={editImg} alt={editImg} className="editImg" />
+                  </div>
+                </li>
+              ))}
         </ul>
       </div>
     </section>
