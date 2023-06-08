@@ -20,22 +20,13 @@ function AddNewWarehouse() {
 
   const postNewWarehouse = (newWarehouse) => {
     axios
-      .post(`${apiWarehouses}`, {
-        warehouse_name: newWarehouse.warehouseName,
-        address: newWarehouse.address,
-        city: newWarehouse.city,
-        country: newWarehouse.country,
-        contact_name: newWarehouse.contactName,
-        contact_position: newWarehouse.contactPosition,
-        contact_phone: newWarehouse.contactPhone,
-        contact_email: newWarehouse.contactEmail,
-      })
-      .then((response) => {
-        console.log("Axios response");
-        console.log(response);
+      .post(`${apiWarehouses}`, newWarehouse)
+      .then((_response) => {
+        alert("New Warehouse added successfully.");
+        navigate("/");
       })
       .catch((err) => {
-        console.error(err);
+        alert(err.response.data);
       });
   };
 
@@ -57,7 +48,6 @@ function AddNewWarehouse() {
   };
   // Create a handler for title input
   const handleChangeInput = (setState) => (event) => {
-    console.log(event.target.name);
     setState(event.target.value);
   };
 
@@ -65,35 +55,21 @@ function AddNewWarehouse() {
     event.preventDefault();
 
     if (isFormValid()) {
-      console.log({
+      const postData = {
         warehouse_name: event.target.warehouseName.value,
         address: event.target.address.value,
         city: event.target.city.value,
         country: event.target.country.value,
-        contact_name: event.target.contactName,
-        contact_position: event.target.contactPosition,
-        contact_phone: event.target.contactPhone,
-        contact_email: event.target.contactEmail,
-      });
-      alert("New Warehouse added successfully.");
-      navigate("/");
+        contact_name: event.target.contactName.value,
+        contact_position: event.target.contactPosition.value,
+        contact_phone: event.target.contactPhone.value,
+        contact_email: event.target.contactEmail.value,
+      };
+      postNewWarehouse(postData);
     } else {
       alert("Failed to submit, you have some errors in your form");
     }
   };
-
-  // Test post using axios function
-  //   const testAPIPost = {
-  //     warehouseName: "Chicago",
-  //     address: "3218 Guess Rd",
-  //     city: "Chicago",
-  //     country: "USA",
-  //     contactName: "Jameson Schuppe",
-  //     contactPosition: "Warehouse Manager",
-  //     contactPhone: "+1 (919) 797-2875",
-  //     contactEmail: "jschuppe@instock.com",
-  //   };
-  //   postNewWarehouse(testAPIPost);
 
   return (
     <form className="form" onSubmit={handleSubmit}>

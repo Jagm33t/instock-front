@@ -14,15 +14,17 @@ function InventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const displayInventory = () => {
     axios
-      .get("http://127.0.0.1:8080/api/inventories")
+      .get(`http://127.0.0.1:8080/api/inventories?s=${searchTerm}`)
       .then((response) => {
         console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {
+        alert(error.response.data);
         console.error(error);
       });
   };
@@ -68,11 +70,15 @@ function InventoryList() {
                 className="card__searchBox-input"
                 id="searchBox"
                 placeholder="Search..."
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
               />
               <img
                 src={searchImg}
                 alt={searchImg}
                 className="card__searchBox-img"
+                onClick={() => displayInventory()}
               />
             </div>
             <div className="btn">
