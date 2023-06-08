@@ -4,7 +4,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
-import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
+import AddNewWarehouse from "./components/AddNewWarehouse/AddNewWarehouse";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
