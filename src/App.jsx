@@ -4,9 +4,11 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import WareHousesPage from "./pages/WareHousesPage/WareHousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditWareHousesForm from "./pages/EditWareHousesForm/EditWareHousesForm";
-import AddNewWareHousesForm from "./pages/AddNewWareHousesForm/AddNewWareHousesForm";
+import AddNewWarehouse from "./components/AddNewWarehouse/AddNewWarehouse";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
+import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import "./App.scss";
 
 function App() {
@@ -16,15 +18,19 @@ function App() {
       <BrowserRouter>
         {/* Navigation links to pages */}
         <Header />
+        
         <Routes>
-          <Route path="/" element={<WareHousesPage />} />
-          <Route path="/warehouses" element={<Navigate to="/" />} />
+          <Route path="/warehouses" element={<WareHousesPage />}/>
+          <Route path="/" element={<Navigate to="/warehouses" />} />
+          <Route path="/warehouses/details" element={<WarehouseDetails />} />
           <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/inventory/details" element={<InventoryDetailsPage/>} />
           <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
-          <Route path="/warehouses/add" element={<AddNewWareHousesForm />} />
+          <Route path="/warehouses/add" element={<AddNewWarehouse />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+
       <Footer />
     </div>
   );
