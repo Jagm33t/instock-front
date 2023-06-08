@@ -24,7 +24,7 @@ function InventoryList() {
         `http://127.0.0.1:8080/api/inventories?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {
@@ -192,7 +192,7 @@ function InventoryList() {
                         <h4 className=" card__list-title  ">Inventory Item</h4>
                         <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
-                            {inventory.category}
+                            {inventory.item_name}{" "}
                           </p>
                           <img
                             src={chevronRight}
@@ -204,7 +204,7 @@ function InventoryList() {
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Category</h4>
                         <p className="card__list-text-item">
-                          {inventory.item_name}
+                          {inventory.category}
                         </p>
                       </div>
                     </div>
