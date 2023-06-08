@@ -71,7 +71,6 @@ function WarehousesList(props) {
                   placeholder="Search..."
                   onChange={(event) => {
                     setSearchTerm(event.target.value);
-                    console.log(searchTerm);
                   }}
                 />
                 <img
