@@ -59,10 +59,25 @@ function AddNewWarehouse() {
     setState(event.target.value);
   };
 
-  const validadeField = (setState) => (event) => {
+  const validateField = (setState) => (event) => {
     if (event.target.value.length < 1) {
       setState(true);
     } else {
+      // validate specific cases: phone number and email
+      if (event.target.name === "contactPhone") {
+        const phonePattern = /^\+\d{1,3} \([0-9]{3}\) [0-9]{3}-[0-9]{4}$/;
+        if (!phonePattern.test(event.target.value)) {
+          setState(true);
+        } else setState(false);
+        return;
+      }
+      if (event.target.name === "contactEmail") {
+        const mailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!mailPattern.test(event.target.value)) {
+          setState(true);
+        } else setState(false);
+        return;
+      }
       setState(false);
     }
   };
@@ -111,7 +126,7 @@ function AddNewWarehouse() {
               placeholder="Warehouse Name"
               onChange={handleChangeInput(setWarehouseName)}
               value={warehouseName}
-              onBlur={validadeField(setValidateWarehouseName)}
+              onBlur={validateField(setValidateWarehouseName)}
             />
             <p
               className={
@@ -133,7 +148,7 @@ function AddNewWarehouse() {
               placeholder="Street Address"
               onChange={handleChangeInput(setAddress)}
               value={address}
-              onBlur={validadeField(setValidateAddress)}
+              onBlur={validateField(setValidateAddress)}
             />
             <p
               className={
@@ -155,7 +170,7 @@ function AddNewWarehouse() {
               placeholder="City"
               onChange={handleChangeInput(setCity)}
               value={city}
-              onBlur={validadeField(setValidateCity)}
+              onBlur={validateField(setValidateCity)}
             />
             <p
               className={
@@ -175,7 +190,7 @@ function AddNewWarehouse() {
               placeholder="Country"
               onChange={handleChangeInput(setCountry)}
               value={country}
-              onBlur={validadeField(setValidateCountry)}
+              onBlur={validateField(setValidateCountry)}
             />
             <p
               className={
@@ -204,7 +219,7 @@ function AddNewWarehouse() {
                 placeholder="Contact Name"
                 onChange={handleChangeInput(setContactName)}
                 value={contactName}
-                onBlur={validadeField(setValidateContactName)}
+                onBlur={validateField(setValidateContactName)}
               />
               <p
                 className={
@@ -229,7 +244,7 @@ function AddNewWarehouse() {
                 placeholder="Position"
                 onChange={handleChangeInput(setContactPosition)}
                 value={contactPosition}
-                onBlur={validadeField(setValidateContactPosition)}
+                onBlur={validateField(setValidateContactPosition)}
               />
               <p
                 className={
@@ -248,13 +263,13 @@ function AddNewWarehouse() {
               </label>
               <input
                 className="form__contact__fields-input"
-                type="text"
+                type="tel"
                 name="contactPhone"
                 id="contactPhone"
-                placeholder="Phone Number"
+                placeholder="Phone Number in the format +1 (555) 555-5555"
                 onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
-                onBlur={validadeField(setValidateContactPhone)}
+                onBlur={validateField(setValidateContactPhone)}
               />
               <p
                 className={
@@ -263,7 +278,7 @@ function AddNewWarehouse() {
                     : "form__fields-error--hide"
                 }
               >
-                * Contact Phone is required
+                * Contact Phone is required in the format +1 (555) 555-5555
               </p>
               <label
                 className="form__contact__fields-label"
@@ -279,7 +294,7 @@ function AddNewWarehouse() {
                 placeholder="Email"
                 onChange={handleChangeInput(setContactEmail)}
                 value={contactEmail}
-                onBlur={validadeField(setValidateContactEmail)}
+                onBlur={validateField(setValidateContactEmail)}
               />
               <p
                 className={
@@ -288,7 +303,7 @@ function AddNewWarehouse() {
                     : "form__fields-error--hide"
                 }
               >
-                * Contact Email is required
+                * Contact Email is required in the format mail@mail.com
               </p>
             </div>
           </div>
@@ -299,7 +314,7 @@ function AddNewWarehouse() {
         <Button
           text="Cancel"
           type="submit"
-          addclassName={"btn__style--cancel"}
+          addClassName={"btn__style--cancel"}
         />
       </div>
     </form>
