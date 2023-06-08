@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
-
+import axios from "axios";
 
 function EditWarehouse() {
   const [warehouseData, setWarehouseData] = useState({
-    warehouse_name: '',
-    address: '',
-    city: '',
-    country: '',
-    contact_name: '',
-    contact_position: '',
-    contact_phone: '',
-    contact_email: '',
+    warehouse_name: "",
+    address: "",
+    city: "",
+    country: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   const params = useParams();
   const warehouseId = params.id;
   console.log(warehouseId);
   useEffect(() => {
-    
-    
-    
     // Fetch warehouse data from the server based on the provided ID
     axios
       .get(`http://localhost:8080/api/warehouses/${warehouseId}`)
       .then((res) => {
-        const { warehouse_name, address, city, country, contact_name, contact_position, contact_phone, contact_email } = res.data;
+        const {
+          warehouse_name,
+          address,
+          city,
+          country,
+          contact_name,
+          contact_position,
+          contact_phone,
+          contact_email,
+        } = res.data;
         setWarehouseData({
           warehouse_name,
           address,
@@ -39,7 +44,7 @@ function EditWarehouse() {
         });
       })
       .catch((error) => {
-        console.log('Error fetching warehouse data:', error);
+        console.log("Error fetching warehouse data:", error);
       });
   }, []);
 
@@ -58,21 +63,21 @@ function EditWarehouse() {
     axios
       .put(`http://localhost:8080/api/warehouses/${warehouseId}`, warehouseData)
       .then((res) => {
-        console.log('Warehouse updated successfully:', res.data);
+        console.log("Warehouse updated successfully:", res.data);
         // Reset the form or perform any other actions upon successful update
         setWarehouseData({
-          warehouse_name: '',
-          address: '',
-          city: '',
-          country: '',
-          contact_name: '',
-          contact_position: '',
-          contact_phone: '',
-          contact_email: '',
+          warehouse_name: "",
+          address: "",
+          city: "",
+          country: "",
+          contact_name: "",
+          contact_position: "",
+          contact_phone: "",
+          contact_email: "",
         });
       })
       .catch((error) => {
-        console.log('Error updating warehouse:', error);
+        console.log("Error updating warehouse:", error);
       });
   };
 

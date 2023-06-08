@@ -1,0 +1,329 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.card {
+  background-color: $Light-Grey;
+  width: 100vw;
+  height: 100vh;
+
+  &__bgBlue {
+    background-color: $Graphite;
+    height: 4em;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__wrapper {
+    background-color: $White;
+    margin: 0 1rem;
+    flex-grow: 1;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.2rem;
+    position: absolute;
+    top: 9rem;
+    width: calc(100% - 2rem);
+
+    @include tablet {
+      top: 5.5rem;
+      margin: 0 2rem;
+      width: calc(100% - 4rem);
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    border-bottom: 1.5px solid $Cloud;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet {
+      border: none;
+      padding: 1rem 2rem 1.2rem 2rem;
+    }
+  }
+
+  &__header-tittle-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    align-items: end;
+  }
+
+  &__header-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+
+  .warehouseInfo {
+    padding: 1rem 0;
+    border-bottom: 1.5px solid $Cloud;
+
+    &__wrapper {
+      margin: 0 1.5rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        justify-content: space-between;
+        width: 100%;
+        flex-grow: 1;
+      }
+    }
+
+    &__list-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #5c667e;
+      margin-bottom: 0.7rem;
+    }
+
+    &__contact-container {
+      display: flex;
+      gap: 6rem;
+      padding-top: 2rem;
+      width: 100%;
+
+      @include tablet {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        padding: 0 0 0 2.5rem;
+        border-left: 1.5px solid $Cloud;
+      }
+    }
+
+    &__contact {
+      width: 50%;
+    }
+  }
+  .cardTable {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      background-color: $Light-Grey;
+      display: flex;
+      flex-direction: row;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #5c667e;
+      padding: 0.5rem 2rem;
+    }
+
+    &__headings {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__header-wrapper {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin: 0 1rem;
+      width: 15%;
+      justify-content: flex-end;
+    }
+
+    &__header-button {
+      border: none;
+      background-color: $Light-Grey;
+    }
+    &__header-img {
+      width: 1rem;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    border-bottom: 1.5px solid $Cloud;
+
+    &:last-child {
+      border: none;
+    }
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+  }
+
+  &__list-content {
+    margin: 1rem;
+    display: flex;
+    gap: 6rem;
+  }
+
+  &__list-content-left,
+  &__list-content-right {
+    width: 50%;
+
+    text-align: left;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__list-content-left {
+    @include tablet {
+      width: 40%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__list-content-right {
+    @include tablet {
+      width: 40%;
+      display: flex;
+      justify-content: space-between;
+      // display: none;
+    }
+  }
+  &__list-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #5c667e;
+    margin-bottom: 0.7rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__product-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.8rem;
+    text-decoration: none;
+    align-items: center;
+  }
+
+  &__list-text-item {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+
+    &--product {
+      color: #2e66e5;
+      font-weight: 600;
+      margin: 0;
+    }
+    @include tablet {
+      margin-top: 0.3rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &__list-text-item-inStock {
+    color: $Green;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(21, 132, 99, 0.2);
+    border-radius: 1rem;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 0.9rem;
+    text-align: center;
+    width: 5rem;
+
+    @include tablet {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__list-text-item-outStock {
+    color: $Red;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(201, 69, 21, 0.2);
+    border-radius: 1rem;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 0.9rem;
+    text-align: center;
+    width: 7rem;
+
+    @include tablet {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__product-item_chevron {
+    margin-top: 0.15rem;
+  }
+
+  &__list-actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem 1.5rem 1rem;
+
+    @include tablet {
+      justify-content: flex-end;
+      gap: 1rem;
+      margin: 0;
+    }
+  }
+}
+
+.btn {
+  border: none;
+
+  &__style-link {
+    text-decoration: none;
+  }
+
+  &__style {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    padding: 1rem 1rem;
+    background-color: #2e66e5;
+    align-items: center;
+    border-radius: 2rem;
+    // transition: all 0.3s ease-out;
+
+    @include tablet {
+      width: 5rem;
+      display: flex;
+      flex-direction: row;
+      padding: 0.4rem 0rem;
+      justify-content: center;
+    }
+  }
+  &__img {
+    width: 2rem;
+  }
+
+  &__name {
+    display: none;
+  }
+  @include tablet {
+    font-size: 0.5rem;
+    font-weight: 400;
+    display: block;
+    text-align: center;
+  }
+
+  &__noBG {
+    border: none;
+    background-color: $White;
+  }
+}
