@@ -19,15 +19,14 @@ function AddNewWarehouse() {
   const [contactEmail, setContactEmail] = useState("");
 
   const postNewWarehouse = (newWarehouse) => {
-    console.log(newWarehouse);
     axios
       .post(`${apiWarehouses}`, newWarehouse)
-      .then((response) => {
-        console.log("Axios response");
-        console.log(response);
+      .then((_response) => {
+        alert("New Warehouse added successfully.");
+        navigate("/");
       })
       .catch((err) => {
-        console.error(err);
+        alert(err.response.data);
       });
   };
 
@@ -49,7 +48,6 @@ function AddNewWarehouse() {
   };
   // Create a handler for title input
   const handleChangeInput = (setState) => (event) => {
-    console.log(event.target.name);
     setState(event.target.value);
   };
 
@@ -68,25 +66,10 @@ function AddNewWarehouse() {
         contact_email: event.target.contactEmail.value,
       };
       postNewWarehouse(postData);
-      alert("New Warehouse added successfully.");
-      //   navigate("/");
     } else {
       alert("Failed to submit, you have some errors in your form");
     }
   };
-
-  // Test post using axios function
-  //   const testAPIPost = {
-  //     warehouseName: "Chicago",
-  //     address: "3218 Guess Rd",
-  //     city: "Chicago",
-  //     country: "USA",
-  //     contactName: "Jameson Schuppe",
-  //     contactPosition: "Warehouse Manager",
-  //     contactPhone: "+1 (919) 797-2875",
-  //     contactEmail: "jschuppe@instock.com",
-  //   };
-  //   postNewWarehouse(testAPIPost);
 
   return (
     <form className="form" onSubmit={handleSubmit}>
