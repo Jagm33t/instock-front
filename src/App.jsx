@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import "./App.scss";
+import AddNewInventoryItem from "./components/AddNewInventoryItem/AddNewInventoryItem";
 
 function App() {
   return (
@@ -18,13 +19,14 @@ function App() {
       <BrowserRouter>
         {/* Navigation links to pages */}
         <Header />
-        
+
         <Routes>
-          <Route path="/warehouses" element={<WareHousesPage />}/>
+          <Route path="/warehouses" element={<WareHousesPage />} />
           <Route path="/" element={<Navigate to="/warehouses" />} />
           <Route path="/warehouses/details" element={<WarehouseDetails />} />
           <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/inventory/details" element={<InventoryDetailsPage/>} />
+          <Route path="/inventory/add" element={<AddNewInventoryItem />} />
+          <Route path="/inventory/details" element={<InventoryDetailsPage />} />
           <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
           <Route path="*" element={<NotFoundPage />} />

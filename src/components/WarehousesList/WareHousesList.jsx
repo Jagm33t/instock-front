@@ -58,7 +58,7 @@ function WarehousesList(props) {
         <div className="card__bgBlue"></div>
         <div className="card__wrapper">
           <div className="card__header">
-            <h1 className="card__header-title">Inventory</h1>
+            <h1 className="card__header-title">Warehouse</h1>
             <div className="card__container">
               <div className="card__searchBox">
                 <input
@@ -130,7 +130,7 @@ function WarehousesList(props) {
                     </div>
                     <div className="card__list-actions">
                       <h4 className="card__list-title">Actions</h4>
-                      <img 
+                      <img
                         src={deleteImg}
                         alt={deleteImg}
                         className="deleteImg"
@@ -144,19 +144,30 @@ function WarehousesList(props) {
         </div>
       </section>
       {showModal && (
-      <div className="modal">
-        <div className="modal-content">
-          <h3 className="headerwarehouse">Delete {selectedWarehouse && selectedWarehouse.warehouse_name} warehouse?</h3>
-          <p>Please confirm that you'd like to delete the {selectedWarehouse && selectedWarehouse.warehouse_name} from the list of warehouses. You won't be able to undo this action.</p>
-          <div className="modal-actions">
-            <button className="cancelbtn" onClick={closeModal}>Cancel</button>
-            <button className="deletebtn" onClick={confirmDelete}>Delete</button>
+        <div className="modal">
+          <div className="modal-content">
+            <h3 className="headerwarehouse">
+              Delete {selectedWarehouse && selectedWarehouse.warehouse_name}{" "}
+              warehouse?
+            </h3>
+            <p>
+              Please confirm that you'd like to delete the{" "}
+              {selectedWarehouse && selectedWarehouse.warehouse_name} from the
+              list of warehouses. You won't be able to undo this action.
+            </p>
+            <div className="modal-actions">
+              <button className="cancelbtn" onClick={closeModal}>
+                Cancel
+              </button>
+              <button className="deletebtn" onClick={confirmDelete}>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 }
 
 export default WarehousesList;
