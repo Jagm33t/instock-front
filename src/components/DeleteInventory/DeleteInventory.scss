@@ -1,12 +1,37 @@
 @import "../../styles/fonts";
 @import "../../styles/mixin";
 
+.popUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+}
+
 .deleteInventory {
+  // position: fixed;
   font-family: "TitilliumWeb", sans-serif;
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+
+  // top: 0;
+  // left: 0;
+
+  // z-index: 9999;
+
+  // top: 40%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+
+  background-color: white;
 
   &__closeIconContainer {
     text-align: right;
