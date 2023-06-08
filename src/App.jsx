@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<WareHousesPage />} />
           <Route path="/warehouses" element={<Navigate to="/" />} />
           <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
+          <Route path="/warehouses/id:/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/add" element={<AddNewWareHousesForm />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

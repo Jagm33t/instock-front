@@ -12,10 +12,12 @@ import "./WarehouseDetailsList.scss";
 function WarehouseDetailsList() {
   const [WarehouseDetailsList, setWarehouseDetailsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
+  const params = useParams();
+  console.log(params.id);
 
   const displayWarehouseList = () => {
     axios
-      .get("http://127.0.0.1:8080/api/warehouses")
+      .get(`http://127.0.0.1:8080/api/warehouses/1`)
       .then((res) => {
         console.log(res.data);
         setWarehouseList(res.data);
@@ -33,7 +35,7 @@ function WarehouseDetailsList() {
 
   const displayWarehouseDetailsList = () => {
     axios
-      .get("http://127.0.0.1:8080/api/warehouses/1/inventories")
+      .get(`http://127.0.0.1:8080/api/warehouses/1/inventories`)
       .then((res) => {
         console.log(res.data);
         setWarehouseDetailsList(res.data);
