@@ -27,7 +27,6 @@
     border-radius: 0.2rem;
     position: absolute;
     top: 9rem;
-
     width: calc(100% - 2rem);
 
     @include tablet {
@@ -81,6 +80,22 @@
 
     &__wrapper {
       margin: 0 1.5rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        justify-content: space-between;
+        width: 100%;
+        flex-grow: 1;
+      }
+    }
+
+    &__list-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #5c667e;
+      margin-bottom: 0.7rem;
     }
 
     &__contact-container {
@@ -88,6 +103,14 @@
       gap: 6rem;
       padding-top: 2rem;
       width: 100%;
+
+      @include tablet {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        padding: 0 0 0 2.5rem;
+        border-left: 1.5px solid $Cloud;
+      }
     }
 
     &__contact {
@@ -124,7 +147,10 @@
 
     &__header-button {
       border: none;
-      background-color: none;
+      background-color: $Light-Grey;
+    }
+    &__header-img {
+      width: 1rem;
     }
   }
 
@@ -148,12 +174,12 @@
     margin: 1rem;
     display: flex;
     gap: 6rem;
-    width: 100%;
   }
 
   &__list-content-left,
   &__list-content-right {
     width: 50%;
+
     text-align: left;
     @include tablet {
       display: flex;

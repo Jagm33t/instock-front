@@ -3,7 +3,7 @@ import editImg from "../../assets/Icons/edit-24px.svg";
 import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 import backArrowImg from "../../assets/Icons/arrow_back-24px.svg";
-
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -28,7 +28,9 @@ function WarehouseDetailsList() {
   useEffect(() => {
     displayWarehouseList();
   }, []);
-  console.log("ware", warehouseList);
+
+  console.log("warehouse:", warehouseList);
+
   const displayWarehouseDetailsList = () => {
     axios
       .get("http://127.0.0.1:8080/api/warehouses/1/inventories")
@@ -48,6 +50,7 @@ function WarehouseDetailsList() {
     <section className="card">
       <div className="card__bgBlue"></div>
       <div className="card__wrapper">
+        {/* {DetailsList.map((inventory) => )} */}
         <div className="card__header">
           <div className="card__header-tittle-container">
             <Link to="/" type="button" className="btn__noBG">
@@ -59,7 +62,7 @@ function WarehouseDetailsList() {
               <p className="btn__name">Edit</p>
             </Link>
             <h1 className="card__header-title">
-              {warehouseList.warehouse_name}
+              {warehouseList.length > 0 ? warehouseList[0].warehouse_name : ""}
             </h1>
           </div>
 
@@ -75,19 +78,21 @@ function WarehouseDetailsList() {
         <div className="warehouseInfo">
           <div className="warehouseInfo__wrapper">
             <div className="warehouse__address">
-              <h4 className="card__list-title">warehouse address:</h4>
+              <h4 className="warehouseInfo__list-title">warehouse address:</h4>
               <p className="card__list-text-item">
                 33 Pearl Street SW, Washington, USA
               </p>
             </div>
             <div className="warehouseInfo__contact-container">
               <div className="warehouseInfo__contact">
-                <h4 className="card__list-title">contact name:</h4>
+                <h4 className="warehouseInfo__list-title">contact name:</h4>
                 <p className="card__list-text-item">Graeme Lyon</p>
                 <p className="card__list-text-item">Warehouse Manager</p>
               </div>
               <div className="warehouseInfo__contact">
-                <h4 className="card__list-title">Contact information:</h4>
+                <h4 className="warehouseInfo__list-title">
+                  Contact information:
+                </h4>
                 <p className="card__list-text-item">+1 (647) 504-0911</p>
                 <p className="card__list-text-item">glyon@instock.com</p>
               </div>
@@ -100,9 +105,9 @@ function WarehouseDetailsList() {
               <h4 className="cardTable__header">Inventory Item</h4>
               <button className="cardTable__header-button">
                 <img
-                  className="cardTable__header-icon"
+                  className="cardTable__header-img"
                   src={sortIcon}
-                  alt="sort icon"
+                  alt={sortIcon}
                 />
               </button>
             </div>
@@ -110,9 +115,9 @@ function WarehouseDetailsList() {
               <h4 className="cardTable__header">Category</h4>
               <button className="cardTable__header-button">
                 <img
-                  className="cardTable__header-icon"
+                  className="cardTable__header-img"
                   src={sortIcon}
-                  alt="sort icon"
+                  alt={sortIcon}
                 />
               </button>
             </div>
@@ -120,9 +125,9 @@ function WarehouseDetailsList() {
               <h4 className="cardTable__header">Status</h4>
               <button className="cardTable__header-button">
                 <img
-                  className="cardTable__header-icon"
+                  className="cardTable__header-img"
                   src={sortIcon}
-                  alt="sort icon"
+                  alt={sortIcon}
                 />
               </button>
             </div>
@@ -130,9 +135,9 @@ function WarehouseDetailsList() {
               <h4 className="cardTable__header">Quantity</h4>
               <button className="cardTable__header-button">
                 <img
-                  className="cardTable__header-icon"
+                  className="cardTable__header-img"
                   src={sortIcon}
-                  alt="sort icon"
+                  alt={sortIcon}
                 />
               </button>
             </div>
