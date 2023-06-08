@@ -15,7 +15,7 @@ function InventoryList() {
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("asc"); //default
   const [sortColumn, setSortColumn] = useState("");
 
   const displayInventory = () => {
