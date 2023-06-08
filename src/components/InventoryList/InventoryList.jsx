@@ -1,8 +1,8 @@
-import searchImg from "../../assets/Icons/search-24px.svg";
-import deleteImg from "../../assets/Icons/delete_outline-24px.svg";
-import editImg from "../../assets/Icons/edit-24px.svg";
-import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
-import sortIcon from "../../assets/Icons/sort-24px.svg";
+import searchImg from "../../assets/icons/search-24px.svg";
+import deleteImg from "../../assets/icons/delete_outline-24px.svg";
+import editImg from "../../assets/icons/edit-24px.svg";
+import chevronRight from "../../assets/icons/chevron_right-24px.svg";
+import sortIcon from "../../assets/icons/sort-24px.svg";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

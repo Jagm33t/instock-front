@@ -8,6 +8,7 @@ import arrow_back from "../../assets/icons/arrow_back-24px.svg";
 function AddNewWarehouse() {
   const navigate = useNavigate();
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseName, setWarehouseName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -19,7 +20,7 @@ function AddNewWarehouse() {
 
   const postNewWarehouse = (newWarehouse) => {
     axios
-      .post(`${apiInstockURL}`, {
+      .post(`${apiWarehouses}`, {
         warehouse_name: newWarehouse.warehouseName,
         address: newWarehouse.address,
         city: newWarehouse.city,
