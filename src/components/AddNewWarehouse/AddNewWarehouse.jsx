@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddNewWarehouse.sass";
-
+import Button from "../Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
 
 function AddNewWarehouse() {
@@ -54,6 +54,10 @@ function AddNewWarehouse() {
     }
     return true;
   };
+  // Create a handler for title input
+  const handleChangeInput = (event) => {
+    console.log(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -90,59 +94,139 @@ function AddNewWarehouse() {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <div className="form_header">
-        <img src="" alt="back" />
+      <div className="form__header">
+        <img className="form__header-img" src={arrow_back} alt="back" />
+        <h1 className="form__header-title">Add New Warehouse</h1>
       </div>
       <fieldset className="form__fieldset">
-        <label className="form__thumbnail">
-          Video Thumbnail
-          <div className="form__thumbnail-img-container">
-            <img
-              className="form__thumbnail-img"
-              src={uploadVideoPreview}
-              alt="preview "
+        <div className="form__warehouse">
+          <h2 className="form__warehouse-title">Warehouse Detais</h2>
+          <div className="form__warehouse__fields">
+            <label
+              className="form__warehouse__fields-label"
+              htmlFor="warehouseName"
+            >
+              Warehouse Name
+            </label>
+            <input
+              className="form__warehouse__fields-input"
+              type="text"
+              name="warehouseName"
+              id="warehouseName"
+              placeholder="Warehouse Name"
+              onChange={handleChangeInput}
+              value={warehouseName}
+            />
+            <label className="form__warehouse__fields-label" htmlFor="address">
+              Street Address
+            </label>
+            <input
+              className="form__warehouse__fields-input"
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Street Address"
+              onChange={handleChangeInput}
+              value={address}
+            />
+            <label className="form__warehouse__fields-label" htmlFor="city">
+              City
+            </label>
+            <input
+              className="form__warehouse__fields-input"
+              type="text"
+              name="city"
+              id="city"
+              placeholder="City"
+              onChange={handleChangeInput}
+              value={city}
+            />
+            <label className="form__warehouse__fields-label" htmlFor="country">
+              Country
+            </label>
+            <input
+              className="form__warehouse__fields-input"
+              type="text"
+              name="country"
+              id="country"
+              placeholder="Country"
+              onChange={handleChangeInput}
+              value={country}
             />
           </div>
-        </label>
-        <div className="form__text-container">
-          <label className="form__text-title-label" htmlFor="title">
-            Title Your Video
-          </label>
-          <input
-            className="form__text-title-input"
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Add a title to your video"
-            onChange={handleChangeTitle}
-            value={title}
-          />
-          <label className="form__text-description-label" htmlFor="description">
-            Add a Video Description
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            className="form__text-description-textarea"
-            placeholder="Add a description to your video"
-            onChange={handleChangeDescription}
-            value={description}
-            onInput={() => resizeTextarea("description")}
-          ></textarea>
+          <div className="form__contact">
+            <h2 className="form__contact-title">Contact Detais</h2>
+            <div className="form__contact__fields">
+              <label
+                className="form__contact__fields-label"
+                htmlFor="contactName"
+              >
+                Contact Name
+              </label>
+              <input
+                className="form__contact__fields-input"
+                type="text"
+                name="contactName"
+                id="contactName"
+                placeholder="Contact Name"
+                onChange={handleChangeInput}
+                value={contactName}
+              />
+              <label
+                className="form__contact__fields-label"
+                htmlFor="contactPosition"
+              >
+                Position
+              </label>
+              <input
+                className="form__contact__fields-input"
+                type="text"
+                name="contactPosition"
+                id="contactPosition"
+                placeholder="Position"
+                onChange={handleChangeInput}
+                value={contactPosition}
+              />
+              <label
+                className="form__contact__fields-label"
+                htmlFor="contactPhone"
+              >
+                Phone Number
+              </label>
+              <input
+                className="form__contact__fields-input"
+                type="text"
+                name="contactPhone"
+                id="contactPhone"
+                placeholder="Phone Number"
+                onChange={handleChangeInput}
+                value={contactPhone}
+              />
+              <label
+                className="form__contact__fields-label"
+                htmlFor="contactEmail"
+              >
+                Email
+              </label>
+              <input
+                className="form__contact__fields-input"
+                type="text"
+                name="contactEmail"
+                id="contactEmail"
+                placeholder="Email"
+                onChange={handleChangeInput}
+                value={contactEmail}
+              />
+            </div>
+          </div>
         </div>
       </fieldset>
       <div className="form__buttons">
-        <Button
-          icon={publish}
-          text="Publish"
-          type="submit"
-          disabled={!isFormValid()}
-        />
+        <Button text="+Add Warehouse" type="submit" disabled={!isFormValid()} />
         <Button
           text="Cancel"
           type="submit"
-          handleClick={handleClick}
-          addClassName={"btn__style--cancel"}
+          addclassName={"btn__style--cancel"}
         />
       </div>
     </form>
