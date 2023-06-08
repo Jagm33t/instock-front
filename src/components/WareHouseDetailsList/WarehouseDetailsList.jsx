@@ -12,7 +12,6 @@ import "./WarehouseDetailsList.scss";
 function WarehouseDetailsList() {
   const [WarehouseDetailsList, setWarehouseDetailsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
-  console.log("ware", warehouseList);
 
   const displayWarehouseList = () => {
     axios
@@ -29,7 +28,7 @@ function WarehouseDetailsList() {
   useEffect(() => {
     displayWarehouseList();
   }, []);
-
+  console.log("ware", warehouseList);
   const displayWarehouseDetailsList = () => {
     axios
       .get("http://127.0.0.1:8080/api/warehouses/1/inventories")
@@ -59,7 +58,9 @@ function WarehouseDetailsList() {
               />
               <p className="btn__name">Edit</p>
             </Link>
-            <h1 className="card__header-title">Washington</h1>
+            <h1 className="card__header-title">
+              {warehouseList.warehouse_name}
+            </h1>
           </div>
 
           <div className="btn">
