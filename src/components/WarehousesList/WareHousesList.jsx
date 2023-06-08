@@ -11,7 +11,8 @@ import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 
 function WarehousesList(props) {
   const [warehouseList, setWarehouseList] = useState([]);
-
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   //const params = useParams();
 
   const displayWarehouses = () => {
@@ -29,6 +30,28 @@ function WarehousesList(props) {
   useEffect(() => {
     displayWarehouses();
   }, []);
+
+  const handleDeleteWarehouse = (warehouse) => {
+    setSelectedWarehouse(warehouse);
+    setShowModal(true);
+  };
+  const confirmDelete = () => {
+    axios
+      .delete(`http://localhost:8080/api/warehouses/${selectedWarehouse.id}`)
+      .then(() => {
+        setShowModal(false);
+        setSelectedWarehouse(null);
+        displayWarehouses(); // Refresh the warehouse list after successful deletion
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedWarehouse(null);
+  };
   return (
     <div className="warehouses-list">
       <section className="card">
@@ -107,10 +130,11 @@ function WarehousesList(props) {
                     </div>
                     <div className="card__list-actions">
                       <h4 className="card__list-title">Actions</h4>
-                      <img
+                      <img 
                         src={deleteImg}
                         alt={deleteImg}
                         className="deleteImg"
+                        onClick={() => handleDeleteWarehouse(warehouse)}
                       />
                       <img src={editImg} alt={editImg} className="editImg" />
                     </div>
@@ -119,8 +143,20 @@ function WarehousesList(props) {
           </ul>
         </div>
       </section>
-    </div>
-  );
+      {showModal && (
+      <div className="modal">
+        <div className="modal-content">
+          <h3 className="headerwarehouse">Delete {selectedWarehouse && selectedWarehouse.warehouse_name} warehouse?</h3>
+          <p>Please confirm that you'd like to delete the {selectedWarehouse && selectedWarehouse.warehouse_name} from the list of warehouses. You won't be able to undo this action.</p>
+          <div className="modal-actions">
+            <button className="cancelbtn" onClick={closeModal}>Cancel</button>
+            <button className="deletebtn" onClick={confirmDelete}>Delete</button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+);
 }
 
 export default WarehousesList;
