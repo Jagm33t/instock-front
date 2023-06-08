@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 
-function EditWarehouse({ warehouseId }) {
+
+function EditWarehouse() {
   const [warehouseData, setWarehouseData] = useState({
     warehouse_name: '',
     address: '',
@@ -13,7 +15,13 @@ function EditWarehouse({ warehouseId }) {
     contact_email: '',
   });
 
+  const params = useParams();
+  const warehouseId = params.id;
+  console.log(warehouseId);
   useEffect(() => {
+    
+    
+    
     // Fetch warehouse data from the server based on the provided ID
     axios
       .get(`http://localhost:8080/api/warehouses/${warehouseId}`)
@@ -33,7 +41,7 @@ function EditWarehouse({ warehouseId }) {
       .catch((error) => {
         console.log('Error fetching warehouse data:', error);
       });
-  }, [warehouseId]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
