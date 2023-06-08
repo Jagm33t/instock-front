@@ -3,6 +3,7 @@ import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
+import editIcon from "../../assets/icons/editIcon.svg";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -72,7 +73,7 @@ function WarehouseDetailsList() {
           <div className="btn">
             <div className="btn__style-link">
               <button type="button" className="btn__style">
-                <img src={deleteImg} alt={deleteImg} className="btn__img" />
+                <img src={editIcon} alt={editIcon} className="btn__img" />
                 <p className="btn__name">Edit</p>
               </button>
             </div>

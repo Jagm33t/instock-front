@@ -1,12 +1,6 @@
 @import "../../styles/variables";
 @import "../../styles/mixin";
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .card {
   background-color: $Light-Grey;
   width: 100vw;
@@ -131,11 +125,13 @@
       color: #5c667e;
       padding: 0.5rem 2rem;
     }
+
     &__headings {
       display: flex;
       width: 100%;
       justify-content: space-between;
     }
+
     &__header-wrapper {
       display: flex;
       gap: 0.4rem;
@@ -302,8 +298,7 @@
     background-color: #2e66e5;
     align-items: center;
     border-radius: 2rem;
-    border: none;
-    transition: all 0.3s ease-out;
+    // transition: all 0.3s ease-out;
 
     @include tablet {
       width: 5rem;
