@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../assets/logo/InStock-Logo_1x.png";
@@ -35,6 +35,9 @@ function WarehousesList(props) {
     setSelectedWarehouse(warehouse);
     setShowModal(true);
   };
+
+
+  
   const confirmDelete = () => {
     axios
       .delete(`http://localhost:8080/api/warehouses/${selectedWarehouse.id}`)
@@ -136,13 +139,18 @@ function WarehousesList(props) {
                         className="deleteImg"
                         onClick={() => handleDeleteWarehouse(warehouse)}
                       />
-                      <img src={editImg} alt={editImg} className="editImg" />
+                      <Link to={`/warehouses/${warehouse.id}/edit`}>
+                      
+                      <img src={editImg} alt={editImg} className="editImg"  />
+                      </Link>
                     </div>
                   </li>
                 ))}
           </ul>
         </div>
       </section>
+
+     
       {showModal && (
       <div className="modal">
         <div className="modal-content">
