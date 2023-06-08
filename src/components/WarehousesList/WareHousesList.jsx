@@ -64,7 +64,7 @@ function WarehousesList(props) {
             {warehouseList.length === 0
               ? null
               : warehouseList.map((warehouse) => (
-                  <li className="card__list" key={warehouse.id}>
+                  <li className="card__warehouse-list" key={warehouse.id}>
                     <div className="card__list-content">
                       <div className="card__list-content-left">
                         <div className="card__list-wrap">
