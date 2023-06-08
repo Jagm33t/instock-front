@@ -19,17 +19,9 @@ function AddNewWarehouse() {
   const [contactEmail, setContactEmail] = useState("");
 
   const postNewWarehouse = (newWarehouse) => {
+    console.log(newWarehouse);
     axios
-      .post(`${apiWarehouses}`, {
-        warehouse_name: newWarehouse.warehouseName,
-        address: newWarehouse.address,
-        city: newWarehouse.city,
-        country: newWarehouse.country,
-        contact_name: newWarehouse.contactName,
-        contact_position: newWarehouse.contactPosition,
-        contact_phone: newWarehouse.contactPhone,
-        contact_email: newWarehouse.contactEmail,
-      })
+      .post(`${apiWarehouses}`, newWarehouse)
       .then((response) => {
         console.log("Axios response");
         console.log(response);
@@ -65,18 +57,19 @@ function AddNewWarehouse() {
     event.preventDefault();
 
     if (isFormValid()) {
-      console.log({
+      const postData = {
         warehouse_name: event.target.warehouseName.value,
         address: event.target.address.value,
         city: event.target.city.value,
         country: event.target.country.value,
-        contact_name: event.target.contactName,
-        contact_position: event.target.contactPosition,
-        contact_phone: event.target.contactPhone,
-        contact_email: event.target.contactEmail,
-      });
+        contact_name: event.target.contactName.value,
+        contact_position: event.target.contactPosition.value,
+        contact_phone: event.target.contactPhone.value,
+        contact_email: event.target.contactEmail.value,
+      };
+      postNewWarehouse(postData);
       alert("New Warehouse added successfully.");
-      navigate("/");
+      //   navigate("/");
     } else {
       alert("Failed to submit, you have some errors in your form");
     }
