@@ -1,0 +1,45 @@
+@import "../../styles/variables";
+
+.warehouses-list {
+  &__wrapper {
+    border: 1px solid orange;
+  }
+  &__section1 {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    width: 100vw;
+  }
+
+  &__search-box {
+    display: flex;
+    gap: 55px;
+    width: 274px;
+    height: 38px;
+    border: 1px solid $Cloud;
+    border-radius: 20px;
+    img {
+      order: 2;
+      width: 28px;
+    }
+    input {
+      border: none;
+      margin-left: 0.7rem;
+    }
+  }
+
+  &__button {
+    width: 168px;
+    height: 38px;
+    top: 124px;
+    //border: 1px solid blue;
+    button {
+      background-color: $Instock-Indigo;
+      border-radius: 10px;
+      p {
+        color: white;
+      }
+    }
+  }
+}

@@ -1,7 +1,9 @@
+import WarehousesList from "../../components/WarehousesList/WareHousesList";
+
 function WareHousesPage() {
   return (
     <div>
-      <h1>WareHouses</h1>
+      <WarehousesList />
     </div>
   );
 }
