@@ -1,24 +1,16 @@
-<<<<<<< HEAD
-import WarehouseDetailsList from "../../components/WareHouseDetailsList/WarehouseDetailsList";
-function EditWareHousesForm() {
-  return (
-    <div>
-      <h1>Edit Warehouses Form</h1>
-      <WarehouseDetailsList />
-=======
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function EditWarehouse({ warehouseId }) {
   const [warehouseData, setWarehouseData] = useState({
-    warehouse_name: '',
-    address: '',
-    city: '',
-    country: '',
-    contact_name: '',
-    contact_position: '',
-    contact_phone: '',
-    contact_email: '',
+    warehouse_name: "",
+    address: "",
+    city: "",
+    country: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   useEffect(() => {
@@ -26,7 +18,16 @@ function EditWarehouse({ warehouseId }) {
     axios
       .get(`http://localhost:8080/api/warehouses/${warehouseId}`)
       .then((res) => {
-        const { warehouse_name, address, city, country, contact_name, contact_position, contact_phone, contact_email } = res.data;
+        const {
+          warehouse_name,
+          address,
+          city,
+          country,
+          contact_name,
+          contact_position,
+          contact_phone,
+          contact_email,
+        } = res.data;
         setWarehouseData({
           warehouse_name,
           address,
@@ -39,7 +40,7 @@ function EditWarehouse({ warehouseId }) {
         });
       })
       .catch((error) => {
-        console.log('Error fetching warehouse data:', error);
+        console.log("Error fetching warehouse data:", error);
       });
   }, [warehouseId]);
 
@@ -58,21 +59,21 @@ function EditWarehouse({ warehouseId }) {
     axios
       .put(`http://localhost:8080/api/warehouses/${warehouseId}`, warehouseData)
       .then((res) => {
-        console.log('Warehouse updated successfully:', res.data);
+        console.log("Warehouse updated successfully:", res.data);
         // Reset the form or perform any other actions upon successful update
         setWarehouseData({
-          warehouse_name: '',
-          address: '',
-          city: '',
-          country: '',
-          contact_name: '',
-          contact_position: '',
-          contact_phone: '',
-          contact_email: '',
+          warehouse_name: "",
+          address: "",
+          city: "",
+          country: "",
+          contact_name: "",
+          contact_position: "",
+          contact_phone: "",
+          contact_email: "",
         });
       })
       .catch((error) => {
-        console.log('Error updating warehouse:', error);
+        console.log("Error updating warehouse:", error);
       });
   };
 
@@ -169,7 +170,6 @@ function EditWarehouse({ warehouseId }) {
         <button type="button">Cancel</button>
         <button type="submit">Save</button>
       </form>
->>>>>>> develop
     </div>
   );
 }

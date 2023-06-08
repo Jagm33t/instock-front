@@ -1,8 +1,8 @@
-import deleteImg from "../../assets/Icons/delete_outline-24px.svg";
-import editImg from "../../assets/Icons/edit-24px.svg";
-import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
-import sortIcon from "../../assets/Icons/sort-24px.svg";
-import backArrowImg from "../../assets/Icons/arrow_back-24px.svg";
+import deleteImg from "../../assets/icons/delete_outline-24px.svg";
+import editImg from "../../assets/icons/edit-24px.svg";
+import chevronRight from "../../assets/icons/chevron_right-24px.svg";
+import sortIcon from "../../assets/icons/sort-24px.svg";
+import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,15 +12,16 @@ import "./WarehouseDetailsList.scss";
 function WarehouseDetailsList() {
   const [WarehouseDetailsList, setWarehouseDetailsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
+
   const params = useParams();
   console.log(params.id);
 
   const displayWarehouseList = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses/1`)
+      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
       .then((res) => {
         console.log(res.data);
-        setWarehouseList(res.data);
+        setWarehouseList(res.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -28,14 +29,14 @@ function WarehouseDetailsList() {
   };
 
   useEffect(() => {
-    displayWarehouseList();
-  }, []);
-
-  console.log("warehouse:", warehouseList);
+    if (params.id) {
+      displayWarehouseList(params.id);
+    }
+  }, [params.id]);
 
   const displayWarehouseDetailsList = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses/1/inventories`)
+      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
       .then((res) => {
         console.log(res.data);
         setWarehouseDetailsList(res.data);
@@ -48,11 +49,11 @@ function WarehouseDetailsList() {
   useEffect(() => {
     displayWarehouseDetailsList();
   }, []);
+
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
       <div className="card__wrapper">
-        {/* {DetailsList.map((inventory) => )} */}
         <div className="card__header">
           <div className="card__header-tittle-container">
             <Link to="/" type="button" className="btn__noBG">
@@ -64,7 +65,7 @@ function WarehouseDetailsList() {
               <p className="btn__name">Edit</p>
             </Link>
             <h1 className="card__header-title">
-              {warehouseList.length > 0 ? warehouseList[0].warehouse_name : ""}
+              {warehouseList.warehouse_name}
             </h1>
           </div>
 
@@ -81,9 +82,7 @@ function WarehouseDetailsList() {
           <div className="warehouseInfo__wrapper">
             <div className="warehouse__address">
               <h4 className="warehouseInfo__list-title">warehouse address:</h4>
-              <p className="card__list-text-item">
-                33 Pearl Street SW, Washington, USA
-              </p>
+              <p className="card__list-text-item">{warehouseList.address}</p>
             </div>
             <div className="warehouseInfo__contact-container">
               <div className="warehouseInfo__contact">
