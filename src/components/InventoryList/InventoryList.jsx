@@ -8,17 +8,23 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./InventoryList.scss";
+import DeleteInventory from "../DeleteInventory/DeleteInventory";
 
 function InventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const displayInventory = () => {
     axios
-      .get("http://127.0.0.1:8080/api/inventories")
+      .get(`http://127.0.0.1:8080/api/inventories?s=${searchTerm}`)
       .then((response) => {
         console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {
+        alert(error.response.data);
         console.error(error);
       });
   };
@@ -26,6 +32,30 @@ function InventoryList() {
   useEffect(() => {
     displayInventory();
   }, []);
+
+  const handleDeleteInventory = (inventory) => {
+    setSelectedInventory(inventory);
+    setShowModal(true);
+  };
+
+  const confirmDelete = () => {
+    axios
+      .delete(`http://localhost:8080/api/inventories/${selectedInventory.id}`)
+      .then(() => {
+        setShowModal(false);
+        setSelectedInventory(null);
+        displayInventory();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedInventory(null);
+  };
+
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
@@ -40,11 +70,15 @@ function InventoryList() {
                 className="card__searchBox-input"
                 id="searchBox"
                 placeholder="Search..."
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
               />
               <img
                 src={searchImg}
                 alt={searchImg}
                 className="card__searchBox-img"
+                onClick={() => displayInventory()}
               />
             </div>
             <div className="btn">
@@ -167,6 +201,7 @@ function InventoryList() {
                       src={deleteImg}
                       alt={deleteImg}
                       className="deleteImg"
+                      onClick={() => handleDeleteInventory(inventory)}
                     />
                     <img src={editImg} alt={editImg} className="editImg" />
                   </div>
@@ -174,6 +209,34 @@ function InventoryList() {
               ))}
         </ul>
       </div>
+      {showModal && (
+        <DeleteInventory
+          closeModal={closeModal}
+          confirmDelete={confirmDelete}
+          selectedInventory={selectedInventory}
+        />
+        // <div className="modal">
+        //   <div className="modal-content">
+        //     <h3 className="headerwarehouse">
+        //       Delete {selectedInventory && selectedInventory.item_name}{" "}
+        //       warehouse?
+        //     </h3>
+        //     <p>
+        //       Please confirm that you'd like to delete the{" "}
+        //       {selectedInventory && selectedInventory.item_name} from the list
+        //       of warehouses. You won't be able to undo this action.
+        //     </p>
+        //     <div className="modal-actions">
+        //       <button className="cancelbtn" onClick={closeModal}>
+        //         Cancel
+        //       </button>
+        //       <button className="deletebtn" onClick={confirmDelete}>
+        //         Delete
+        //       </button>
+        //     </div>
+        //   </div>
+        // </div>
+      )}
     </section>
   );
 }

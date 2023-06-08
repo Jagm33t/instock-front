@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddNewWarehouse.sass";
+import "./AddNewWarehouse.scss";
 import Button from "../Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
 
@@ -10,32 +10,31 @@ function AddNewWarehouse() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseName, setWarehouseName] = useState("");
+  const [validateWarehouseName, setValidateWarehouseName] = useState(false);
   const [address, setAddress] = useState("");
+  const [validateAddress, setValidateAddress] = useState(false);
   const [city, setCity] = useState("");
+  const [validateCity, setValidateCity] = useState(false);
   const [country, setCountry] = useState("");
+  const [validateCountry, setValidateCountry] = useState(false);
   const [contactName, setContactName] = useState("");
+  const [validateContactName, setValidateContactName] = useState(false);
   const [contactPosition, setContactPosition] = useState("");
+  const [validateContactPosition, setValidateContactPosition] = useState(false);
   const [contactPhone, setContactPhone] = useState("");
+  const [validateContactPhone, setValidateContactPhone] = useState(false);
   const [contactEmail, setContactEmail] = useState("");
+  const [validateContactEmail, setValidateContactEmail] = useState(false);
 
   const postNewWarehouse = (newWarehouse) => {
     axios
-      .post(`${apiWarehouses}`, {
-        warehouse_name: newWarehouse.warehouseName,
-        address: newWarehouse.address,
-        city: newWarehouse.city,
-        country: newWarehouse.country,
-        contact_name: newWarehouse.contactName,
-        contact_position: newWarehouse.contactPosition,
-        contact_phone: newWarehouse.contactPhone,
-        contact_email: newWarehouse.contactEmail,
-      })
-      .then((response) => {
-        console.log("Axios response");
-        console.log(response);
+      .post(`${apiWarehouses}`, newWarehouse)
+      .then((_response) => {
+        alert("New Warehouse added successfully.");
+        navigate("/");
       })
       .catch((err) => {
-        console.error(err);
+        alert(err.response.data);
       });
   };
 
@@ -56,42 +55,37 @@ function AddNewWarehouse() {
     return true;
   };
   // Create a handler for title input
-  const handleChangeInput = (event) => {
-    console.log(event.target.value);
+  const handleChangeInput = (setState) => (event) => {
+    setState(event.target.value);
+  };
+
+  const validadeField = (setState) => (event) => {
+    if (event.target.value.length < 1) {
+      setState(true);
+    } else {
+      setState(false);
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (isFormValid()) {
-      postNewWarehouse({
+      const postData = {
         warehouse_name: event.target.warehouseName.value,
         address: event.target.address.value,
         city: event.target.city.value,
         country: event.target.country.value,
-        contact_name: event.target.contactName,
-        contact_position: event.target.contactPosition,
-        contact_phone: event.target.contactPhone,
-        contact_email: event.target.contactEmail,
-      });
-      alert("New video submitted successfully.");
-      navigate("/");
+        contact_name: event.target.contactName.value,
+        contact_position: event.target.contactPosition.value,
+        contact_phone: event.target.contactPhone.value,
+        contact_email: event.target.contactEmail.value,
+      };
+      postNewWarehouse(postData);
     } else {
       alert("Failed to submit, you have some errors in your form");
     }
   };
-
-  const testAPIPost = {
-    warehouse_name: "Chicago",
-    address: "3218 Guess Rd",
-    city: "Chicago",
-    country: "USA",
-    contact_name: "Jameson Schuppe",
-    contact_position: "Warehouse Manager",
-    contact_phone: "+1 (919) 797-2875",
-    contact_email: "jschuppe@instock.com",
-  };
-  postNewWarehouse(testAPIPost);
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -115,9 +109,19 @@ function AddNewWarehouse() {
               name="warehouseName"
               id="warehouseName"
               placeholder="Warehouse Name"
-              onChange={handleChangeInput}
+              onChange={handleChangeInput(setWarehouseName)}
               value={warehouseName}
+              onBlur={validadeField(setValidateWarehouseName)}
             />
+            <p
+              className={
+                validateWarehouseName
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Warehouse name is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="address">
               Street Address
             </label>
@@ -127,9 +131,19 @@ function AddNewWarehouse() {
               name="address"
               id="address"
               placeholder="Street Address"
-              onChange={handleChangeInput}
+              onChange={handleChangeInput(setAddress)}
               value={address}
+              onBlur={validadeField(setValidateAddress)}
             />
+            <p
+              className={
+                validateAddress
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Address is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="city">
               City
             </label>
@@ -139,9 +153,17 @@ function AddNewWarehouse() {
               name="city"
               id="city"
               placeholder="City"
-              onChange={handleChangeInput}
+              onChange={handleChangeInput(setCity)}
               value={city}
+              onBlur={validadeField(setValidateCity)}
             />
+            <p
+              className={
+                validateCity ? "form__fields-error" : "form__fields-error--hide"
+              }
+            >
+              * City is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="country">
               Country
             </label>
@@ -151,9 +173,19 @@ function AddNewWarehouse() {
               name="country"
               id="country"
               placeholder="Country"
-              onChange={handleChangeInput}
+              onChange={handleChangeInput(setCountry)}
               value={country}
+              onBlur={validadeField(setValidateCountry)}
             />
+            <p
+              className={
+                validateCountry
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Country is required
+            </p>
           </div>
           <div className="form__contact">
             <h2 className="form__contact-title">Contact Detais</h2>
@@ -170,9 +202,19 @@ function AddNewWarehouse() {
                 name="contactName"
                 id="contactName"
                 placeholder="Contact Name"
-                onChange={handleChangeInput}
+                onChange={handleChangeInput(setContactName)}
                 value={contactName}
+                onBlur={validadeField(setValidateContactName)}
               />
+              <p
+                className={
+                  validateContactName
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Name is required
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPosition"
@@ -185,9 +227,19 @@ function AddNewWarehouse() {
                 name="contactPosition"
                 id="contactPosition"
                 placeholder="Position"
-                onChange={handleChangeInput}
+                onChange={handleChangeInput(setContactPosition)}
                 value={contactPosition}
+                onBlur={validadeField(setValidateContactPosition)}
               />
+              <p
+                className={
+                  validateContactPosition
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Position is required
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPhone"
@@ -200,9 +252,19 @@ function AddNewWarehouse() {
                 name="contactPhone"
                 id="contactPhone"
                 placeholder="Phone Number"
-                onChange={handleChangeInput}
+                onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
+                onBlur={validadeField(setValidateContactPhone)}
               />
+              <p
+                className={
+                  validateContactPhone
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Phone is required
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactEmail"
@@ -211,13 +273,23 @@ function AddNewWarehouse() {
               </label>
               <input
                 className="form__contact__fields-input"
-                type="text"
+                type="mail"
                 name="contactEmail"
                 id="contactEmail"
                 placeholder="Email"
-                onChange={handleChangeInput}
+                onChange={handleChangeInput(setContactEmail)}
                 value={contactEmail}
+                onBlur={validadeField(setValidateContactEmail)}
               />
+              <p
+                className={
+                  validateContactEmail
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Email is required
+              </p>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../assets/logo/InStock-Logo_1x.png";
@@ -14,15 +14,17 @@ function WarehousesList(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   //const params = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const displayWarehouses = () => {
     axios
-      .get("http://127.0.0.1:8080/api/warehouses")
+      .get(`http://127.0.0.1:8080/api/warehouses?s=${searchTerm}`)
       .then((response) => {
         console.log(response.data);
         setWarehouseList(response.data);
       })
       .catch((error) => {
+        alert(error.response.data);
         console.error(error);
       });
   };
@@ -35,6 +37,7 @@ function WarehousesList(props) {
     setSelectedWarehouse(warehouse);
     setShowModal(true);
   };
+
   const confirmDelete = () => {
     axios
       .delete(`http://localhost:8080/api/warehouses/${selectedWarehouse.id}`)
@@ -66,11 +69,15 @@ function WarehousesList(props) {
                   className="card__searchBox-input"
                   id="searchBox"
                   placeholder="Search..."
+                  onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                  }}
                 />
                 <img
                   src={searchImg}
                   alt={searchImg}
                   className="card__searchBox-img"
+                  onClick={() => displayWarehouses()}
                 />
               </div>
               <div className="btn">
@@ -136,13 +143,16 @@ function WarehousesList(props) {
                         className="deleteImg"
                         onClick={() => handleDeleteWarehouse(warehouse)}
                       />
-                      <img src={editImg} alt={editImg} className="editImg" />
+                      <Link to={`/warehouses/${warehouse.id}/edit`}>
+                        <img src={editImg} alt={editImg} className="editImg" />
+                      </Link>
                     </div>
                   </li>
                 ))}
           </ul>
         </div>
       </section>
+
       {showModal && (
         <div className="modal">
           <div className="modal-content">
