@@ -32,7 +32,7 @@ function App() {
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/inventory/details" element={<InventoryDetailsPage />} />
+          <Route path="/inventories/:id/details" element={<InventoryDetailsPage/>} />
         </Routes>
       </BrowserRouter>
 
