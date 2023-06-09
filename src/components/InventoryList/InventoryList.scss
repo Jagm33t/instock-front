@@ -107,6 +107,10 @@
     border: 1px solid $Cloud;
     border-radius: 2rem;
 
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+
     @include phone {
       padding: 0.65rem 1rem;
     }

@@ -214,7 +214,13 @@ function InventoryList() {
                     <div className="card__list-content-right">
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Status</h4>
-                        <p className="card__list-text-item-inStock card__list-text-item-outStock">
+                        <p
+                          className={
+                            inventory.status === "In Stock"
+                              ? "card__list-text-item-inStock"
+                              : "card__list-text-item-outStock"
+                          }
+                        >
                           {inventory.status}
                         </p>
                       </div>
