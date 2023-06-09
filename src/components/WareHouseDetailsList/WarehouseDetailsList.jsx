@@ -17,25 +17,26 @@ function WarehouseDetailsList() {
   const params = useParams();
   console.log(params.id);
 
-  const displayWarehouseList = () => {
+  const getWarehouseList = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data[0]);
         setWarehouseList(res.data[0]);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log(warehouseList);
 
   useEffect(() => {
     if (params.id) {
-      displayWarehouseList(params.id);
+      getWarehouseList(params.id);
     }
   }, [params.id]);
 
-  const displayWarehouseDetailsList = () => {
+  const getWarehouseDetailsList = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
       .then((res) => {
@@ -48,7 +49,7 @@ function WarehouseDetailsList() {
   };
 
   useEffect(() => {
-    displayWarehouseDetailsList();
+    getWarehouseDetailsList();
   }, []);
 
   return (
@@ -83,20 +84,30 @@ function WarehouseDetailsList() {
           <div className="warehouseInfo__wrapper">
             <div className="warehouse__address">
               <h4 className="warehouseInfo__list-title">warehouse address:</h4>
+
               <p className="card__list-text-item">{warehouseList.address}</p>
+              <p className="card__list-text-item">{`${warehouseList.city}, ${warehouseList.country}`}</p>
             </div>
             <div className="warehouseInfo__contact-container">
               <div className="warehouseInfo__contact">
                 <h4 className="warehouseInfo__list-title">contact name:</h4>
-                <p className="card__list-text-item">Graeme Lyon</p>
-                <p className="card__list-text-item">Warehouse Manager</p>
+                <p className="card__list-text-item">
+                  {warehouseList.contact_name}
+                </p>
+                <p className="card__list-text-item">
+                  {warehouseList.contact_position}
+                </p>
               </div>
               <div className="warehouseInfo__contact">
                 <h4 className="warehouseInfo__list-title">
                   Contact information:
                 </h4>
-                <p className="card__list-text-item">+1 (647) 504-0911</p>
-                <p className="card__list-text-item">glyon@instock.com</p>
+                <p className="card__list-text-item">
+                  {warehouseList.contact_phone}
+                </p>
+                <p className="card__list-text-item">
+                  {warehouseList.contact_email}
+                </p>
               </div>
             </div>
           </div>
