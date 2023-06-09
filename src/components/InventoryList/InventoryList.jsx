@@ -154,7 +154,7 @@ function InventoryList() {
               </button>
             </div>
             <div className="card-table__heading-wrapper">
-              <h4 className="card-table__heading">Quantity</h4>
+              <h4 className="card-table__heading">Qty</h4>
               <button className="card-table__heading-button">
                 <img
                   className="card-table__heading-icon"
@@ -182,8 +182,10 @@ function InventoryList() {
               </button>
             </div>
           </div>
-          <div className="card-table__heading-wrapper card-table__heading-wrapper--actions inventorypage__actions">
-            <h4 className="card-table__heading">Actions</h4>
+          <div className="card-table__heading-wrapper card-table__heading-wrapper--actions ">
+            <h4 className="card-table__heading inventorypage__actions">
+              Actions
+            </h4>
           </div>
         </div>
 
