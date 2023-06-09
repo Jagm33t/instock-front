@@ -199,7 +199,7 @@ function InventoryList() {
                 >
                   <div className="card__list-content inventorypage__gapchange">
                     <div className="card__list-content-left">
-                      <div className="card__list-wrap">
+                      <div className="card__list-wrap inventorypage__inventoryitem">
                         <h4 className="card__list-title">Inventory Item</h4>
                         <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
@@ -212,7 +212,7 @@ function InventoryList() {
                           />
                         </Link>
                       </div>
-                      <div className="card__list-wrap">
+                      <div className="card__list-wrap inventorypage__inventorycategory">
                         <h4 className="card__list-title inventorypage__margintop">
                           Category
                         </h4>
@@ -221,8 +221,8 @@ function InventoryList() {
                         </p>
                       </div>
                     </div>
-                    <div className="card__list-content-right">
-                      <div className="card__list-wrap">
+                    <div className="card__list-content-right inventorypage__contentright">
+                      <div className="card__list-wrap inventorypage__inventorystatus">
                         <h4 className="card__list-title">Status</h4>
                         <p
                           className={
@@ -234,13 +234,13 @@ function InventoryList() {
                           {inventory.status}
                         </p>
                       </div>
-                      <div className="card__list-wrap">
+                      <div className="card__list-wrap inventorypage__inventoryqty">
                         <h4 className="card__list-title">Qty</h4>
                         <p className="card__list-text-item">
                           {inventory.quantity}
                         </p>
                       </div>
-                      <div className="card__list-wrap">
+                      <div className="card__list-wrap inventorypage__inventorywarehouse">
                         <h4 className="card__list-title inventorypage__margintop">
                           Warehouse
                         </h4>

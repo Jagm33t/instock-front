@@ -56,6 +56,43 @@
   .card__list-content-right {
     gap: 1rem;
   }
+
+  .inventorypage__inventoryitem {
+    // margin-right: 1.5rem;
+    white-space: nowrap;
+    min-width: 7rem;
+    margin-right: 0.01rem;
+  }
+
+  .inventorypage__inventorycategory {
+    width: 6rem;
+  }
+
+  .inventorypage__contentright.card__list-content-right {
+    // width: 10rem;
+    width: 35%;
+  }
+
+  .inventorypage__gapchange.card__list-content {
+    gap: 7vw;
+    flex: 1;
+    justify-content: flex-start;
+
+    > .card__list-content-left {
+      // width: 20vw;
+      width: 38%;
+    }
+  }
+  .inventorypage__inventorystatus {
+    min-width: 16vw;
+  }
+  .inventorypage__inventoryqty {
+    min-width: 10vw;
+  }
+
+  .inventorypage__inventorywarehouse {
+    min-width: 5rem;
+  }
 }
 
 .card {
