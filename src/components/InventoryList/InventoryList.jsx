@@ -20,7 +20,7 @@ function InventoryList() {
     axios
       .get(`http://127.0.0.1:8080/api/inventories?s=${searchTerm}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {

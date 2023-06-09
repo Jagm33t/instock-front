@@ -7,11 +7,14 @@ import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/editIcon.svg";
+
 import "./InventoryDetailsPage.scss";
 
 function InventoryDetailsPage() {
 
   const [inventoryItem, setInventoryItem] = useState(null);
+
+  
 
   useEffect(() => {
     fetchInventoryItem();
