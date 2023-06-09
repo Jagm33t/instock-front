@@ -9,7 +9,6 @@ function AddNewInventoryItem() {
   const navigate = useNavigate();
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiInventories = apiInstockURL + "/api/inventories";
-  // example variable, this should come from an API call the backend for the inventory item
 
   const [isInstock, setIsInstock] = useState(true);
   const [warehouseList, setWarehouseList] = useState([]);
@@ -20,15 +19,6 @@ function AddNewInventoryItem() {
   const [itemStatus, setItemStatus] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
   const [itemWarehouse, setItemWarehouse] = useState("");
-
-  console.log(itemName);
-  console.log(itemDescrip);
-  console.log(itemCategory);
-  console.log(itemStatus);
-  console.log(itemQuantity);
-  console.log(itemWarehouse);
-
-  console.log(warehouseList);
 
   function handleItemNameInput(event) {
     setItemName(event.target.value);
@@ -54,6 +44,9 @@ function AddNewInventoryItem() {
   function handleItemWarehouse(event) {
     setItemWarehouse(event.target.value);
   }
+
+  //function quantity check:
+  function checkQuantity(quantity) {}
 
   const postNewInventoryItem = (newInventoryItem) => {
     const postData = {
@@ -108,8 +101,6 @@ function AddNewInventoryItem() {
       alert("Failed to submit, you have some errors in your form");
     }
   };
-
-  //   TODO add state for selected warehouse ID, add on Change handler to select list below to setState of selected warehouse ID
 
   useEffect(() => {
     axios
@@ -172,33 +163,37 @@ function AddNewInventoryItem() {
             <label>Status</label>
             <div className="form__radio">
               <input
-                // checked={isInstock ? true : false}
                 type="radio"
                 name="instock"
                 value="In stock"
                 onChange={handleItemStatus}
               />
-              <label for="instock">In Stock</label>
+              <label htmlFor="instock">In Stock</label>
+
               <input
-                // checked={!isInstock ? true : false}
                 type="radio"
                 name="instock"
                 value="Out of stock"
                 onChange={handleItemStatus}
               />
-              <label for="instock">Out of Stock</label>
+              <label htmlFor="instock">Out of Stock</label>
             </div>
           </div>
-          <div>
-            <label>Quantity</label>
-            <input
-              type="text"
-              name="quantity"
-              id="quantity"
-              placeholder="0"
-              onChange={handleItemQuantity}
-            />
-          </div>
+
+          {/* COMMENT: code to make the quantity input visible only if the status is selected
+          "in stock" */}
+          {itemStatus === "In stock" && (
+            <div>
+              <label>Quantity</label>
+              <input
+                type="text"
+                name="quantity"
+                id="quantity"
+                placeholder="0"
+                onChange={handleItemQuantity}
+              />
+            </div>
+          )}
           <div>
             <label>Warehouse</label>
             <select onChange={handleItemWarehouse}>

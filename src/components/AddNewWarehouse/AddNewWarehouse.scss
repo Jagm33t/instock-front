@@ -31,13 +31,16 @@
     display: flex;
     &-error {
       color: red;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       &--hide {
-        color: white;
-        font-size: 0.8rem;
-        font-weight: 700;
+        visibility: hidden;
       }
+    }
+    &-error-border {
+      border: 1px solid red;
     }
   }
   &__buttons {
