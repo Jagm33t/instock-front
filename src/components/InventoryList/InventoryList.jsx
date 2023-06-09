@@ -93,6 +93,7 @@ function InventoryList() {
                 className="card__searchBox-img"
                 onClick={() => displayInventory()}
               />
+              <div></div>
             </div>
             <div className="btn">
               <div className="btn__style-link">

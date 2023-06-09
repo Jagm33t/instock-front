@@ -9,8 +9,17 @@
   font-family: "Titillium Web";
 }
 
-.inventorypage_card_header.card__header {
-  flex-direction: column;
+@mixin phone() {
+  @media all and (max-width: 767px) {
+    @content;
+  }
+}
+
+@include phone {
+  .inventorypage_card_header.card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .card {
@@ -69,6 +78,9 @@
     align-items: center;
     flex-direction: column;
 
+    @include phone {
+      width: 100%;
+    }
     @include tablet {
       display: flex;
       flex-direction: row;
@@ -79,6 +91,10 @@
   &__searchBox {
     margin: 1rem 0;
     width: 100%;
+    @include phone {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
   &__searchBox-input {
     position: relative;
@@ -86,6 +102,10 @@
     padding: 0.65rem 1rem;
     border: 1px solid $Cloud;
     border-radius: 2rem;
+
+    @include phone {
+      padding: 0.65rem 1rem;
+    }
 
     @include tablet {
       width: 12rem;
