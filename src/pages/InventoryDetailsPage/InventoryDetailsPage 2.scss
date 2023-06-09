@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.card {
+  background-color: $Light-Grey;
+ 
+
+
+&_body{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+  }
+
+  &_body-first{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+
+&_body-second-statusqty{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+}
