@@ -124,27 +124,32 @@ function AddNewInventoryItem() {
           </div>
           <div>
             <label>Item Name </label>
+            <br />
             <input
               type="text"
               name="itemName"
               id="itemName"
               placeholder="Item Name"
               onChange={handleItemNameInput}
+              className="input__title"
             />
           </div>
           <div>
             <label>Description</label>
+            <br />
             <input
               type="text"
               name="itemDescription"
               id="itemDescription"
               placeholder="Please enter a brief item description..."
               onChange={handleItemDescripInput}
+              className="input__description"
             />
           </div>
           <div>
             <label>Category</label>
-            <select onChange={handleItemCategory}>
+            <br />
+            <select onChange={handleItemCategory} className="category">
               <option value="">Please select</option>
               <option value="accessories">Accessories</option>
               <option value="apparel">Apparel</option>
@@ -161,22 +166,32 @@ function AddNewInventoryItem() {
           </div>
           <div>
             <label>Status</label>
-            <div className="form__radio">
-              <input
-                type="radio"
-                name="instock"
-                value="In stock"
-                onChange={handleItemStatus}
-              />
-              <label htmlFor="instock">In Stock</label>
+            <br />
 
-              <input
-                type="radio"
-                name="instock"
-                value="Out of stock"
-                onChange={handleItemStatus}
-              />
-              <label htmlFor="instock">Out of Stock</label>
+            <div className="form__radio">
+              <div>
+                <input
+                  type="radio"
+                  name="instock"
+                  value="In stock"
+                  onChange={handleItemStatus}
+                />
+                <label htmlFor="instock" className="unbold">
+                  In Stock
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  name="instock"
+                  value="Out of stock"
+                  onChange={handleItemStatus}
+                />
+                <label htmlFor="instock" className="unbold">
+                  Out of Stock
+                </label>
+              </div>
             </div>
           </div>
 
@@ -191,12 +206,14 @@ function AddNewInventoryItem() {
                 id="quantity"
                 placeholder="0"
                 onChange={handleItemQuantity}
+                className="quantity"
               />
             </div>
           )}
           <div>
             <label>Warehouse</label>
-            <select onChange={handleItemWarehouse}>
+            <br />
+            <select onChange={handleItemWarehouse} className="warehouse">
               <option value="">Please select</option>
               {warehouseList.map((warehouse) => (
                 <option value={warehouse.id}>{warehouse.warehouse_name}</option>
