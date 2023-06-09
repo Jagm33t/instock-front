@@ -15,9 +15,8 @@ function WarehouseDetailsList() {
   const [warehouseList, setWarehouseList] = useState([]);
 
   const params = useParams();
-  console.log(params.id);
 
-  const displayWarehouseList = () => {
+  const getWarehouseList = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
       .then((res) => {
@@ -31,11 +30,11 @@ function WarehouseDetailsList() {
 
   useEffect(() => {
     if (params.id) {
-      displayWarehouseList(params.id);
+      getWarehouseList(params.id);
     }
   }, [params.id]);
 
-  const displayWarehouseDetailsList = () => {
+  const getWarehouseDetailsList = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
       .then((res) => {
@@ -48,7 +47,7 @@ function WarehouseDetailsList() {
   };
 
   useEffect(() => {
-    displayWarehouseDetailsList();
+    getWarehouseDetailsList();
   }, []);
 
   return (
