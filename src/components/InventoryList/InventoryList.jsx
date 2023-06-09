@@ -200,12 +200,13 @@ function InventoryList() {
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
                           </p>
+                          
                           <img
                             src={chevronRight}
                             alt={chevronRight}
                             className="card__product-item_chevron"
                           />
-                        </Link>
+                   </Link>
                       </div>
                       <div className="card__list-wrap">
                         <h4 className="card__list-title inventorypage__margintop">
