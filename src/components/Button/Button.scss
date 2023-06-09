@@ -11,7 +11,6 @@
     justify-content: center;
     color: $color-primary-light;
     font-weight: $text-weight-bold;
-    text-transform: uppercase;
     padding: 0.85rem 0rem;
     width: 100%;
     background-color: $Instock-Indigo;
@@ -40,7 +39,7 @@
     &--cancel {
       color: $color-primary-blue;
       background-color: $White;
-      // background-color: transparent;
+      background-color: transparent;
       &:hover {
         color: $color-primary-light;
         background-color: $color-primary-red;
