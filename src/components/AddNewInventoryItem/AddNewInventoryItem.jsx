@@ -14,27 +14,60 @@ function AddNewInventoryItem() {
   const [isInstock, setIsInstock] = useState(true);
   const [warehouseList, setWarehouseList] = useState([]);
 
-  const [warehouseID, setWarehouseID] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescrip, setItemDescrip] = useState("");
   const [itemCategory, setItemCategory] = useState("");
   const [itemStatus, setItemStatus] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
-  const [itemCreatedAt, setItemCreatedAt] = useState("");
-  const [itemUpdatedAt, setItemUpdatedAt] = useState("");
+  const [itemWarehouse, setItemWarehouse] = useState("");
+
+  console.log(itemName);
+  console.log(itemDescrip);
+  console.log(itemCategory);
+  console.log(itemStatus);
+  console.log(itemQuantity);
+  console.log(itemWarehouse);
+
+  console.log(warehouseList);
+
+  function handleItemNameInput(event) {
+    setItemName(event.target.value);
+  }
+
+  function handleItemDescripInput(event) {
+    setItemDescrip(event.target.value);
+  }
+
+  function handleItemCategory(event) {
+    setItemCategory(event.target.value);
+  }
+
+  function handleItemStatus(event) {
+    setItemStatus(event.target.value);
+  }
+
+  function handleItemQuantity(event) {
+    const quantity = parseInt(event.target.value);
+    setItemQuantity(quantity);
+  }
+
+  function handleItemWarehouse(event) {
+    setItemWarehouse(event.target.value);
+  }
 
   const postNewInventoryItem = (newInventoryItem) => {
+    const postData = {
+      warehouse_id: itemWarehouse,
+      item_name: itemName,
+      description: itemDescrip,
+      category: itemCategory,
+      status: itemStatus,
+      quantity: itemQuantity,
+    };
+    console.log(postData);
+    // return;
     axios
-      .post(`${apiInventories}`, {
-        warehouse_id: newInventoryItem.warehouseID,
-        item_name: newInventoryItem.warehouseName,
-        description: newInventoryItem.itemDescrip,
-        category: newInventoryItem.itemCategory,
-        status: newInventoryItem.itemStatus,
-        quantity: newInventoryItem.itemQuantity,
-        created_at: newInventoryItem.itemCreatedAt,
-        updated_at: newInventoryItem.itemUpdatedAt,
-      })
+      .post(`${apiInventories}`, postData)
       .then((response) => {
         console.log("Axios response");
         console.log(response);
@@ -47,14 +80,11 @@ function AddNewInventoryItem() {
   // Check if the form is valid
   const isFormValid = () => {
     if (
-      !warehouseID ||
       !itemName ||
       !itemDescrip ||
       !itemCategory ||
       !itemStatus ||
-      !itemQuantity ||
-      !itemCreatedAt ||
-      !itemUpdatedAt
+      !itemQuantity
     ) {
       return false;
     }
@@ -66,14 +96,11 @@ function AddNewInventoryItem() {
 
     if (isFormValid()) {
       postNewInventoryItem({
-        warehouse_id: event.target.warehouseName.value,
-        item_name: event.target.address.value,
-        description: event.target.city.value,
-        category: event.target.country.value,
-        status: event.target.contactName,
-        quantity: event.target.contactPosition,
-        created_at: event.target.contactPhone,
-        updated_at: event.target.contactEmail,
+        item_name: itemName,
+        description: itemDescrip,
+        category: itemCategory,
+        status: itemStatus,
+        quantity: itemQuantity,
       });
       alert("New inventory item added successfully.");
       navigate("/");
@@ -111,6 +138,7 @@ function AddNewInventoryItem() {
               name="itemName"
               id="itemName"
               placeholder="Item Name"
+              onChange={handleItemNameInput}
             />
           </div>
           <div>
@@ -120,17 +148,18 @@ function AddNewInventoryItem() {
               name="itemDescription"
               id="itemDescription"
               placeholder="Please enter a brief item description..."
+              onChange={handleItemDescripInput}
             />
           </div>
           <div>
             <label>Category</label>
-            <select>
+            <select onChange={handleItemCategory}>
               <option value="">Please select</option>
-              <option value="">Accessories</option>
-              <option value="">Apparel</option>
-              <option value="">Electronics</option>
-              <option value="">Gear</option>
-              <option value="">Health</option>
+              <option value="accessories">Accessories</option>
+              <option value="apparel">Apparel</option>
+              <option value="electronics">Electronics</option>
+              <option value="gear">Gear</option>
+              <option value="health">Health</option>
             </select>
           </div>
         </div>
@@ -143,33 +172,39 @@ function AddNewInventoryItem() {
             <label>Status</label>
             <div className="form__radio">
               <input
-                checked={isInstock ? true : false}
+                // checked={isInstock ? true : false}
                 type="radio"
                 name="instock"
                 value="In stock"
-                onChange={() => setIsInstock(true)}
+                onChange={handleItemStatus}
               />
               <label for="instock">In Stock</label>
               <input
-                checked={!isInstock ? true : false}
+                // checked={!isInstock ? true : false}
                 type="radio"
                 name="instock"
                 value="Out of stock"
-                onChange={() => setIsInstock(false)}
+                onChange={handleItemStatus}
               />
               <label for="instock">Out of Stock</label>
             </div>
           </div>
           <div>
             <label>Quantity</label>
-            <input type="text" name="quantity" id="quantity" placeholder="0" />
+            <input
+              type="text"
+              name="quantity"
+              id="quantity"
+              placeholder="0"
+              onChange={handleItemQuantity}
+            />
           </div>
           <div>
             <label>Warehouse</label>
-            <select>
+            <select onChange={handleItemWarehouse}>
               <option value="">Please select</option>
               {warehouseList.map((warehouse) => (
-                <option>{warehouse.warehouse_name}</option>
+                <option value={warehouse.id}>{warehouse.warehouse_name}</option>
               ))}
             </select>
           </div>

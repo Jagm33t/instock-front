@@ -34,6 +34,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
           <Route path="/inventory/details" element={<InventoryDetailsPage />} />
+          <Route path="/inventory/add" element={<AddNewInventoryItem />} />
         </Routes>
       </BrowserRouter>
 
