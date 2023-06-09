@@ -30,6 +30,17 @@
   }
 }
 
+@include tablet {
+  .inventorypage__btn__style.btn__style {
+    width: 100%;
+    padding: 0.7rem 1rem;
+  }
+
+  .inventorypage__card_container.card__container {
+    gap: 1rem;
+  }
+}
+
 .card {
   background-color: $Light-Grey;
   width: 100vw;
@@ -131,7 +142,7 @@
 
     @include tablet {
       right: 11.7rem;
-      top: 2.4rem;
+      top: 2.6rem;
     }
   }
 

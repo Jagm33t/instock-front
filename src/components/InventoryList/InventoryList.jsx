@@ -76,7 +76,7 @@ function InventoryList() {
       <div className="card__wrapper">
         <div className="card__header inventorypage_card_header">
           <h1 className="card__header-title">Inventory</h1>
-          <div className="card__container">
+          <div className="card__container inventorypage__card_container">
             <div className="card__searchBox">
               <input
                 type="search"
@@ -97,7 +97,10 @@ function InventoryList() {
             </div>
             <div className="btn">
               <div className="btn__style-link">
-                <button type="button" className="btn__style">
+                <button
+                  type="button"
+                  className="btn__style inventorypage__btn__style"
+                >
                   + Add New Item
                 </button>
               </div>
