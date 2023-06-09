@@ -23,7 +23,12 @@ function EditInventoryForm() {
   const [validateQuantity, setValidateQuantity] = useState("");
   const navigate = useNavigate();
   console.log(warehouseId);
+  const [itemStatus, setItemStatus] = useState("");
   const params = useParams();
+
+  function handleItemStatus(event) {
+    setItemStatus(event.target.value);
+  }
 
   useEffect(() => {
     axios
@@ -182,9 +187,8 @@ function EditInventoryForm() {
                     type="radio"
                     name="status"
                     id="instock"
-                    value="in stock"
-                    checked={status === "in stock"}
-                    onChange={() => setStatus("in stock")}
+                    value="In stock"
+                    onChange={handleItemStatus}
                   />
                   <label htmlFor="instock">In stock</label>
                 </p>
@@ -193,25 +197,28 @@ function EditInventoryForm() {
                     type="radio"
                     name="status"
                     id="outOfStock"
-                    value="out of stock"
-                    checked={status === "out of stock"}
-                    onChange={() => setStatus("out of stock")}
+                    value="Out of stock"
+                    onChange={handleItemStatus}
                   />
                   <label htmlFor="outOfStock">Out of Stock</label>
                 </p>
               </div>
             </fieldset>
-            <label htmlFor="itemName" className="form__title-item">
-              Quantity
-            </label>
-            <input
-              id="itemName"
-              type="text"
-              name="quantity"
-              placeholder={quantity}
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            />
+            {itemStatus === "In stock" && (
+              <div>
+                <label htmlFor="itemName" className="form__title-item">
+                  Quantity
+                </label>
+                <input
+                  id="itemName"
+                  type="text"
+                  name="quantity"
+                  placeholder={quantity}
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </div>
+            )}
             <label htmlFor="warehouse">Warehouse</label>
             <select
               id="warehouse"
