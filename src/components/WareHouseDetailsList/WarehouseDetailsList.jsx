@@ -15,20 +15,17 @@ function WarehouseDetailsList() {
   const [warehouseList, setWarehouseList] = useState([]);
 
   const params = useParams();
-  console.log(params.id);
 
   const getWarehouseList = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
       .then((res) => {
-        console.log(res.data[0]);
-        setWarehouseList(res.data[0]);
+        setWarehouseList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(warehouseList);
 
   useEffect(() => {
     if (params.id) {
@@ -40,7 +37,6 @@ function WarehouseDetailsList() {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
       .then((res) => {
-        console.log(res.data);
         setWarehouseDetailsList(res.data);
       })
       .catch((error) => {
