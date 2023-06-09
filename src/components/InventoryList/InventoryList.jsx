@@ -182,7 +182,7 @@ function InventoryList() {
               </button>
             </div>
           </div>
-          <div className="card-table__heading-wrapper card-table__heading-wrapper--actions">
+          <div className="card-table__heading-wrapper card-table__heading-wrapper--actions inventorypage__actions">
             <h4 className="card-table__heading">Actions</h4>
           </div>
         </div>
@@ -191,7 +191,10 @@ function InventoryList() {
           {inventoryList.length === 0
             ? null
             : inventoryList.map((inventory) => (
-                <li className="card__list" key={inventory.id}>
+                <li
+                  className="card__list inventory__card__list"
+                  key={inventory.id}
+                >
                   <div className="card__list-content inventorypage__gapchange">
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">

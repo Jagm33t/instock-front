@@ -43,6 +43,15 @@
   .inventorypage__heading.card-table__heading {
     white-space: nowrap;
   }
+
+  .inventory__card__list.card__list {
+    // justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .invetorypage__actions.card-table__heading-wrapper {
+    padding-left: 1rem;
+  }
 }
 
 .card {
@@ -289,8 +298,9 @@
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    margin: 0 1rem;
+    // margin: 0 1rem;
     // width: 15%;
+    margin-left: 1rem;
   }
 
   &__heading-button {
