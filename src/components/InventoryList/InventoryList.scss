@@ -39,6 +39,10 @@
   .inventorypage__card_container.card__container {
     gap: 1rem;
   }
+
+  .inventorypage__heading.card-table__heading {
+    white-space: nowrap;
+  }
 }
 
 .card {

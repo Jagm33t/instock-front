@@ -110,7 +110,9 @@ function InventoryList() {
         <div className="card-table">
           <div className="card-table__headings">
             <div className="card-table__heading-wrapper">
-              <h4 className="card-table__heading">Inventory Item</h4>
+              <h4 className="card-table__heading inventorypage__heading">
+                Inventory Item
+              </h4>
               <button className="card-table__heading-button">
                 <img
                   className="card-table__heading-icon"
