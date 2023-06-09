@@ -190,7 +190,7 @@ function InventoryList() {
                   <div className="card__list-content">
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">
-                        <h4 className=" card__list-title  ">Inventory Item</h4>
+                        <h4 className="card__list-title">Inventory Item</h4>
                         <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
@@ -203,7 +203,9 @@ function InventoryList() {
                         </Link>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Category</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Category
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.category}
                         </p>
@@ -223,7 +225,9 @@ function InventoryList() {
                         </p>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Warehouse</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Warehouse
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.warehouse_name}
                         </p>

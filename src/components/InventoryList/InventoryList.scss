@@ -20,6 +20,10 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .inventorypage__margintop {
+    margin-top: 1rem;
+  }
 }
 
 .card {
@@ -115,7 +119,7 @@
   &__searchBox-img {
     position: absolute;
     right: 2.9rem;
-    top: 5.55rem;
+    top: 5.4rem;
 
     @include tablet {
       right: 11.7rem;
@@ -276,7 +280,12 @@
 
   &__style-link {
     text-decoration: none;
+
+    @include phone {
+      flex-grow: 1;
+    }
   }
+
   &__style {
     font-size: 0.8rem;
     font-weight: 600;
