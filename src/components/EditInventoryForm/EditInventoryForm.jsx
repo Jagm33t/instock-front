@@ -7,7 +7,8 @@ import Button from "../Button/Button";
 import "./EditInventoryForm.scss";
 
 function EditInventoryForm() {
-  const [warehouseData, setWarehouseData] = useState("");
+  const [warehouseData, setWarehouseData] = useState([]);
+  const [warehouseId, setwarehouseId] = useState([]);
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -39,14 +40,15 @@ function EditInventoryForm() {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
+      .get(`http://127.0.0.1:8080/api/warehouses`)
       .then((res) => {
         if (res.status === 404) {
           console.log(res);
         }
-        const warehouseData = res.data[0];
-
+        const warehouseData = res.data;
+        console.log(res.data);
         setWarehouseData(warehouseData);
+        setwarehouseId(warehouseData.warehouseId);
       })
       .catch((error) => {
         console.log("Error fetching warehouse data:", error);
@@ -57,9 +59,10 @@ function EditInventoryForm() {
     e.preventDefault();
     const editData = {
       warehouseData: warehouseData,
+      warehouseId: warehouseId,
       item_name: itemName,
       description: description,
-      category: category, //TODO!!!: Upper case
+      category: category,
       status: status,
       quantity: quantity,
     };
@@ -74,13 +77,9 @@ function EditInventoryForm() {
         console.log("Error updating form data:", err);
       });
   };
-  // console.log(params.id);
-  // console.log(warehouseName);
-  // console.log(itemName);
-  // console.log(description);
-  // console.log(category);
-  // console.log(contactName);
-  // console.log(quantity);
+
+  console.log("warehousedata", warehouseData);
+
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
@@ -188,11 +187,14 @@ function EditInventoryForm() {
               id="warehouse"
               name="warehouse_name"
               className="form__category"
-              onChange={(e) => setWarehouseData(e.target.value)}
+              onChange={(e) => setwarehouseId(e.target.value)}
             >
               <option value="">Select Option</option>
-              {}
-              <option value="manhattan">{warehouseData.warehouseId}</option>
+              {warehouseData.map((warehouse) => (
+                <option key={warehouse.id} value={warehouse.id}>
+                  {warehouse.warehouse_name}
+                </option>
+              ))}
             </select>
           </div>
           <div>
