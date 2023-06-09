@@ -248,27 +248,6 @@ function InventoryList() {
           confirmDelete={confirmDelete}
           selectedInventory={selectedInventory}
         />
-        // <div className="modal">
-        //   <div className="modal-content">
-        //     <h3 className="headerwarehouse">
-        //       Delete {selectedInventory && selectedInventory.item_name}{" "}
-        //       warehouse?
-        //     </h3>
-        //     <p>
-        //       Please confirm that you'd like to delete the{" "}
-        //       {selectedInventory && selectedInventory.item_name} from the list
-        //       of warehouses. You won't be able to undo this action.
-        //     </p>
-        //     <div className="modal-actions">
-        //       <button className="cancelbtn" onClick={closeModal}>
-        //         Cancel
-        //       </button>
-        //       <button className="deletebtn" onClick={confirmDelete}>
-        //         Delete
-        //       </button>
-        //     </div>
-        //   </div>
-        // </div>
       )}
     </section>
   );
