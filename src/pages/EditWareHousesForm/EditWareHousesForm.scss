@@ -1,13 +1,35 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
-@use "../../styles/fonts" as *;
 
 .form {
   display: flex;
   flex-direction: column;
+  background-color: $Light-Grey;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'TitilliumWeb';
+
   &__header {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    border-bottom: 1.5px solid $Cloud;
+   
+    align-items: center;
+  
+
+    @include tablet {
+      border: none;
+      padding: 1rem 4rem 1.2rem 2rem;
+    }
   }
+  &__header-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding-left: 1rem;
+  }
+
   &__fieldset {
     display: flex;
     flex-direction: column;
@@ -15,9 +37,23 @@
   &__warehouse {
     display: flex;
     flex-direction: column;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+   
+    &-title{
+    padding-bottom: 1rem;
+  }
+
     &__fields {
       display: flex;
       flex-direction: column;
+    
+      &-input{
+        border-radius: 1.25rem;
+       padding-top: 0.25rem;
+       height: 2rem;
+       padding-left: 0.5rem;
+       border: 1px solid $Cloud;
+      }
     }
   }
   &__contact {
@@ -26,23 +62,45 @@
     &__fields {
       display: flex;
       flex-direction: column;
+
+      &-input{
+        border-radius: 1.25rem;
+        padding-top: 0.25rem;
+        height: 2rem;
+        padding-left: 0.5rem;
+        border: 1px solid $Cloud;
+      }
     }
   }
   &__fields {
     display: flex;
+  
+   
     &-error {
       color: red;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       &--hide {
-        color: white;
-        font-size: 0.8rem;
-        font-weight: 700;
+        visibility: hidden;
       }
+    }
+    &-error-border {
+      border: 1px solid red;
     }
   }
   &__buttons {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+   
   }
+}
+.btn_style--cancel{
+  height: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 1.25rem;
+  width: 100%;
 }

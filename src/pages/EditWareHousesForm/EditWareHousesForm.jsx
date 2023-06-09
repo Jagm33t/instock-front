@@ -4,6 +4,8 @@ import { Link  } from "react-router-dom";
 import axios from "axios";
 import Button from "../../components/Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
+import error from "../../assets/icons/error-24px.svg";
+import "./EditWareHousesForm.scss";
 
 function EditWarehouse() {
   const [warehouseData, setWarehouseData] = useState({
@@ -184,15 +186,16 @@ const validateField = (setState) => (event) => {
               value={warehouseName}
               onBlur={validateField(setValidateWarehouseName)}
             />
-            <p
+            <div
               className={
                 validateWarehouseName
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Warehouse name is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="address">
               Street Address
             </label>
@@ -206,15 +209,16 @@ const validateField = (setState) => (event) => {
               value={address}
               onBlur={validateField(setValidateAddress)}
             />
-            <p
+           <div
               className={
                 validateAddress
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Address is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="city">
               City
             </label>
@@ -228,13 +232,16 @@ const validateField = (setState) => (event) => {
               value={city}
               onBlur={validateField(setValidateCity)}
             />
-            <p
+          <div
               className={
-                validateCity ? "form__fields-error" : "form__fields-error--hide"
+                validateCity
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * City is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="country">
               Country
             </label>
@@ -248,18 +255,19 @@ const validateField = (setState) => (event) => {
               value={country}
               onBlur={validateField(setValidateCountry)}
             />
-            <p
+            <div
               className={
                 validateCountry
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Country is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
           </div>
           <div className="form__contact">
-            <h2 className="form__contact-title">Contact Detais</h2>
+            <h2 className="form__contact-title">Contact Details</h2>
             <div className="form__contact__fields">
               <label
                 className="form__contact__fields-label"
@@ -277,15 +285,16 @@ const validateField = (setState) => (event) => {
                 value={contactName}
                 onBlur={validateField(setValidateContactName)}
               />
-              <p
-                className={
-                  validateContactName
-                    ? "form__fields-error"
-                    : "form__fields-error--hide"
-                }
-              >
-                * Contact Name is required
-              </p>
+           <div
+              className={
+                validateContactName
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPosition"
@@ -302,15 +311,16 @@ const validateField = (setState) => (event) => {
                 value={contactPosition}
                 onBlur={validateField(setValidateContactPosition)}
               />
-              <p
-                className={
-                  validateContactPosition
-                    ? "form__fields-error"
-                    : "form__fields-error--hide"
-                }
-              >
-                * Contact Position is required
-              </p>
+              <div
+              className={
+                validateContactPosition
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPhone"
@@ -327,15 +337,16 @@ const validateField = (setState) => (event) => {
                 value={contactPhone}
                 onBlur={validateField(setValidateContactPhone)}
               />
-               <p
+              <div
                 className={
                   validateContactPhone
                     ? "form__fields-error"
-                    : "form__fields-error--hide"
+                    : "form__fields-error form__fields-error--hide"
                 }
               >
-                * Contact Phone is required in the format +1 (555) 555-5555
-              </p>
+                <img src={error} alt="error" />
+                <p>This field is required</p>
+              </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactEmail"
@@ -352,22 +363,23 @@ const validateField = (setState) => (event) => {
                 value={contactEmail}
                 onBlur={validateField(setValidateContactEmail)}
               />
-           <p
+          <div
                 className={
                   validateContactEmail
                     ? "form__fields-error"
-                    : "form__fields-error--hide"
+                    : "form__fields-error form__fields-error--hide"
                 }
               >
-                * Contact Email is required in the format mail@mail.com
-              </p>
+                <img src={error} alt="error" />
+                <p>This field is required</p>
+              </div>
             </div>
           </div>
         </div>
       </fieldset>
     
       <div className="form__buttons">
-      <Link to="/inventory">
+      <Link to="/warehouses">
   <Button text="Cancel" type="button" addClassName="btn__style--cancel" />
 </Link>
   <Button text="Save" type="submit" disabled={!isFormValid()} />
