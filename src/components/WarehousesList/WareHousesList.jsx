@@ -61,7 +61,7 @@ function WarehousesList(props) {
         <div className="card__bgBlue"></div>
         <div className="card__wrapper">
           <div className="card__header">
-            <h1 className="card__header-title">Inventory</h1>
+            <h1 className="card__header-title">Warehouse</h1>
             <div className="card__container">
               <div className="card__searchBox">
                 <input
