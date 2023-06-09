@@ -67,14 +67,7 @@ function EditInventoryForm() {
       });
   }, []);
   const isFormValid = () => {
-    if (
-      !warehouseId ||
-      !itemName ||
-      !description ||
-      !category ||
-      !status ||
-      !quantity
-    ) {
+    if (!itemName || !description || !category || !status || !quantity) {
       return false;
     }
     return true;
@@ -243,7 +236,7 @@ function EditInventoryForm() {
                 navigate("/inventory");
               }}
             />
-            <Button text="Submit" type="submit" disabled={!isFormValid()} />
+            <Button text="Submit" type="submit" />
           </div>
         </form>
       </div>
