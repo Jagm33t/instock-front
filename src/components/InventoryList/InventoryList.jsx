@@ -4,6 +4,8 @@ import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -17,6 +19,8 @@ function InventoryList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc"); //default
   const [sortColumn, setSortColumn] = useState("");
+
+  const navigate = useNavigate();
 
   const displayInventory = () => {
     axios
@@ -76,7 +80,7 @@ function InventoryList() {
       <div className="card__wrapper">
         <div className="card__header inventorypage_card_header">
           <h1 className="card__header-title">Inventory</h1>
-          <div className="card__container">
+          <div className="card__container inventorypage__card_container">
             <div className="card__searchBox">
               <input
                 type="search"
@@ -93,10 +97,15 @@ function InventoryList() {
                 className="card__searchBox-img"
                 onClick={() => displayInventory()}
               />
+              <div></div>
             </div>
             <div className="btn">
               <div className="btn__style-link">
-                <button type="button" className="btn__style">
+                <button
+                  type="button"
+                  className="btn__style inventorypage__btn__style"
+                  onClick={() => navigate("/inventory/add")}
+                >
                   + Add New Item
                 </button>
               </div>
@@ -106,7 +115,9 @@ function InventoryList() {
         <div className="card-table">
           <div className="card-table__headings">
             <div className="card-table__heading-wrapper">
-              <h4 className="card-table__heading">Inventory Item</h4>
+              <h4 className="card-table__heading inventorypage__heading">
+                Inventory Item
+              </h4>
               <button className="card-table__heading-button">
                 <img
                   className="card-table__heading-icon"
@@ -186,10 +197,10 @@ function InventoryList() {
             ? null
             : inventoryList.map((inventory) => (
                 <li className="card__list" key={inventory.id}>
-                  <div className="card__list-content">
+                  <div className="card__list-content inventorypage__gapchange">
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">
-                        <h4 className=" card__list-title  ">Inventory Item</h4>
+                        <h4 className="card__list-title">Inventory Item</h4>
                         <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
@@ -202,7 +213,9 @@ function InventoryList() {
                         </Link>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Category</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Category
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.category}
                         </p>
@@ -211,7 +224,13 @@ function InventoryList() {
                     <div className="card__list-content-right">
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Status</h4>
-                        <p className="card__list-text-item-inStock card__list-text-item-outStock">
+                        <p
+                          className={
+                            inventory.status === "In Stock"
+                              ? "card__list-text-item-inStock"
+                              : "card__list-text-item-outStock"
+                          }
+                        >
                           {inventory.status}
                         </p>
                       </div>
@@ -222,7 +241,9 @@ function InventoryList() {
                         </p>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Warehouse</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Warehouse
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.warehouse_name}
                         </p>

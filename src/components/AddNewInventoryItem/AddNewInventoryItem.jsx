@@ -224,7 +224,13 @@ function AddNewInventoryItem() {
       </fieldset>
       <div className="form__buttons">
         <Button text="+Add New Inventory" type="submit" />
-        <Button text="Cancel" type="submit" />
+        <Button
+          text="Cancel"
+          handleClick={(e) => {
+            e.preventDefault();
+            navigate("/inventory");
+          }}
+        />
       </div>
     </form>
   );
