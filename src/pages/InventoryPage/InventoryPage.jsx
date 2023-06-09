@@ -6,6 +6,6 @@ function InventoryPage() {
       <InventoryList />
     </div>
   );
-  return <div></div>;
+ 
 }
 export default InventoryPage;
