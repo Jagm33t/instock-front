@@ -29,22 +29,18 @@ function App() {
             element={<WarehouseDetailsPage />}
           />
 
-          <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/:id/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
 
           <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/inventory" element={<InventoryPage />} />
-<<<<<<< HEAD
 
           <Route
             path="/inventory/:id/edit"
             element={<EditInventoryFormPage />}
           />
-=======
           <Route path="/inventory/add" element={<AddNewInventoryItem />} />
->>>>>>> develop
           <Route
             path="/inventories/:id/details"
             element={<InventoryDetailsPage />}

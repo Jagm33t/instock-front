@@ -7,12 +7,12 @@ import Button from "../Button/Button";
 import "./EditInventoryForm.scss";
 
 function EditInventoryForm() {
-  const [warehouseName, setWarehouseName] = useState("");
+  const [warehouseData, setWarehouseData] = useState("");
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
-  const [contactName, setContactName] = useState("");
+  const [quantity, setQuantity] = useState("");
   const navigate = useNavigate();
 
   const params = useParams();
@@ -26,29 +26,42 @@ function EditInventoryForm() {
         }
         const inventoryData = res.data[0];
 
-        setWarehouseName(inventoryData.warehouse_name);
         setItemName(inventoryData.item_name);
         setDescription(inventoryData.description);
         setCategory(inventoryData.category);
         setStatus(inventoryData.status);
-        setContactName(inventoryData.contact_name);
+        setQuantity(inventoryData.quantity);
       })
       .catch((error) => {
         console.log("Error fetching inventory data:", error);
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
+      .then((res) => {
+        if (res.status === 404) {
+          console.log(res);
+        }
+        const warehouseData = res.data[0];
+
+        setWarehouseData(warehouseData);
+      })
+      .catch((error) => {
+        console.log("Error fetching warehouse data:", error);
+      });
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const editData = {
-      warehouse_id: 1, //TODO!!!: get warehouse name and convert to id
-      // warehouse_name: warehouseName,
+      warehouseData: warehouseData,
       item_name: itemName,
       description: description,
       category: category, //TODO!!!: Upper case
       status: status,
-      // TODO!!!: add quantity
-      // contact_name: contactName,
+      quantity: quantity,
     };
 
     axios
@@ -61,12 +74,13 @@ function EditInventoryForm() {
         console.log("Error updating form data:", err);
       });
   };
-  console.log(params.id);
-  console.log(warehouseName);
-  console.log(itemName);
-  console.log(description);
-  console.log(category);
-  console.log(contactName);
+  // console.log(params.id);
+  // console.log(warehouseName);
+  // console.log(itemName);
+  // console.log(description);
+  // console.log(category);
+  // console.log(contactName);
+  // console.log(quantity);
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
@@ -158,21 +172,27 @@ function EditInventoryForm() {
                 </p>
               </div>
             </fieldset>
+            <label htmlFor="itemName" className="form__title-item">
+              Quantity
+            </label>
+            <input
+              id="itemName"
+              type="text"
+              name="quantity"
+              placeholder={quantity}
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
             <label htmlFor="warehouse">Warehouse</label>
             <select
               id="warehouse"
               name="warehouse_name"
               className="form__category"
-              value={warehouseName}
-              onChange={(e) => setWarehouseName(e.target.value)}
+              onChange={(e) => setWarehouseData(e.target.value)}
             >
               <option value="">Select Option</option>
-              <option value="manhattan">Manhattan</option>
-              <option value="jersey">Jersey</option>
-              <option value="SF">SF</option>
-              <option value="santa-monica">Santa Monica</option>
-              <option value="seattle">Seattle</option>
-              <option value="miami">Miami</option>
+              {}
+              <option value="manhattan">{warehouseData.warehouseId}</option>
             </select>
           </div>
           <div>
