@@ -41,13 +41,14 @@ function EditInventoryForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const editData = {
-      warehouse_id: params.id,
-      warehouse_name: warehouseName,
+      warehouse_id: 1, //TODO!!!: get warehouse name and convert to id
+      // warehouse_name: warehouseName,
       item_name: itemName,
       description: description,
-      category: category,
+      category: category, //TODO!!!: Upper case
       status: status,
-      contact_name: contactName,
+      // TODO!!!: add quantity
+      // contact_name: contactName,
     };
 
     axios
