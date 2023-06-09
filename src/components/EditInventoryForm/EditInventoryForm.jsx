@@ -1,6 +1,7 @@
 import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "../Button/Button";
 import "./EditInventoryForm.scss";
@@ -12,6 +13,7 @@ function EditInventoryForm() {
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [contactName, setContactName] = useState("");
+  const navigate = useNavigate();
 
   const params = useParams();
 
@@ -51,6 +53,7 @@ function EditInventoryForm() {
     axios
       .put(`http://localhost:8080/api/inventories/${params.id}`, editData)
       .then((res) => {
+        navigate("/inventories");
         console.log("Form data updated successfully:", res.data);
       })
       .catch((err) => {
