@@ -74,9 +74,9 @@ function InventoryList() {
       <div className="card__bgBlue"></div>
 
       <div className="card__wrapper">
-        <div className="card__header">
+        <div className="card__header inventorypage_card_header">
           <h1 className="card__header-title">Inventory</h1>
-          <div className="card__container">
+          <div className="card__container inventorypage__card_container">
             <div className="card__searchBox">
               <input
                 type="search"
@@ -93,10 +93,14 @@ function InventoryList() {
                 className="card__searchBox-img"
                 onClick={() => displayInventory()}
               />
+              <div></div>
             </div>
             <div className="btn">
               <div className="btn__style-link">
-                <button type="button" className="btn__style">
+                <button
+                  type="button"
+                  className="btn__style inventorypage__btn__style"
+                >
                   + Add New Item
                 </button>
               </div>
@@ -106,7 +110,9 @@ function InventoryList() {
         <div className="card-table">
           <div className="card-table__headings">
             <div className="card-table__heading-wrapper">
-              <h4 className="card-table__heading">Inventory Item</h4>
+              <h4 className="card-table__heading inventorypage__heading">
+                Inventory Item
+              </h4>
               <button className="card-table__heading-button">
                 <img
                   className="card-table__heading-icon"
@@ -186,11 +192,11 @@ function InventoryList() {
             ? null
             : inventoryList.map((inventory) => (
                 <li className="card__list" key={inventory.id}>
-                  <div className="card__list-content">
+                  <div className="card__list-content inventorypage__gapchange">
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">
-                        <h4 className=" card__list-title  ">Inventory Item</h4>
-                        <Link to={`/inventories/${inventory.id}/details`}>
+                        <h4 className="card__list-title">Inventory Item</h4>
+                        <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
                           </p>
@@ -203,7 +209,9 @@ function InventoryList() {
                    </Link>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Category</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Category
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.category}
                         </p>
@@ -212,7 +220,13 @@ function InventoryList() {
                     <div className="card__list-content-right">
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Status</h4>
-                        <p className="card__list-text-item-inStock card__list-text-item-outStock">
+                        <p
+                          className={
+                            inventory.status === "In Stock"
+                              ? "card__list-text-item-inStock"
+                              : "card__list-text-item-outStock"
+                          }
+                        >
                           {inventory.status}
                         </p>
                       </div>
@@ -223,7 +237,9 @@ function InventoryList() {
                         </p>
                       </div>
                       <div className="card__list-wrap">
-                        <h4 className="card__list-title">Warehouse</h4>
+                        <h4 className="card__list-title inventorypage__margintop">
+                          Warehouse
+                        </h4>
                         <p className="card__list-text-item">
                           {inventory.warehouse_name}
                         </p>
@@ -249,27 +265,6 @@ function InventoryList() {
           confirmDelete={confirmDelete}
           selectedInventory={selectedInventory}
         />
-        // <div className="modal">
-        //   <div className="modal-content">
-        //     <h3 className="headerwarehouse">
-        //       Delete {selectedInventory && selectedInventory.item_name}{" "}
-        //       warehouse?
-        //     </h3>
-        //     <p>
-        //       Please confirm that you'd like to delete the{" "}
-        //       {selectedInventory && selectedInventory.item_name} from the list
-        //       of warehouses. You won't be able to undo this action.
-        //     </p>
-        //     <div className="modal-actions">
-        //       <button className="cancelbtn" onClick={closeModal}>
-        //         Cancel
-        //       </button>
-        //       <button className="deletebtn" onClick={confirmDelete}>
-        //         Delete
-        //       </button>
-        //     </div>
-        //   </div>
-        // </div>
       )}
     </section>
   );
