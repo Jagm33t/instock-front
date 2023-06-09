@@ -187,7 +187,7 @@ function InventoryList() {
             ? null
             : inventoryList.map((inventory) => (
                 <li className="card__list" key={inventory.id}>
-                  <div className="card__list-content">
+                  <div className="card__list-content inventorypage__gapchange">
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Inventory Item</h4>
