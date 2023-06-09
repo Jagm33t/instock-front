@@ -1,35 +1,77 @@
-@import "../../styles/variables";
-@import "../../styles/mixin";
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+@use "../../styles/fonts" as *;
 
 .card {
   background-color: $Light-Grey;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'TitilliumWeb';
+
+
  
 
+  &__bgBlue {
+    background-color: $Graphite;
+    height: 4em;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__wrapper {
+    background-color: $White;
+    margin: 0 1rem;
+    flex-grow: 1;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.2rem;
+    position: absolute;
+    top: 9rem;
+    width: calc(100% - 2rem);
+   
+
+    @include tablet {
+      top: 5.5rem;
+      margin: 0 2rem;
+      width: calc(100% - 4rem);
+    }
+  }
+  
   &__header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     padding: 1.5rem 1.5rem 1.2rem 1.5rem;
     border-bottom: 1.5px solid $Cloud;
-    justify-content: space-between;
+   
     align-items: center;
+  
 
     @include tablet {
       border: none;
-      padding: 1rem 2rem 1.2rem 2rem;
+      padding: 1rem 4rem 1.2rem 2rem;
     }
+  }
+
+  &__header-tittle-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    align-items: end;
+
+   @include tablet{
+     
+   }
   }
 
   &__header-title {
     font-size: 1.7rem;
     font-weight: 600;
-    display: flex;
-    justify-content: space-between;
   }
 
-  &__header-tittle-container {
+  &__container {
     display: flex;
-   justify-content: space-between;
-    
+    align-items: center;
+    flex-direction: column;
 
     @include tablet {
       display: flex;
@@ -37,29 +79,127 @@
       gap: 2rem;
     }
   }
-
 &_body{
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-// border: 1px solid rgb(18, 155, 13);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  font-size: 0.81rem;
+  font-weight: 400;
+
+  @include tablet{
+    display: flex;
+    flex-direction: row;
+
+  }
   }
 
   &_body-first{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // border: 1px solid black;
+    height: 10rem;
+
+    
   }
 
+&_body-first__des , &_body-first__cat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 4rem;
+}
 
+&_body-first__deslabel ,  &_body-first__catlabel , &_body-second__quantitylabel , &_body-third__warehousenamelabel ,&_body-second__statuslabel{
+  color: $Cloud;
 
+}
+&_body-second{
+
+@include tablet{
+  width: 50%;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1.5px solid $Cloud;
+  padding-left: 2rem;
+ 
+}
+@include desktop{
+  border-left: 1.5px solid $Cloud;
+}
+}
 &_body-second-statusqty{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid rgb(155, 29, 29);
+  height: 3rem;
+  width: 80%;
+  @include tablet{
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+  
+  }
+}
+&_body-second__status{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+&_body-second__quantity{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
+&_body-third__warehousename{
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+}
+.btn{
+  width: 2.5rem;
+  height: 1.2rem;
+  
+  &_noBG{
+    @include tablet{
+      width: 0.2rem;
+    }
+  }
 
+  &__img{
+    width: 1.4rem;
+    box-sizing: border-box;
+  }
+  &__name{
+
+    @include tablet{
+      display: none;
+    }
+    
+
+
+
+  @include tablet {
+    display:inline-block;
+    color: $White;
+    padding-left: 1rem;
+  }
+  }
+}
+
+.out-of-stock {
+  background-color: rgb(241, 174, 161);
+  border-radius: 0.5rem;
+  color: red;
+}
+
+.in-stock {
+  background-color: rgb(173, 239, 173);
+  border-radius: 0.5rem;
+  color: green;
 }

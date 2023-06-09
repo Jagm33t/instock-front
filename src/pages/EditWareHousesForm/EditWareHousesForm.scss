@@ -1,3 +1,48 @@
-.invalid {
-  border: 1px solid red;
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+@use "../../styles/fonts" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  &__header {
+    display: flex;
+  }
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+  }
+  &__warehouse {
+    display: flex;
+    flex-direction: column;
+    &__fields {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    &__fields {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__fields {
+    display: flex;
+    &-error {
+      color: red;
+      font-size: 0.8rem;
+      font-weight: 700;
+      &--hide {
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+  }
 }

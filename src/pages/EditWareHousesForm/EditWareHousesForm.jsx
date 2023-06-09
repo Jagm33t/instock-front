@@ -89,13 +89,28 @@ const isFormValid = () => {
   
 const navigate = useNavigate();
 
-  const validadeField = (setState) => (event) => {
-    if (event.target.value.length < 1) {
-      setState(true);
-    } else {
-      setState(false);
+const validateField = (setState) => (event) => {
+  if (event.target.value.length < 1) {
+    setState(true);
+  } else {
+    // validate specific cases: phone number and email
+    if (event.target.name === "contactPhone") {
+      const phonePattern = /^\+\d{1,3} \([0-9]{3}\) [0-9]{3}-[0-9]{4}$/;
+      if (!phonePattern.test(event.target.value)) {
+        setState(true);
+      } else setState(false);
+      return;
     }
-  };
+    if (event.target.name === "contactEmail") {
+      const mailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      if (!mailPattern.test(event.target.value)) {
+        setState(true);
+      } else setState(false);
+      return;
+    }
+    setState(false);
+  }
+};
   const handleSubmit = (event) => {
     event.preventDefault();
   
@@ -167,7 +182,7 @@ const navigate = useNavigate();
               placeholder="Warehouse Name"
               onChange={handleChangeInput(setWarehouseName)}
               value={warehouseName}
-              onBlur={validadeField(setValidateWarehouseName)}
+              onBlur={validateField(setValidateWarehouseName)}
             />
             <p
               className={
@@ -189,7 +204,7 @@ const navigate = useNavigate();
               placeholder="Street Address"
               onChange={handleChangeInput(setAddress)}
               value={address}
-              onBlur={validadeField(setValidateAddress)}
+              onBlur={validateField(setValidateAddress)}
             />
             <p
               className={
@@ -211,7 +226,7 @@ const navigate = useNavigate();
               placeholder="City"
               onChange={handleChangeInput(setCity)}
               value={city}
-              onBlur={validadeField(setValidateCity)}
+              onBlur={validateField(setValidateCity)}
             />
             <p
               className={
@@ -231,7 +246,7 @@ const navigate = useNavigate();
               placeholder="Country"
               onChange={handleChangeInput(setCountry)}
               value={country}
-              onBlur={validadeField(setValidateCountry)}
+              onBlur={validateField(setValidateCountry)}
             />
             <p
               className={
@@ -260,7 +275,7 @@ const navigate = useNavigate();
                 placeholder="Contact Name"
                 onChange={handleChangeInput(setContactName)}
                 value={contactName}
-                onBlur={validadeField(setValidateContactName)}
+                onBlur={validateField(setValidateContactName)}
               />
               <p
                 className={
@@ -285,7 +300,7 @@ const navigate = useNavigate();
                 placeholder="Position"
                 onChange={handleChangeInput(setContactPosition)}
                 value={contactPosition}
-                onBlur={validadeField(setValidateContactPosition)}
+                onBlur={validateField(setValidateContactPosition)}
               />
               <p
                 className={
@@ -310,16 +325,16 @@ const navigate = useNavigate();
                 placeholder="Phone Number"
                 onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
-                onBlur={validadeField(setValidateContactPhone)}
+                onBlur={validateField(setValidateContactPhone)}
               />
-              <p
+               <p
                 className={
                   validateContactPhone
                     ? "form__fields-error"
                     : "form__fields-error--hide"
                 }
               >
-                * Contact Phone is required
+                * Contact Phone is required in the format +1 (555) 555-5555
               </p>
               <label
                 className="form__contact__fields-label"
@@ -335,16 +350,16 @@ const navigate = useNavigate();
                 placeholder="Email"
                 onChange={handleChangeInput(setContactEmail)}
                 value={contactEmail}
-                onBlur={validadeField(setValidateContactEmail)}
+                onBlur={validateField(setValidateContactEmail)}
               />
-              <p
+           <p
                 className={
                   validateContactEmail
                     ? "form__fields-error"
                     : "form__fields-error--hide"
                 }
               >
-                * Contact Email is required
+                * Contact Email is required in the format mail@mail.com
               </p>
             </div>
           </div>
