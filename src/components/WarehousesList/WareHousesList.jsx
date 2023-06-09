@@ -19,7 +19,6 @@ function WarehousesList(props) {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses?s=${searchTerm}`)
       .then((response) => {
-        console.log(response.data);
         setWarehouseList(response.data);
       })
       .catch((error) => {

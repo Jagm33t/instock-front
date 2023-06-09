@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import deleteImg from "../assets/icons/delete_outline-24px.svg";
 import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
@@ -12,6 +12,8 @@ import "./InventoryDetailsPage.scss";
 
 function InventoryDetailsPage() {
   const [inventoryItem, setInventoryItem] = useState(null);
+  const params = useParams();
+  console.log(params.id);
 
   useEffect(() => {
     fetchInventoryItem();
@@ -19,9 +21,9 @@ function InventoryDetailsPage() {
 
   const fetchInventoryItem = () => {
     axios
-      .get("http://127.0.0.1:8080/api/inventories/5")
+      .get(`http://127.0.0.1:8080/api/inventories/${params.id}`)
       .then((res) => {
-        if (res.data.length > 0) {
+        if (res.data) {
           setInventoryItem(res.data);
         }
       })
