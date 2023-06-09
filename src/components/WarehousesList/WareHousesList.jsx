@@ -13,7 +13,6 @@ function WarehousesList(props) {
   const [warehouseList, setWarehouseList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
-  //const params = useParams();
   const [searchTerm, setSearchTerm] = useState("");
 
   const displayWarehouses = () => {
@@ -99,7 +98,10 @@ function WarehousesList(props) {
                       <div className="card__list-content-left">
                         <div className="card__list-wrap">
                           <h4 className="card__list-title ">Warehouse</h4>
-                          <Link to="/" className="card__product-item">
+                          <Link
+                            to={`/warehouses/${warehouse.id}/details`}
+                            className="card__product-item"
+                          >
                             <p className="card__list-text-item card__list-text-item--product">
                               {warehouse.warehouse_name}
                             </p>

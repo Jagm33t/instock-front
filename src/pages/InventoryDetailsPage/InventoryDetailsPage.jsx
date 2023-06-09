@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import deleteImg from "../assets/icons/delete_outline-24px.svg";
@@ -12,7 +12,6 @@ import editIcon from "../../assets/icons/editIcon.svg";
 import "./InventoryDetailsPage.scss";
 
 function InventoryDetailsPage() {
-
   const [inventoryItem, setInventoryItem] = useState(null);
 
   const params = useParams();
@@ -27,9 +26,7 @@ function InventoryDetailsPage() {
       .get(`http://127.0.0.1:8080/api/inventories/${params.id}`)
       .then((res) => {
         if (res.data.length > 0) {
-          setInventoryItem(res.data[0]);
-          
-
+          setInventoryItem(res.data);
         }
       })
       .catch((error) => {
@@ -144,8 +141,6 @@ function checkStatusClass(status) {
         <p>Loading inventory item details...</p>
       )}
     </div>
-
-    
   );
 }
 
