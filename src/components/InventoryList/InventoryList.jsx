@@ -74,7 +74,7 @@ function InventoryList() {
       <div className="card__bgBlue"></div>
 
       <div className="card__wrapper">
-        <div className="card__header">
+        <div className="card__header inventorypage_card_header">
           <h1 className="card__header-title">Inventory</h1>
           <div className="card__container">
             <div className="card__searchBox">
