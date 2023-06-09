@@ -93,14 +93,15 @@
   &__buttons {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
    
   }
 }
-.btn_style--cancel{
+.btn__style{
   height: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 1.25rem;
   width: 100%;
+  border: 2px solid black;
 }
