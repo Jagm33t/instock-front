@@ -39,7 +39,7 @@
     }
     &--cancel {
       color: $color-primary-blue;
-      background-color: transparent;
+      background-color: $White;
       &:hover {
         color: $color-primary-light;
         background-color: $color-primary-red;
