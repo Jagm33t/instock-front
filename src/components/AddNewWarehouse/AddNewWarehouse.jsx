@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddNewWarehouse.sass";
+import "./AddNewWarehouse.scss";
 import Button from "../Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
 
@@ -10,13 +10,21 @@ function AddNewWarehouse() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseName, setWarehouseName] = useState("");
+  const [validateWarehouseName, setValidateWarehouseName] = useState(false);
   const [address, setAddress] = useState("");
+  const [validateAddress, setValidateAddress] = useState(false);
   const [city, setCity] = useState("");
+  const [validateCity, setValidateCity] = useState(false);
   const [country, setCountry] = useState("");
+  const [validateCountry, setValidateCountry] = useState(false);
   const [contactName, setContactName] = useState("");
+  const [validateContactName, setValidateContactName] = useState(false);
   const [contactPosition, setContactPosition] = useState("");
+  const [validateContactPosition, setValidateContactPosition] = useState(false);
   const [contactPhone, setContactPhone] = useState("");
+  const [validateContactPhone, setValidateContactPhone] = useState(false);
   const [contactEmail, setContactEmail] = useState("");
+  const [validateContactEmail, setValidateContactEmail] = useState(false);
 
   const postNewWarehouse = (newWarehouse) => {
     axios
@@ -49,6 +57,29 @@ function AddNewWarehouse() {
   // Create a handler for title input
   const handleChangeInput = (setState) => (event) => {
     setState(event.target.value);
+  };
+
+  const validateField = (setState) => (event) => {
+    if (event.target.value.length < 1) {
+      setState(true);
+    } else {
+      // validate specific cases: phone number and email
+      if (event.target.name === "contactPhone") {
+        const phonePattern = /^\+\d{1,3} \([0-9]{3}\) [0-9]{3}-[0-9]{4}$/;
+        if (!phonePattern.test(event.target.value)) {
+          setState(true);
+        } else setState(false);
+        return;
+      }
+      if (event.target.name === "contactEmail") {
+        const mailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!mailPattern.test(event.target.value)) {
+          setState(true);
+        } else setState(false);
+        return;
+      }
+      setState(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -95,7 +126,17 @@ function AddNewWarehouse() {
               placeholder="Warehouse Name"
               onChange={handleChangeInput(setWarehouseName)}
               value={warehouseName}
+              onBlur={validateField(setValidateWarehouseName)}
             />
+            <p
+              className={
+                validateWarehouseName
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Warehouse name is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="address">
               Street Address
             </label>
@@ -107,7 +148,17 @@ function AddNewWarehouse() {
               placeholder="Street Address"
               onChange={handleChangeInput(setAddress)}
               value={address}
+              onBlur={validateField(setValidateAddress)}
             />
+            <p
+              className={
+                validateAddress
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Address is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="city">
               City
             </label>
@@ -119,7 +170,15 @@ function AddNewWarehouse() {
               placeholder="City"
               onChange={handleChangeInput(setCity)}
               value={city}
+              onBlur={validateField(setValidateCity)}
             />
+            <p
+              className={
+                validateCity ? "form__fields-error" : "form__fields-error--hide"
+              }
+            >
+              * City is required
+            </p>
             <label className="form__warehouse__fields-label" htmlFor="country">
               Country
             </label>
@@ -131,7 +190,17 @@ function AddNewWarehouse() {
               placeholder="Country"
               onChange={handleChangeInput(setCountry)}
               value={country}
+              onBlur={validateField(setValidateCountry)}
             />
+            <p
+              className={
+                validateCountry
+                  ? "form__fields-error"
+                  : "form__fields-error--hide"
+              }
+            >
+              * Country is required
+            </p>
           </div>
           <div className="form__contact">
             <h2 className="form__contact-title">Contact Detais</h2>
@@ -150,7 +219,17 @@ function AddNewWarehouse() {
                 placeholder="Contact Name"
                 onChange={handleChangeInput(setContactName)}
                 value={contactName}
+                onBlur={validateField(setValidateContactName)}
               />
+              <p
+                className={
+                  validateContactName
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Name is required
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPosition"
@@ -165,7 +244,17 @@ function AddNewWarehouse() {
                 placeholder="Position"
                 onChange={handleChangeInput(setContactPosition)}
                 value={contactPosition}
+                onBlur={validateField(setValidateContactPosition)}
               />
+              <p
+                className={
+                  validateContactPosition
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Position is required
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPhone"
@@ -174,13 +263,23 @@ function AddNewWarehouse() {
               </label>
               <input
                 className="form__contact__fields-input"
-                type="text"
+                type="tel"
                 name="contactPhone"
                 id="contactPhone"
-                placeholder="Phone Number"
+                placeholder="Phone Number in the format +1 (555) 555-5555"
                 onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
+                onBlur={validateField(setValidateContactPhone)}
               />
+              <p
+                className={
+                  validateContactPhone
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Phone is required in the format +1 (555) 555-5555
+              </p>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactEmail"
@@ -189,13 +288,23 @@ function AddNewWarehouse() {
               </label>
               <input
                 className="form__contact__fields-input"
-                type="text"
+                type="mail"
                 name="contactEmail"
                 id="contactEmail"
                 placeholder="Email"
                 onChange={handleChangeInput(setContactEmail)}
                 value={contactEmail}
+                onBlur={validateField(setValidateContactEmail)}
               />
+              <p
+                className={
+                  validateContactEmail
+                    ? "form__fields-error"
+                    : "form__fields-error--hide"
+                }
+              >
+                * Contact Email is required in the format mail@mail.com
+              </p>
             </div>
           </div>
         </div>
@@ -205,7 +314,7 @@ function AddNewWarehouse() {
         <Button
           text="Cancel"
           type="submit"
-          addclassName={"btn__style--cancel"}
+          addClassName={"btn__style--cancel"}
         />
       </div>
     </form>

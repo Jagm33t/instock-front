@@ -14,15 +14,17 @@ function WarehousesList(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   //const params = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const displayWarehouses = () => {
     axios
-      .get("http://127.0.0.1:8080/api/warehouses")
+      .get(`http://127.0.0.1:8080/api/warehouses?s=${searchTerm}`)
       .then((response) => {
         console.log(response.data);
         setWarehouseList(response.data);
       })
       .catch((error) => {
+        alert(error.response.data);
         console.error(error);
       });
   };
@@ -36,8 +38,6 @@ function WarehousesList(props) {
     setShowModal(true);
   };
 
-
-  
   const confirmDelete = () => {
     axios
       .delete(`http://localhost:8080/api/warehouses/${selectedWarehouse.id}`)
@@ -61,7 +61,7 @@ function WarehousesList(props) {
         <div className="card__bgBlue"></div>
         <div className="card__wrapper">
           <div className="card__header">
-            <h1 className="card__header-title">Inventory</h1>
+            <h1 className="card__header-title">Warehouse</h1>
             <div className="card__container">
               <div className="card__searchBox">
                 <input
@@ -69,11 +69,15 @@ function WarehousesList(props) {
                   className="card__searchBox-input"
                   id="searchBox"
                   placeholder="Search..."
+                  onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                  }}
                 />
                 <img
                   src={searchImg}
                   alt={searchImg}
                   className="card__searchBox-img"
+                  onClick={() => displayWarehouses()}
                 />
               </div>
               <div className="btn">
@@ -133,15 +137,14 @@ function WarehousesList(props) {
                     </div>
                     <div className="card__list-actions">
                       <h4 className="card__list-title">Actions</h4>
-                      <img 
+                      <img
                         src={deleteImg}
                         alt={deleteImg}
                         className="deleteImg"
                         onClick={() => handleDeleteWarehouse(warehouse)}
                       />
                       <Link to={`/warehouses/${warehouse.id}/edit`}>
-                      
-                      <img src={editImg} alt={editImg} className="editImg"  />
+                        <img src={editImg} alt={editImg} className="editImg" />
                       </Link>
                     </div>
                   </li>
@@ -150,21 +153,31 @@ function WarehousesList(props) {
         </div>
       </section>
 
-     
       {showModal && (
-      <div className="modal">
-        <div className="modal-content">
-          <h3 className="headerwarehouse">Delete {selectedWarehouse && selectedWarehouse.warehouse_name} warehouse?</h3>
-          <p>Please confirm that you'd like to delete the {selectedWarehouse && selectedWarehouse.warehouse_name} from the list of warehouses. You won't be able to undo this action.</p>
-          <div className="modal-actions">
-            <button className="cancelbtn" onClick={closeModal}>Cancel</button>
-            <button className="deletebtn" onClick={confirmDelete}>Delete</button>
+        <div className="modal">
+          <div className="modal-content">
+            <h3 className="headerwarehouse">
+              Delete {selectedWarehouse && selectedWarehouse.warehouse_name}{" "}
+              warehouse?
+            </h3>
+            <p>
+              Please confirm that you'd like to delete the{" "}
+              {selectedWarehouse && selectedWarehouse.warehouse_name} from the
+              list of warehouses. You won't be able to undo this action.
+            </p>
+            <div className="modal-actions">
+              <button className="cancelbtn" onClick={closeModal}>
+                Cancel
+              </button>
+              <button className="deletebtn" onClick={confirmDelete}>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 }
 
 export default WarehousesList;

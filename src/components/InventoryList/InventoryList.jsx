@@ -14,15 +14,21 @@ function InventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc"); //default
+  const [sortColumn, setSortColumn] = useState("");
 
   const displayInventory = () => {
     axios
-      .get("http://127.0.0.1:8080/api/inventories")
+      .get(
+        `http://127.0.0.1:8080/api/inventories?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
+      )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {
+        alert(error.response.data);
         console.error(error);
       });
   };
@@ -54,6 +60,15 @@ function InventoryList() {
     setSelectedInventory(null);
   };
 
+  const handleColumnClick = (columnName) => {
+    if (sortColumn === columnName) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortColumn(columnName);
+      setSortOrder("asc");
+    }
+  };
+
   return (
     <section className="card">
       <div className="card__bgBlue"></div>
@@ -68,11 +83,15 @@ function InventoryList() {
                 className="card__searchBox-input"
                 id="searchBox"
                 placeholder="Search..."
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
               />
               <img
                 src={searchImg}
                 alt={searchImg}
                 className="card__searchBox-img"
+                onClick={() => displayInventory()}
               />
             </div>
             <div className="btn">
@@ -93,6 +112,10 @@ function InventoryList() {
                   className="card-table__heading-icon"
                   src={sortIcon}
                   alt="sort icon"
+                  onClick={() => {
+                    handleColumnClick("item_name");
+                    displayInventory();
+                  }}
                 />
               </button>
             </div>
@@ -103,6 +126,10 @@ function InventoryList() {
                   className="card-table__heading-icon"
                   src={sortIcon}
                   alt="sort icon"
+                  onClick={() => {
+                    handleColumnClick("category");
+                    displayInventory();
+                  }}
                 />
               </button>
             </div>
@@ -113,6 +140,10 @@ function InventoryList() {
                   className="card-table__heading-icon"
                   src={sortIcon}
                   alt="sort icon"
+                  onClick={() => {
+                    handleColumnClick("status");
+                    displayInventory();
+                  }}
                 />
               </button>
             </div>
@@ -123,6 +154,10 @@ function InventoryList() {
                   className="card-table__heading-icon"
                   src={sortIcon}
                   alt="sort icon"
+                  onClick={() => {
+                    handleColumnClick("quantity");
+                    displayInventory();
+                  }}
                 />
               </button>
             </div>
@@ -133,6 +168,10 @@ function InventoryList() {
                   className="card-table__heading-icon"
                   src={sortIcon}
                   alt="sort icon"
+                  onClick={() => {
+                    handleColumnClick("warehouse_name");
+                    displayInventory();
+                  }}
                 />
               </button>
             </div>
@@ -153,7 +192,7 @@ function InventoryList() {
                         <h4 className=" card__list-title  ">Inventory Item</h4>
                         <Link to="/" className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
-                            {inventory.category}
+                            {inventory.item_name}{" "}
                           </p>
                           <img
                             src={chevronRight}
@@ -165,7 +204,7 @@ function InventoryList() {
                       <div className="card__list-wrap">
                         <h4 className="card__list-title">Category</h4>
                         <p className="card__list-text-item">
-                          {inventory.item_name}
+                          {inventory.category}
                         </p>
                       </div>
                     </div>

@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import "./App.scss";
+import AddNewInventoryItem from "./components/AddNewInventoryItem/AddNewInventoryItem";
 
 function App() {
   return (
@@ -32,7 +33,11 @@ function App() {
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/inventory/details" element={<InventoryDetailsPage />} />
+          <Route path="/inventory/add" element={<AddNewInventoryItem />} />
+          <Route
+            path="/inventories/:id/details"
+            element={<InventoryDetailsPage />}
+          />
         </Routes>
       </BrowserRouter>
 
