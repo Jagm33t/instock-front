@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import axios from "axios";
 import Button from "../../components/Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
+import error from "../../assets/icons/error-24px.svg";
+import "./EditWareHousesForm.scss";
 
 function EditWarehouse() {
   const [warehouseData, setWarehouseData] = useState({
@@ -86,14 +88,31 @@ const isFormValid = () => {
   const handleChangeInput= (setState) => (event) => {
     setState(event.target.value);
   };
+  
+const navigate = useNavigate();
 
-  const validadeField = (setState) => (event) => {
-    if (event.target.value.length < 1) {
-      setState(true);
-    } else {
-      setState(false);
+const validateField = (setState) => (event) => {
+  if (event.target.value.length < 1) {
+    setState(true);
+  } else {
+    // validate specific cases: phone number and email
+    if (event.target.name === "contactPhone") {
+      const phonePattern = /^\+\d{1,3} \([0-9]{3}\) [0-9]{3}-[0-9]{4}$/;
+      if (!phonePattern.test(event.target.value)) {
+        setState(true);
+      } else setState(false);
+      return;
     }
-  };
+    if (event.target.name === "contactEmail") {
+      const mailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      if (!mailPattern.test(event.target.value)) {
+        setState(true);
+      } else setState(false);
+      return;
+    }
+    setState(false);
+  }
+};
   const handleSubmit = (event) => {
     event.preventDefault();
   
@@ -125,14 +144,19 @@ const isFormValid = () => {
             contact_phone: "",
             contact_email: "",
           });
+          alert("Information Updated");
+          navigate("/warehouses");
         })
         .catch((error) => {
           console.log("Error updating warehouse:", error);
         });
     }
+    
+
+
   };
   
-
+ 
   return (
    
     <form className="form" onSubmit={handleSubmit}>
@@ -160,17 +184,18 @@ const isFormValid = () => {
               placeholder="Warehouse Name"
               onChange={handleChangeInput(setWarehouseName)}
               value={warehouseName}
-              onBlur={validadeField(setValidateWarehouseName)}
+              onBlur={validateField(setValidateWarehouseName)}
             />
-            <p
+            <div
               className={
                 validateWarehouseName
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Warehouse name is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="address">
               Street Address
             </label>
@@ -182,17 +207,18 @@ const isFormValid = () => {
               placeholder="Street Address"
               onChange={handleChangeInput(setAddress)}
               value={address}
-              onBlur={validadeField(setValidateAddress)}
+              onBlur={validateField(setValidateAddress)}
             />
-            <p
+           <div
               className={
                 validateAddress
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Address is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="city">
               City
             </label>
@@ -204,15 +230,18 @@ const isFormValid = () => {
               placeholder="City"
               onChange={handleChangeInput(setCity)}
               value={city}
-              onBlur={validadeField(setValidateCity)}
+              onBlur={validateField(setValidateCity)}
             />
-            <p
+          <div
               className={
-                validateCity ? "form__fields-error" : "form__fields-error--hide"
+                validateCity
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * City is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
             <label className="form__warehouse__fields-label" htmlFor="country">
               Country
             </label>
@@ -224,20 +253,21 @@ const isFormValid = () => {
               placeholder="Country"
               onChange={handleChangeInput(setCountry)}
               value={country}
-              onBlur={validadeField(setValidateCountry)}
+              onBlur={validateField(setValidateCountry)}
             />
-            <p
+            <div
               className={
                 validateCountry
                   ? "form__fields-error"
-                  : "form__fields-error--hide"
+                  : "form__fields-error form__fields-error--hide"
               }
             >
-              * Country is required
-            </p>
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
           </div>
           <div className="form__contact">
-            <h2 className="form__contact-title">Contact Detais</h2>
+            <h2 className="form__contact-title">Contact Details</h2>
             <div className="form__contact__fields">
               <label
                 className="form__contact__fields-label"
@@ -253,17 +283,18 @@ const isFormValid = () => {
                 placeholder="Contact Name"
                 onChange={handleChangeInput(setContactName)}
                 value={contactName}
-                onBlur={validadeField(setValidateContactName)}
+                onBlur={validateField(setValidateContactName)}
               />
-              <p
-                className={
-                  validateContactName
-                    ? "form__fields-error"
-                    : "form__fields-error--hide"
-                }
-              >
-                * Contact Name is required
-              </p>
+           <div
+              className={
+                validateContactName
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPosition"
@@ -278,17 +309,18 @@ const isFormValid = () => {
                 placeholder="Position"
                 onChange={handleChangeInput(setContactPosition)}
                 value={contactPosition}
-                onBlur={validadeField(setValidateContactPosition)}
+                onBlur={validateField(setValidateContactPosition)}
               />
-              <p
-                className={
-                  validateContactPosition
-                    ? "form__fields-error"
-                    : "form__fields-error--hide"
-                }
-              >
-                * Contact Position is required
-              </p>
+              <div
+              className={
+                validateContactPosition
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPhone"
@@ -303,17 +335,18 @@ const isFormValid = () => {
                 placeholder="Phone Number"
                 onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
-                onBlur={validadeField(setValidateContactPhone)}
+                onBlur={validateField(setValidateContactPhone)}
               />
-              <p
+              <div
                 className={
                   validateContactPhone
                     ? "form__fields-error"
-                    : "form__fields-error--hide"
+                    : "form__fields-error form__fields-error--hide"
                 }
               >
-                * Contact Phone is required
-              </p>
+                <img src={error} alt="error" />
+                <p>This field is required</p>
+              </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactEmail"
@@ -328,24 +361,27 @@ const isFormValid = () => {
                 placeholder="Email"
                 onChange={handleChangeInput(setContactEmail)}
                 value={contactEmail}
-                onBlur={validadeField(setValidateContactEmail)}
+                onBlur={validateField(setValidateContactEmail)}
               />
-              <p
+          <div
                 className={
                   validateContactEmail
                     ? "form__fields-error"
-                    : "form__fields-error--hide"
+                    : "form__fields-error form__fields-error--hide"
                 }
               >
-                * Contact Email is required
-              </p>
+                <img src={error} alt="error" />
+                <p>This field is required</p>
+              </div>
             </div>
           </div>
         </div>
       </fieldset>
     
       <div className="form__buttons">
-  <Button text="Cancel" type="button" addClassName={"btn__style--cancel"} />
+      <Link to="/warehouses">
+  <Button text="Cancel" type="button" addClassName="btn__style--cancel" />
+</Link>
   <Button text="Save" type="submit" disabled={!isFormValid()} />
 </div>
 
