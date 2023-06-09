@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import axios from "axios";
 import Button from "../../components/Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
@@ -86,6 +86,8 @@ const isFormValid = () => {
   const handleChangeInput= (setState) => (event) => {
     setState(event.target.value);
   };
+  
+const navigate = useNavigate();
 
   const validadeField = (setState) => (event) => {
     if (event.target.value.length < 1) {
@@ -125,14 +127,19 @@ const isFormValid = () => {
             contact_phone: "",
             contact_email: "",
           });
+          alert("Information Updated");
+          navigate("/warehouses");
         })
         .catch((error) => {
           console.log("Error updating warehouse:", error);
         });
     }
+    
+
+
   };
   
-
+ 
   return (
    
     <form className="form" onSubmit={handleSubmit}>
@@ -345,7 +352,9 @@ const isFormValid = () => {
       </fieldset>
     
       <div className="form__buttons">
-  <Button text="Cancel" type="button" addClassName={"btn__style--cancel"} />
+      <Link to="/inventory">
+  <Button text="Cancel" type="button" addClassName="btn__style--cancel" />
+</Link>
   <Button text="Save" type="submit" disabled={!isFormValid()} />
 </div>
 

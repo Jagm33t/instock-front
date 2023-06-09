@@ -87,9 +87,17 @@
   @include tablet{
     padding-top: 2rem;
     padding-bottom: 2rem;
+   
   }
+  @include desktop{
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  
 }
-
+.confirmtxt{
+  width: 70%;
+}
 .modal-actions {
   display: flex;
   justify-content: space-between;
@@ -138,4 +146,9 @@
   width: 72px;
   height: 38px;
 }
+}
+
+.closeBtn{
+  display:flex;
+  justify-content: end;
 }

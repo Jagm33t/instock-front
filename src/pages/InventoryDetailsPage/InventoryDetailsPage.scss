@@ -5,17 +5,49 @@
   background-color: $Light-Grey;
  
 
+  &__header {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    border-bottom: 1.5px solid $Cloud;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet {
+      border: none;
+      padding: 1rem 2rem 1.2rem 2rem;
+    }
+  }
+
+  &__header-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+
+  &__header-tittle-container {
+    display: flex;
+   justify-content: space-between;
+    
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
 
 &_body{
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+// border: 1px solid rgb(18, 155, 13);
   }
 
   &_body-first{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    // border: 1px solid black;
   }
 
 
@@ -24,6 +56,7 @@ justify-content: space-between;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border: 1px solid rgb(155, 29, 29);
 }
 
 
