@@ -11,6 +11,7 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import EditInventoryFormPage from "./pages/EditInventoryFormPage/EditInventoryFormPage";
 import "./App.scss";
+import AddNewInventoryItem from "./components/AddNewInventoryItem/AddNewInventoryItem";
 
 function App() {
   return (
@@ -35,11 +36,15 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
 
           <Route path="/inventory" element={<InventoryPage />} />
+<<<<<<< HEAD
 
           <Route
             path="/inventory/:id/edit"
             element={<EditInventoryFormPage />}
           />
+=======
+          <Route path="/inventory/add" element={<AddNewInventoryItem />} />
+>>>>>>> develop
           <Route
             path="/inventories/:id/details"
             element={<InventoryDetailsPage />}
