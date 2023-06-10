@@ -1,18 +1,18 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
 .form {
   margin: 10px;
   border-radius: 3px;
   width: 343px;
   height: 874px;
   position: absolute;
-  left: 4.27%;
+  left: 17.27%;
   right: 4.27%;
   top: 14.3%;
   bottom: 8.68%;
-  padding: 20px;
 
-  /* White */
   background: #ffffff;
-  /* Card Shadow */
 
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
@@ -25,6 +25,14 @@
     h1 {
       padding: 0;
     }
+
+    @include tablet {
+      border: 1px solid $Cloud;
+    }
+
+    @include desktop {
+      border: 1px solid $Cloud;
+    }
   }
 
   &__fieldset {
@@ -33,6 +41,19 @@
     gap: 15px;
 
     border: none;
+    margin-bottom: 30px;
+
+    @include tablet {
+      flex-direction: column;
+      gap: 2em;
+    }
+
+    @include desktop {
+      flex-direction: row;
+      gap: 5em;
+      margin-left: 7em;
+      padding-top: 1.4em;
+    }
 
     label {
       font-weight: bold;
@@ -100,19 +121,69 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 1px solid black;
+    padding: 10px;
   }
 
   &__section2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 1px solid black;
+    padding: 10px;
+    border-top: 1px solid #bdc5d5;
+
+    @include desktop {
+      border-left: 1px solid $Cloud;
+      padding-left: 3em;
+      border-top: none;
+    }
   }
 
   &__radio {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 100%;
+    padding-right: 25%;
+    gap: 30px;
+
+    Button {
+      width: 120px;
+    }
+
+    @include desktop {
+      position: absolute;
+      width: 1020px;
+      height: 70px;
+      left: 130px;
+      top: 540px;
+      justify-content: end;
+      gap: 7em;
+    }
+  }
+
+  @include tablet {
+    width: 543px;
+    height: 874px;
+    position: absolute;
+    left: 17.27%;
+    right: 4.27%;
+    top: 8.3%;
+    bottom: 8.68%;
+  }
+
+  @include desktop {
+    width: 1020px;
+    height: 606px;
+    left: 14.27%;
+    right: 4.27%;
+    top: 9.3%;
+    bottom: 8.68%;
   }
 }
