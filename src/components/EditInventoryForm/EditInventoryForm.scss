@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__itemDetails {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__radioSection {
+    display: flex;
+    flex-direction: row;
+  }
+}
