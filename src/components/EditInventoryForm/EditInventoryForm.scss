@@ -1,6 +1,74 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
-.form {
+
+.card {
+  background-color: $Light-Grey;
+  width: 100vw;
+  height: 100vh;
+
+  &__bgBlue {
+    background-color: $Graphite;
+    height: 4em;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__wrapper {
+    background-color: $White;
+    margin: 0 1rem;
+    flex-grow: 1;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.2rem;
+    position: absolute;
+    top: 9rem;
+    width: calc(100% - 2rem);
+
+    @include tablet {
+      top: 5.5rem;
+      margin: 0 2rem;
+      width: calc(100% - 4rem);
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    border-bottom: 1.5px solid $Cloud;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet {
+      border: none;
+      padding: 1rem 2rem 1.2rem 2rem;
+    }
+  }
+
+  &__header-tittle-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    align-items: end;
+  }
+
+  &__header-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+}
+.formEdit {
   display: flex;
   flex-direction: column;
 
@@ -99,7 +167,8 @@
     display: flex;
     flex-direction: column;
   }
-
+}
+.form {
   &__btn-container {
     display: flex;
     flex-direction: row;
@@ -107,8 +176,26 @@
     gap: 1rem;
     background-color: $Light-Grey;
   }
-  &__buttons {
+  &__fields {
     display: flex;
-    flex-direction: row;
+
+    &-error {
+      color: red;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.3rem;
+
+      &--hide {
+        visibility: hidden;
+      }
+    }
+    &-error-border {
+      border: 1px solid red;
+    }
+  }
+  &__img-err {
+    width: 1rem;
   }
 }
