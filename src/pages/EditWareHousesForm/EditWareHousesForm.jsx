@@ -383,31 +383,32 @@ function EditWarehouse() {
           </div>
     
 
-        <div className="form1__buttons">
-
-        <Button
-          text="Cancel"
-          type="submit"
-          addClassName={"btn__style--cancel"}
-          handleClick={(e) => {
-            e.preventDefault();
-            navigate("/warehouses");
-          }}
-        />
-        <Button text="Save" type="submit" disabled={!isFormValid()} />
-      </div>
+       
        </div>
         </div>
-        
-      </fieldset>
-       </div>
+   <div className="form1__buttons">
+
+        <Button
+        className="cancelbtn"
+      text="Cancel"
+       type="button"
+       addClassName={"btn__style--cancel"}
+         handleClick={(e) => {
+          e.preventDefault();
+           navigate("/warehouses");
+          }}
+              />
+           <Button text="Save" type="submit" disabled={!isFormValid()} />
+   </div>
+  </fieldset>
+ </div>
 
        
     
      
 
        
-    </form>
+</form>
   );
 }
 

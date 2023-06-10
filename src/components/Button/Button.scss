@@ -15,7 +15,7 @@
   }
   @include desktop{
     height: 2.37rem;
-    width: 14%;
+    width: 12%;
   }
 
   &__style {
@@ -53,6 +53,8 @@
     &--cancel {
       color: $Instock-Indigo;
       background-color: $White;
+
+      
 
       &:hover {
         color: $Instock-Indigo;

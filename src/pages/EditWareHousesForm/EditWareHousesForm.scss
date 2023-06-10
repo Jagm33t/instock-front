@@ -170,8 +170,15 @@
      
 
    }
+   @include desktop{
+    justify-content: flex-end;
+    
+
+  }
 
    
   }
+
 }
+
 
