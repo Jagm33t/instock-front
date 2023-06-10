@@ -116,7 +116,7 @@ function AddNewWarehouse() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="form__header">
-        <Link to={"/warehouses"}>
+        <Link onClick={() => navigate(-1)}>
           <img className="form__header-img" src={arrow_back} alt="back" />{" "}
         </Link>
         <h1 className="form__header-title">Add New Warehouse</h1>
@@ -341,7 +341,7 @@ function AddNewWarehouse() {
           addClassName={"btn__style--cancel"}
           handleClick={(e) => {
             e.preventDefault();
-            navigate("/warehouses");
+            navigate(-1);
           }}
         />
       </div>

@@ -13,6 +13,8 @@ import "./InventoryList.scss";
 import DeleteInventory from "../DeleteInventory/DeleteInventory";
 
 function InventoryList() {
+  const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiInventories = apiInstockURL + "/api/inventories";
   const [inventoryList, setInventoryList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
@@ -25,10 +27,9 @@ function InventoryList() {
   const displayInventory = () => {
     axios
       .get(
-        `http://127.0.0.1:8080/api/inventories?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
+        `${apiInventories}?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
       )
       .then((response) => {
-        // console.log(response.data);
         setInventoryList(response.data);
       })
       .catch((error) => {
@@ -48,7 +49,7 @@ function InventoryList() {
 
   const confirmDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/inventories/${selectedInventory.id}`)
+      .delete(`${apiInventories}/${selectedInventory.id}`)
       .then(() => {
         setShowModal(false);
         setSelectedInventory(null);
@@ -206,7 +207,10 @@ function InventoryList() {
                     <div className="card__list-content-left">
                       <div className="card__list-wrap inventorypage__inventoryitem">
                         <h4 className="card__list-title">Inventory Item</h4>
-                        <Link to={`/inventories/${inventory.id}/details`} className="card__product-item">
+                        <Link
+                          to={`/inventories/${inventory.id}/details`}
+                          className="card__product-item"
+                        >
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
                           </p>
@@ -263,7 +267,15 @@ function InventoryList() {
                       className="deleteImg"
                       onClick={() => handleDeleteInventory(inventory)}
                     />
-                    <img src={editImg} alt={editImg} className="editImg" />
+                    <img
+                      src={editImg}
+                      alt={editImg}
+                      className="editImg"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(`/inventory/${inventory.id}/edit`);
+                      }}
+                    />
                   </div>
                 </li>
               ))}

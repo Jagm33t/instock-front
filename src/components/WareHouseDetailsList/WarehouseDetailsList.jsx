@@ -4,21 +4,47 @@ import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/editIcon.svg";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import DeleteInventory from "../DeleteInventory/DeleteInventory";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./WarehouseDetailsList.scss";
 
 function WarehouseDetailsList() {
+  const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiWarehouses = apiInstockURL + "/api/warehouses";
+  const apiInventories = apiInstockURL + "/api/inventories";
+  const navigate = useNavigate();
   const [WarehouseDetailsList, setWarehouseDetailsList] = useState([]);
   const [warehouseList, setWarehouseList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
 
   const params = useParams();
 
+  const handleDeleteInventory = (inventory) => {
+    setSelectedInventory(inventory);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedInventory(null);
+  };
+  const confirmDelete = () => {
+    axios
+      .delete(`${apiInventories}/${selectedInventory.id}`)
+      .then(() => {
+        setShowModal(false);
+        setSelectedInventory(null);
+        getWarehouseDetailsList();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const getWarehouseList = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
+      .get(`${apiWarehouses}/${params.id}`)
       .then((res) => {
         setWarehouseList(res.data);
       })
@@ -31,11 +57,12 @@ function WarehouseDetailsList() {
     if (params.id) {
       getWarehouseList(params.id);
     }
+    // eslint-disable-next-line
   }, [params.id]);
 
   const getWarehouseDetailsList = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
+      .get(`${apiWarehouses}/${params.id}/inventories`)
       .then((res) => {
         setWarehouseDetailsList(res.data);
       })
@@ -46,6 +73,7 @@ function WarehouseDetailsList() {
 
   useEffect(() => {
     getWarehouseDetailsList();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -54,13 +82,16 @@ function WarehouseDetailsList() {
       <div className="card__wrapper">
         <div className="card__header">
           <div className="card__header-tittle-container">
-            <Link to="/" type="button" className="btn__noBG">
+            <Link
+              onClick={() => navigate(-1)}
+              type="button"
+              className="btn__noBG"
+            >
               <img
                 src={backArrowImg}
                 alt={backArrowImg}
                 className="btn__noBG-img"
               />
-              <p className="btn__name">Edit</p>
             </Link>
             <h1 className="card__header-title">
               {warehouseList.warehouse_name}
@@ -69,7 +100,14 @@ function WarehouseDetailsList() {
 
           <div className="btn">
             <div className="btn__style-link">
-              <button type="button" className="btn__style">
+              <button
+                type="button"
+                className="btn__style"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(`/warehouses/${params.id}/edit`);
+                }}
+              >
                 <img src={editIcon} alt={editIcon} className="btn__img" />
                 <p className="btn__name">Edit</p>
               </button>
@@ -213,13 +251,29 @@ function WarehouseDetailsList() {
                       src={deleteImg}
                       alt={deleteImg}
                       className="deleteImg"
+                      onClick={() => handleDeleteInventory(inventory)}
                     />
-                    <img src={editImg} alt={editImg} className="editImg" />
+                    <img
+                      src={editImg}
+                      alt={editImg}
+                      className="editImg"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(`/inventory/${inventory.id}/edit`);
+                      }}
+                    />
                   </div>
                 </li>
               ))}
         </ul>
       </div>
+      {showModal && (
+        <DeleteInventory
+          closeModal={closeModal}
+          confirmDelete={confirmDelete}
+          selectedInventory={selectedInventory}
+        />
+      )}
     </section>
   );
 }

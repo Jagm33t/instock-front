@@ -8,6 +8,8 @@ import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
 
 function EditInventoryForm() {
+  const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiWarehouses = apiInstockURL + "/api/inventories";
   const [warehouseData, setWarehouseData] = useState([]);
   const [warehouseId, setWarehouseId] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
@@ -31,7 +33,7 @@ function EditInventoryForm() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/inventories/${params.id}`)
+      .get(`${apiWarehouses}/${params.id}`)
       .then((res) => {
         if (res.status === 404) {
           console.log(res);
@@ -104,7 +106,7 @@ function EditInventoryForm() {
       };
 
       axios
-        .put(`http://localhost:8080/api/inventories/${params.id}`, editData)
+        .put(`${apiWarehouses}/${params.id}`, editData)
         .then((res) => {
           navigate("/inventory");
           console.log("Form data updated successfully:", res.data);
@@ -121,13 +123,16 @@ function EditInventoryForm() {
       <div className="card__wrapper">
         <div className="card__header">
           <div className="card__header-tittle-container">
-            <Link to="/inventor" type="button" className="btn__noBG">
+            <Link
+              onClick={() => navigate(-1)}
+              type="button"
+              className="btn__noBG"
+            >
               <img
                 src={backArrowImg}
                 alt={backArrowImg}
                 className="btn__noBG-img"
               />
-              <p className="btn__name">Edit</p>
             </Link>
             <h1 className="card__header-title">Edit Inventory Item</h1>
           </div>
@@ -292,7 +297,7 @@ function EditInventoryForm() {
               addClassName={"btn__style--cancel"}
               handleClick={(e) => {
                 e.preventDefault();
-                navigate("/inventory");
+                navigate(-1);
               }}
             />
             <Button text="Submit" type="submit" disabled={!isFormValid()} />
