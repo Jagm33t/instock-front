@@ -16,12 +16,16 @@ function WarehousesList(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc"); //default
+  const [sortColumn, setSortColumn] = useState("");
 
   const navigate = useNavigate();
 
   const displayWarehouses = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/warehouses?s=${searchTerm}`)
+      .get(
+        `http://127.0.0.1:8080/api/warehouses?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
+      )
       .then((response) => {
         setWarehouseList(response.data);
       })
@@ -57,6 +61,16 @@ function WarehousesList(props) {
     setShowModal(false);
     setSelectedWarehouse(null);
   };
+
+  const handleColumnClick = (columnName) => {
+    if (sortColumn === columnName) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortColumn(columnName);
+      setSortOrder("asc");
+    }
+  };
+
   return (
     <div className="warehouses-list">
       <section className="card">
@@ -106,10 +120,10 @@ function WarehousesList(props) {
                     className="card-table__heading-icon"
                     src={sortIcon}
                     alt="sort icon"
-                    // onClick={() => {
-                    //   handleColumnClick("item_name");
-                    //   displayInventory();
-                    // }}
+                    onClick={() => {
+                      handleColumnClick("warehouse_name");
+                      displayWarehouses();
+                    }}
                   />
                 </button>
               </div>
@@ -120,10 +134,10 @@ function WarehousesList(props) {
                     className="card-table__heading-icon"
                     src={sortIcon}
                     alt="sort icon"
-                    // onClick={() => {
-                    //   handleColumnClick("category");
-                    //   displayInventory();
-                    // }}
+                    onClick={() => {
+                      handleColumnClick("address");
+                      displayWarehouses();
+                    }}
                   />
                 </button>
               </div>
@@ -134,10 +148,10 @@ function WarehousesList(props) {
                     className="card-table__heading-icon"
                     src={sortIcon}
                     alt="sort icon"
-                    // onClick={() => {
-                    //   handleColumnClick("status");
-                    //   displayInventory();
-                    // }}
+                    onClick={() => {
+                      handleColumnClick("contact_name");
+                      displayWarehouses();
+                    }}
                   />
                 </button>
               </div>
@@ -148,10 +162,10 @@ function WarehousesList(props) {
                     className="card-table__heading-icon"
                     src={sortIcon}
                     alt="sort icon"
-                    // onClick={() => {
-                    //   handleColumnClick("quantity");
-                    //   displayInventory();
-                    // }}
+                    onClick={() => {
+                      handleColumnClick("contact_email");
+                      displayWarehouses();
+                    }}
                   />
                 </button>
               </div>
