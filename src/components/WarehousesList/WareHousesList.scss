@@ -2,6 +2,24 @@
 @import "../../styles/fonts";
 @import "../../styles/mixin";
 
+@mixin phone() {
+  @media all and (max-width: 767px) {
+    @content;
+  }
+}
+
+@include phone {
+  .hideinphonepage {
+    display: none;
+  }
+}
+
+@include tablet {
+  .warehouse-editImg {
+    padding-top: 1.6rem;
+  }
+}
+
 .warehouses-list {
   &__wrapper {
     border: 1px solid orange;
@@ -46,8 +64,6 @@
   }
 }
 
-
-
 //Modale editing
 
 .modal {
@@ -62,14 +78,14 @@
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
 
-  @include tablet{
-   width: 100%;
-   padding-right: 5%;
-   padding-left: 5%;
-   position: fixed;
-   padding-bottom: 10%;
+  @include tablet {
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    position: fixed;
+    padding-bottom: 10%;
   }
-  @include desktop{
+  @include desktop {
     width: 100%;
     padding-left: 1%;
     padding-right: 1%;
@@ -83,72 +99,61 @@
   padding-left: 2rem;
   padding-right: 1rem;
 
-
-  @include tablet{
+  @include tablet {
     padding-top: 2rem;
     padding-bottom: 2rem;
-   
   }
-  @include desktop{
+  @include desktop {
     padding-left: 5rem;
     padding-right: 5rem;
   }
-  
 }
-.confirmtxt{
+.confirmtxt {
   width: 70%;
 }
 .modal-actions {
   display: flex;
   justify-content: space-between;
-  padding-top:30rem;
+  padding-top: 30rem;
 
-  @include tablet{
+  @include tablet {
     padding-top: 5rem;
     justify-content: flex-end;
   }
-
 }
 
 .modal-actions button {
   width: 8rem;
   padding: 0.5rem;
   border-radius: 2rem;
- border: none;
-
-
-
-
-
+  border: none;
 }
 
-.headerwarehouse{
+.headerwarehouse {
   width: 60%;
   margin-bottom: 1rem;
 }
 
-.deletebtn{
+.deletebtn {
   background-color: $Red;
   color: $White;
 
-  @include tablet{
+  @include tablet {
     padding: 8px 16px;
     width: 72px;
     height: 38px;
-
   }
- 
 }
-.cancelbtn{
+.cancelbtn {
   color: $Instock-Black;
-@include tablet{
-  padding: 8px 16px;
-  width: 72px;
-  height: 38px;
-}
+  @include tablet {
+    padding: 8px 16px;
+    width: 72px;
+    height: 38px;
+  }
 }
 
-.closeBtn{
-  display:flex;
+.closeBtn {
+  display: flex;
   justify-content: end;
 }

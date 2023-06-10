@@ -4,12 +4,9 @@
 
 .card {
   background-color: $Light-Grey;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  font-family: 'TitilliumWeb';
-
-
- 
+  font-family: "TitilliumWeb";
 
   &__bgBlue {
     background-color: $Graphite;
@@ -27,7 +24,6 @@
     position: absolute;
     top: 9rem;
     width: calc(100% - 2rem);
-   
 
     @include tablet {
       top: 5.5rem;
@@ -35,16 +31,15 @@
       width: calc(100% - 4rem);
     }
   }
-  
+
   &__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem 1.5rem 1.2rem 1.5rem;
     border-bottom: 1.5px solid $Cloud;
-   
+
     align-items: center;
-  
 
     @include tablet {
       border: none;
@@ -57,8 +52,6 @@
     flex-direction: row;
     gap: 0.6rem;
     align-items: end;
-
-   
   }
 
   &__header-title {
@@ -77,116 +70,110 @@
       gap: 2rem;
     }
   }
-&_body{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
-  font-size: 0.81rem;
-  font-weight: 400;
-
-  @include tablet{
+  &_body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+    font-size: 0.81rem;
+    font-weight: 400;
 
-  }
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
-  &_body-first{
+  &_body-first {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 10rem;
-
-    
   }
 
-&_body-first__des , &_body-first__cat {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 4rem;
-}
+  &_body-first__des,
+  &_body-first__cat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 4rem;
+  }
 
-&_body-first__deslabel ,  &_body-first__catlabel , &_body-second__quantitylabel , &_body-third__warehousenamelabel ,&_body-second__statuslabel{
-  color: $Cloud;
-
-}
-&_body-second{
-
-@include tablet{
-  width: 50%;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-left: 1.5px solid $Cloud;
-  padding-left: 2rem;
- 
-}
-@include desktop{
-  border-left: 1.5px solid $Cloud;
-}
-}
-&_body-second-statusqty{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 3rem;
-  width: 80%;
-  @include tablet{
+  &_body-first__deslabel,
+  &_body-first__catlabel,
+  &_body-second__quantitylabel,
+  &_body-third__warehousenamelabel,
+  &_body-second__statuslabel {
+    color: $Cloud;
+  }
+  &_body-second {
+    @include tablet {
+      width: 50%;
+      height: 10rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 1.5px solid $Cloud;
+      padding-left: 2rem;
+    }
+    @include desktop {
+      border-left: 1.5px solid $Cloud;
+    }
+  }
+  &_body-second-statusqty {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 60%;
-  
+    height: 3rem;
+    width: 80%;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 60%;
+    }
+  }
+  &_body-second__status {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  &_body-second__quantity {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &_body-third__warehousename {
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 }
-&_body-second__status{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-&_body-second__quantity{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-&_body-third__warehousename{
-  height: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-}
-.btn{
+.btn {
   width: 2.5rem;
   height: 1.2rem;
-  
-  &_noBG{
-    @include tablet{
+
+  &_noBG {
+    @include tablet {
       width: 0.2rem;
     }
   }
 
-  &__img{
+  &__img {
     width: 1.4rem;
     box-sizing: border-box;
   }
-  &__name{
-
-    @include tablet{
+  &__name {
+    @include tablet {
       display: none;
     }
-    
 
-
-
-  @include tablet {
-    display:inline-block;
-    color: $White;
-    padding-left: 1rem;
-  }
+    @include tablet {
+      display: inline-block;
+      color: $White;
+      padding-left: 1rem;
+    }
   }
 }
 
