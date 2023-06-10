@@ -350,7 +350,7 @@ function AddNewWarehouse() {
           addClassName={"btn__style--cancel"}
           handleClick={(e) => {
             e.preventDefault();
-            navigate("/warehouses");
+            navigate(-1);
           }}
         />
         <Button  text="+Add Warehouse" type="submit" disabled={!isFormValid()} />

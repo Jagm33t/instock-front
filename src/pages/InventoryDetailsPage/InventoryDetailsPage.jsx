@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 // import deleteImg from "../assets/icons/delete_outline-24px.svg";
 import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
@@ -11,8 +11,11 @@ import editIcon from "../../assets/icons/editIcon.svg";
 import "./InventoryDetailsPage.scss";
 
 function InventoryDetailsPage() {
+  const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiWarehouses = apiInstockURL + "/api/inventories";
   const [inventoryItem, setInventoryItem] = useState(null);
 
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -21,7 +24,7 @@ function InventoryDetailsPage() {
 
   const fetchInventoryItem = () => {
     axios
-      .get(`http://127.0.0.1:8080/api/inventories/${params.id}`)
+      .get(`${apiWarehouses}/${params.id}`)
       .then((res) => {
         if (res.data) {
           setInventoryItem(res.data);
@@ -48,14 +51,16 @@ function InventoryDetailsPage() {
             <div className="card__wrapper">
               <div className="card__header">
                 <div className="card__header-tittle-container">
-                  <Link to={"/inventory"}  className="btn__noBG">
+                  <Link
+                    onClick={() => navigate(-1)}
+                    type="button"
+                    className="btn__noBG"
+                  >
                     <img
                       src={backArrowImg}
                       alt={backArrowImg}
                       className="btn__noBG-img"
                     />
-
-                    <p className="btn__name">Edit</p>
                   </Link>
                   <h1 className="card__header-title">
                     {inventoryItem.item_name}
@@ -64,15 +69,18 @@ function InventoryDetailsPage() {
                   <div>
                   <div className="btn">
                   <div className="btn__style-link">
-                    <Link to={`/inventory/${params.id}/edit`}>
-                      <button type="button" className="btn__style">
-                        <img src={editIcon} alt={editIcon} className="btn__img" />
-                       <p className="btn__name">Edit</p>
-                       </button>
-                      </Link>
-                     </div>
-                   </div>
-
+                    <button
+                      type="button"
+                      className="btn__style"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(`/inventory/${params.id}/edit`);
+                      }}
+                    >
+                      <img src={editIcon} alt={editIcon} className="btn__img" />
+                      <p className="btn__name">Edit</p>
+                    </button>
+                  </div>
                 </div>
                 
                 

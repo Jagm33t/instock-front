@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Button from "../Button/Button";
 import arrow_back from "../../assets/icons/arrow_back-24px.svg";
@@ -114,7 +114,9 @@ function AddNewInventoryItem() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="form__header">
-        <img className="form__header-img" src={arrow_back} alt="back" />
+        <Link onClick={() => navigate(-1)}>
+          <img className="form__header-img" src={arrow_back} alt="back" />
+        </Link>
         <h1 className="form__header-title">Add New Inventory Item</h1>
       </div>
       <fieldset className="form__fieldset">
@@ -216,7 +218,9 @@ function AddNewInventoryItem() {
             <select onChange={handleItemWarehouse} className="warehouse">
               <option value="">Please select</option>
               {warehouseList.map((warehouse) => (
-                <option value={warehouse.id}>{warehouse.warehouse_name}</option>
+                <option key={warehouse.id} value={warehouse.id}>
+                  {warehouse.warehouse_name}
+                </option>
               ))}
             </select>
           </div>
@@ -228,7 +232,7 @@ function AddNewInventoryItem() {
           className="form__cancel"
           handleClick={(e) => {
             e.preventDefault();
-            navigate("/inventory");
+            navigate(-1);
           }}
         />
         <Button text="+Add Item" type="submit" />

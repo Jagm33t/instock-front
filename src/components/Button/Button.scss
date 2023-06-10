@@ -21,8 +21,8 @@
   &__style {
     display: flex;
     justify-content: center;
-    color: $color-primary-light;
-    font-weight: $text-weight-bold;
+    color: $White;
+    font-weight: 600;
     padding: 0.85rem 0rem;
     width: 100%;
     background-color: $Instock-Indigo;
@@ -45,18 +45,19 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $color-secondary-darkblue;
+      background-color: $Instock-Black;
     }
     &:disabled {
-      background-color: $color-secondary-ascent;
+      background-color: $Cloud;
     }
     &--cancel {
-      color: $color-primary-blue;
+      color: $Instock-Indigo;
       background-color: $White;
-      background-color: transparent;
+
       &:hover {
-        color: $color-primary-light;
-        background-color: $color-primary-red;
+        color: $Instock-Indigo;
+        background-color: $White;
+        border: 1px solid $Instock-Indigo;
       }
     }
   }
@@ -67,6 +68,7 @@
     padding-left: 0.5rem;
     position: absolute;
     left: 0.2rem;
+
     @include tablet {
       height: $tablet-body-text-line-height;
     }
