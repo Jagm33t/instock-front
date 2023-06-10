@@ -28,6 +28,16 @@
   .inventorypage__gapchange.card__list-content {
     gap: 3rem;
   }
+
+  .inventorypage__inventoryitem {
+    .card__product-item_chevron {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover .card__product-item_chevron {
+      transform: translateX(4px);
+    }
+  }
 }
 
 @include tablet {
@@ -62,6 +72,14 @@
     white-space: nowrap;
     min-width: 7rem;
     margin-right: 0.01rem;
+
+    .card__product-item_chevron {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover .card__product-item_chevron {
+      transform: translateX(4px);
+    }
   }
 
   .inventorypage__inventorycategory {
