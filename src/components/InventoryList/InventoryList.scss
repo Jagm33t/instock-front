@@ -191,11 +191,14 @@
 
   &__searchBox-img {
     position: absolute;
-    right: 2.9rem;
-    top: 5.4rem;
+
+    @include phone {
+      right: 2.9rem;
+      top: 5.4rem;
+    }
 
     @include tablet {
-      right: 11.7rem;
+      right: 12.8rem;
       top: 2.6rem;
     }
   }
@@ -349,7 +352,7 @@
     background-color: transparent;
   }
 }
-.btn {
+.inventorybtn {
   border: none;
   width: 100%;
 
