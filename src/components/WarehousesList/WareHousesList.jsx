@@ -12,6 +12,8 @@ import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function WarehousesList(props) {
+  const apiInstockURL = process.env.REACT_APP_API_SERVER;
+  const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseList, setWarehouseList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
@@ -24,7 +26,7 @@ function WarehousesList(props) {
   const displayWarehouses = () => {
     axios
       .get(
-        `http://127.0.0.1:8080/api/warehouses?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
+        `${apiWarehouses}?s=${searchTerm}&sort_by=${sortColumn}&order_by=${sortOrder}`
       )
       .then((response) => {
         setWarehouseList(response.data);
@@ -46,7 +48,7 @@ function WarehousesList(props) {
 
   const confirmDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/warehouses/${selectedWarehouse.id}`)
+      .delete(`${apiWarehouses}/${selectedWarehouse.id}`)
       .then(() => {
         setShowModal(false);
         setSelectedWarehouse(null);
