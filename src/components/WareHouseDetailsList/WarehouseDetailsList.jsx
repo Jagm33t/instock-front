@@ -20,14 +20,12 @@ function WarehouseDetailsList() {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}`)
       .then((res) => {
-        console.log(res.data[0]);
-        setWarehouseList(res.data[0]);
+        setWarehouseList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(warehouseList);
 
   useEffect(() => {
     if (params.id) {
@@ -39,7 +37,6 @@ function WarehouseDetailsList() {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses/${params.id}/inventories`)
       .then((res) => {
-        console.log(res.data);
         setWarehouseDetailsList(res.data);
       })
       .catch((error) => {
@@ -168,7 +165,10 @@ function WarehouseDetailsList() {
                     <div className="card__list-content-left">
                       <div className="card__list-wrap">
                         <h4 className=" card__list-title  ">Inventory Item</h4>
-                        <Link to="/" className="card__product-item">
+                        <Link
+                          to={`/inventories/${inventory.id}/details`}
+                          className="card__product-item"
+                        >
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}
                           </p>

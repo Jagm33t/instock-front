@@ -43,6 +43,56 @@
   .inventorypage__heading.card-table__heading {
     white-space: nowrap;
   }
+
+  .inventory__card__list.card__list {
+    // justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .inventorypage__actions {
+    padding-left: 2rem;
+  }
+
+  .card__list-content-right {
+    gap: 1rem;
+  }
+
+  .inventorypage__inventoryitem {
+    // margin-right: 1.5rem;
+    white-space: nowrap;
+    min-width: 7rem;
+    margin-right: 0.01rem;
+  }
+
+  .inventorypage__inventorycategory {
+    width: 6rem;
+  }
+
+  .inventorypage__contentright.card__list-content-right {
+    // width: 10rem;
+    width: 35%;
+  }
+
+  .inventorypage__gapchange.card__list-content {
+    gap: 7vw;
+    flex: 1;
+    justify-content: flex-start;
+
+    > .card__list-content-left {
+      // width: 20vw;
+      width: 38%;
+    }
+  }
+  .inventorypage__inventorystatus {
+    min-width: 16vw;
+  }
+  .inventorypage__inventoryqty {
+    min-width: 10vw;
+  }
+
+  .inventorypage__inventorywarehouse {
+    min-width: 5rem;
+  }
 }
 
 .card {
@@ -141,11 +191,14 @@
 
   &__searchBox-img {
     position: absolute;
-    right: 2.9rem;
-    top: 5.4rem;
+
+    @include phone {
+      right: 2.9rem;
+      top: 5.4rem;
+    }
 
     @include tablet {
-      right: 11.7rem;
+      right: 12.8rem;
       top: 2.6rem;
     }
   }
@@ -270,14 +323,15 @@
   display: none;
 
   @include tablet {
-    justify-content: space-between;
-    background-color: $Light-Grey;
+    justify-content: space-around;
+    background: rgba(247, 248, 249, 0.7);
     display: flex;
     flex-direction: row;
     font-size: 0.7rem;
     text-transform: uppercase;
     color: #5c667e;
-    padding: 0.5rem 0;
+    // padding: 0.5rem 0;
+    padding: 0.9rem 2rem;
   }
   &__headings {
     display: flex;
@@ -288,16 +342,17 @@
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    margin: 0 1rem;
-    width: 15%;
+    // margin: 0 1rem;
+    // width: 15%;
+    margin-left: 1rem;
   }
 
   &__heading-button {
     border: none;
-    background-color: none;
+    background-color: transparent;
   }
 }
-.btn {
+.inventorybtn {
   border: none;
   width: 100%;
 
