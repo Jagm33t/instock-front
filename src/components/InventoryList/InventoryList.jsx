@@ -4,6 +4,8 @@ import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -17,6 +19,8 @@ function InventoryList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc"); //default
   const [sortColumn, setSortColumn] = useState("");
+
+  const navigate = useNavigate();
 
   const displayInventory = () => {
     axios
@@ -95,11 +99,12 @@ function InventoryList() {
               />
               <div></div>
             </div>
-            <div className="btn">
+            <div className="inventorybtn">
               <div className="btn__style-link">
                 <button
                   type="button"
                   className="btn__style inventorypage__btn__style"
+                  onClick={() => navigate("/inventory/add")}
                 >
                   + Add New Item
                 </button>
@@ -205,13 +210,13 @@ function InventoryList() {
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
                           </p>
-                          
+
                           <img
                             src={chevronRight}
                             alt={chevronRight}
                             className="card__product-item_chevron"
                           />
-                   </Link>
+                        </Link>
                       </div>
                       <div className="card__list-wrap inventorypage__inventorycategory">
                         <h4 className="card__list-title inventorypage__margintop">

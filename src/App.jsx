@@ -9,6 +9,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
+import EditInventoryFormPage from "./pages/EditInventoryFormPage/EditInventoryFormPage";
 import "./App.scss";
 import AddNewInventoryItem from "./components/AddNewInventoryItem/AddNewInventoryItem";
 
@@ -28,11 +29,17 @@ function App() {
             element={<WarehouseDetailsPage />}
           />
 
-          <Route path="/warehouses/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/:id/edit" element={<EditWareHousesForm />} />
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
+
           <Route path="*" element={<NotFoundPage />} />
+
           <Route path="/inventory" element={<InventoryPage />} />
+
+          <Route
+            path="/inventory/:id/edit"
+            element={<EditInventoryFormPage />}
+          />
           <Route path="/inventory/add" element={<AddNewInventoryItem />} />
           <Route
             path="/inventories/:id/details"
