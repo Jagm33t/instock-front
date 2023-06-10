@@ -208,7 +208,7 @@ function WarehousesList(props) {
                             Address
                           </h4>
                           <p className="card__list-text-item">
-                            {warehouse.address}
+                            <span>{`${warehouse.address}, ${warehouse.city}, ${warehouse.country}`}</span>
                           </p>
                         </div>
                       </div>
