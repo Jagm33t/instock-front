@@ -139,6 +139,7 @@ function InventoryDetailsPage() {
                 </div>
               </div>
             </div>
+            </div>
           </section>
         </>
       ) : (

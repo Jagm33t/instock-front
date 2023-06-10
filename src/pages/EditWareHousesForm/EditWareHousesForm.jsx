@@ -168,6 +168,7 @@ function EditWarehouse() {
       </div>
       <fieldset className="form1__fieldset">
         <div className="form1__warehouse1">
+
         <div className="form1__display1">
           <h2 className="form1__warehouse-title">Warehouse Details</h2>
           
@@ -380,23 +381,9 @@ function EditWarehouse() {
               </div>
             </div>
           </div>
-        </fieldset>
-
-        <div className="form__buttons">
-          <Button
-            text="Cancel"
-            type="submit"
-            addClassName={"btn__style--cancel"}
-            handleClick={(e) => {
-              e.preventDefault();
-              navigate(-1);
-            }}
-          />
-          <Button text="Save" type="submit" disabled={!isFormValid()} />
-        </div>
-      </fieldset>
     
-      <div className="form1__buttons">
+
+        <div className="form1__buttons">
 
         <Button
           text="Cancel"
@@ -409,6 +396,17 @@ function EditWarehouse() {
         />
         <Button text="Save" type="submit" disabled={!isFormValid()} />
       </div>
+       </div>
+        </div>
+        
+      </fieldset>
+       </div>
+
+       
+    
+     
+
+       
     </form>
   );
 }
