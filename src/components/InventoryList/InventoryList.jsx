@@ -206,7 +206,7 @@ function InventoryList() {
                     <div className="card__list-content-left">
                       <div className="card__list-wrap inventorypage__inventoryitem">
                         <h4 className="card__list-title">Inventory Item</h4>
-                        <Link to="/" className="card__product-item">
+                        <Link to={`/inventories/${inventory.id}/details`} className="card__product-item">
                           <p className="card__list-text-item card__list-text-item--product">
                             {inventory.item_name}{" "}
                           </p>

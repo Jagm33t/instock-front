@@ -160,15 +160,20 @@ const validateField = (setState) => (event) => {
   return (
    
     <form className="form" onSubmit={handleSubmit}>
-      <div className="form__header">
+       <div className="form__bgBlue"></div>
+       <div className="form__wrapper">
+
+       <div className="form__header">
       <Link to="/">
           <img className="form__header-img" src={arrow_back} alt="back" />
         </Link>
         <h1 className="form__header-title">Edit Warehouse</h1>
       </div>
       <fieldset className="form__fieldset">
-        <div className="form__warehouse">
+        <div className="form__warehouse1">
+        <div className="form__display1">
           <h2 className="form__warehouse-title">Warehouse Details</h2>
+          
           <div className="form__warehouse__fields">
             <label
               className="form__warehouse__fields-label"
@@ -177,7 +182,7 @@ const validateField = (setState) => (event) => {
               Warehouse Name
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form__warehouse1__fields-input"
               type="text"
               name="warehouseName"
               id="warehouseName"
@@ -200,7 +205,7 @@ const validateField = (setState) => (event) => {
               Street Address
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form__warehouse1__fields-input"
               type="text"
               name="address"
               id="address"
@@ -223,7 +228,7 @@ const validateField = (setState) => (event) => {
               City
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form__warehouse1__fields-input"
               type="text"
               name="city"
               id="city"
@@ -246,7 +251,7 @@ const validateField = (setState) => (event) => {
               Country
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form__warehouse1__fields-input"
               type="text"
               name="country"
               id="country"
@@ -266,6 +271,9 @@ const validateField = (setState) => (event) => {
               <p>This field is required</p>
             </div>
           </div>
+          </div>
+          <div className="form__display2">
+
           <div className="form__contact">
             <h2 className="form__contact-title">Contact Details</h2>
             <div className="form__contact__fields">
@@ -375,15 +383,26 @@ const validateField = (setState) => (event) => {
               </div>
             </div>
           </div>
+          </div>
+
         </div>
       </fieldset>
     
       <div className="form__buttons">
-      <Link to="/warehouses">
-  <Button text="Cancel" type="button" addClassName="btn__style--cancel" />
-</Link>
-  <Button text="Save" type="submit" disabled={!isFormValid()} />
-</div>
+
+        <Button
+          text="Cancel"
+          type="submit"
+          addClassName={"btn__style--cancel"}
+          handleClick={(e) => {
+            e.preventDefault();
+            navigate("/warehouses");
+          }}
+        />
+        <Button text="Save" type="submit" disabled={!isFormValid()} />
+      </div>
+       </div>
+      
 
      
     </form>
