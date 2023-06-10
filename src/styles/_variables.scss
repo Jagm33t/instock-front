@@ -19,57 +19,12 @@ $Light-Grey: #f7f8f9;
 $Green: #158463;
 $Red: #c94515;
 
-// Marcelo draft colors
-// Colours
-// Primary
-$color-primary-light: #ffffff;
-$color-primary-ascent: #afafaf; // Silver
-$color-primary-blue: #0095ff; // BrainFlix-blue
-$color-primary-red: red; // Cancel Button
-
-// Secondary
-$color-secondary-light: #fafafa; // Alabaster
-$color-secondary-ascent: #e1e1e1; // Mercury
-$color-secondary-darkblue: #0065ad; //BrainFlix-darkblue
-
-$color-dark: #323232; // BrainFlix-Black
-$color-darkblack: #000000; // BrainFlix-DarkBlack
-$color-error: #d22d2d;
-
-// screen sizes
-$tablet-width: 768px;
-$desktop-width: 1280px;
-
-// Font weights
-$text-weight-regular: 400;
-$text-weight-bold: 700;
-
-// Desktop and Tablet, mobile text style
-$tablet-header-text-size: 2.06rem;
-$tablet-header-text-line-height: 2.75rem;
-$mobile-header-text-size: 1.5rem;
-$mobile-header-text-line-height: 2rem;
-
-$tablet-section-text-size: 2.25rem;
-$tablet-section-text-line-height: 1.25rem;
-$mobile-section-text-size: 0.75rem;
-
-$tablet-subheader-text-size: 0.875rem;
-$tablet-subheader-text-line-height: 1.375rem;
-$mobile-subheader-text-size: 1.083rem;
-$mobile-subheader-text-line-height: 1.125rem;
-
+// Button
 $tablet-body-text-size: 0.875rem;
 $tablet-body-text-line-height: 1.375rem;
 $mobile-body-text-size: 0.8125rem;
 $mobile-body-text-line-height: 1.125rem;
 
-$tablet-labels-text-size: 2.25rem;
-$tablet-labels-text-line-height: 1.25rem;
-$mobile-labels-text-size: 0.625rem;
-$mobile-labels-text-line-height: 1.25rem;
-
-// Button
 $button-height: 2.5rem;
 $button-min-width-tablet_desktop: 9.375rem;
 $button-padding-left-right-tablet_desktop: 2rem;
