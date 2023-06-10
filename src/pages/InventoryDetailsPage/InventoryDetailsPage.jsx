@@ -48,7 +48,7 @@ function InventoryDetailsPage() {
             <div className="card__wrapper">
               <div className="card__header">
                 <div className="card__header-tittle-container">
-                  <Link to="/inventory" type="button" className="btn__noBG">
+                  <Link to={"/inventory"}  className="btn__noBG">
                     <img
                       src={backArrowImg}
                       alt={backArrowImg}
@@ -61,15 +61,21 @@ function InventoryDetailsPage() {
                     {inventoryItem.item_name}
                   </h1>
                 </div>
-
-                <div className="btn">
+                  <div>
+                  <div className="btn">
                   <div className="btn__style-link">
-                    <button type="button" className="btn__style">
-                      <img src={editIcon} alt={editIcon} className="btn__img" />
-                      <p className="btn__name">Edit</p>
-                    </button>
-                  </div>
+                    <Link to={`/inventory/${params.id}/edit`}>
+                      <button type="button" className="btn__style">
+                        <img src={editIcon} alt={editIcon} className="btn__img" />
+                       <p className="btn__name">Edit</p>
+                       </button>
+                      </Link>
+                     </div>
+                   </div>
+
                 </div>
+                
+                
               </div>
 
               <div className="card_body">

@@ -5,6 +5,18 @@
   display: flex;
   margin: 0.2rem 0;
   position: relative;
+  width: 45%;
+  height: 2rem;
+  border-radius: 1.25rem;
+
+  @include tablet{
+    height: 2.37rem;
+    width: 14%;
+  }
+  @include desktop{
+    height: 2.37rem;
+    width: 14%;
+  }
 
   &__style {
     display: flex;
@@ -18,6 +30,7 @@
     border-radius: $button-radius;
     border: none;
     transition: all 0.3s ease-out;
+   
 
     @include tablet {
       height: $button-height;
@@ -27,6 +40,7 @@
       font-size: $tablet-body-text-size;
       line-height: $tablet-body-text-line-height;
       align-self: self-end;
+      
     }
 
     &:hover {

@@ -114,16 +114,21 @@ function AddNewWarehouse() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="form__header">
-        <Link to={"/warehouses"}>
-          <img className="form__header-img" src={arrow_back} alt="back" />{" "}
+    <form className="form1" onSubmit={handleSubmit}>
+       <div className="form1__bgBlue"></div>
+       <div className="form1__wrapper">
+
+       <div className="form1__header">
+      <Link to="/">
+          <img className="form__header-img" src={arrow_back} alt="back" />
         </Link>
-        <h1 className="form__header-title">Add New Warehouse</h1>
+        <h1 className="form1__header-title">Add Warehouse</h1>
       </div>
-      <fieldset className="form__fieldset">
-        <div className="form__warehouse">
-          <h2 className="form__warehouse-title">Warehouse Detais</h2>
+      <fieldset className="form1__fieldset">
+        <div className="form1__warehouse1">
+        <div className="form1__display1">
+          <h2 className="form1__warehouse-title">Warehouse Details</h2>
+          
           <div className="form__warehouse__fields">
             <label
               className="form__warehouse__fields-label"
@@ -132,7 +137,7 @@ function AddNewWarehouse() {
               Warehouse Name
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="warehouseName"
               id="warehouseName"
@@ -155,7 +160,7 @@ function AddNewWarehouse() {
               Street Address
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="address"
               id="address"
@@ -164,7 +169,7 @@ function AddNewWarehouse() {
               value={address}
               onBlur={validateField(setValidateAddress)}
             />
-            <div
+           <div
               className={
                 validateAddress
                   ? "form__fields-error"
@@ -174,12 +179,11 @@ function AddNewWarehouse() {
               <img src={error} alt="error" />
               <p>This field is required</p>
             </div>
-
-            <label className="form__warehouse__fields-label" htmlFor="city">
+            <label className="form1__warehouse__fields-label" htmlFor="city">
               City
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="city"
               id="city"
@@ -188,7 +192,7 @@ function AddNewWarehouse() {
               value={city}
               onBlur={validateField(setValidateCity)}
             />
-            <div
+          <div
               className={
                 validateCity
                   ? "form__fields-error"
@@ -198,11 +202,11 @@ function AddNewWarehouse() {
               <img src={error} alt="error" />
               <p>This field is required</p>
             </div>
-            <label className="form__warehouse__fields-label" htmlFor="country">
+            <label className="form1__warehouse__fields-label" htmlFor="country">
               Country
             </label>
             <input
-              className="form__warehouse__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="country"
               id="country"
@@ -222,8 +226,11 @@ function AddNewWarehouse() {
               <p>This field is required</p>
             </div>
           </div>
+          </div>
+          <div className="form1__display2">
+
           <div className="form__contact">
-            <h2 className="form__contact-title">Contact Detais</h2>
+            <h2 className="form1__contact-title">Contact Details</h2>
             <div className="form__contact__fields">
               <label
                 className="form__contact__fields-label"
@@ -232,7 +239,7 @@ function AddNewWarehouse() {
                 Contact Name
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="text"
                 name="contactName"
                 id="contactName"
@@ -241,16 +248,16 @@ function AddNewWarehouse() {
                 value={contactName}
                 onBlur={validateField(setValidateContactName)}
               />
-              <div
-                className={
-                  validateContactName
-                    ? "form__fields-error"
-                    : "form__fields-error form__fields-error--hide"
-                }
-              >
-                <img src={error} alt="error" />
-                <p>This field is required</p>
-              </div>
+           <div
+              className={
+                validateContactName
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPosition"
@@ -258,7 +265,7 @@ function AddNewWarehouse() {
                 Position
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="text"
                 name="contactPosition"
                 id="contactPosition"
@@ -268,15 +275,15 @@ function AddNewWarehouse() {
                 onBlur={validateField(setValidateContactPosition)}
               />
               <div
-                className={
-                  validateContactPosition
-                    ? "form__fields-error"
-                    : "form__fields-error form__fields-error--hide"
-                }
-              >
-                <img src={error} alt="error" />
-                <p>This field is required</p>
-              </div>
+              className={
+                validateContactPosition
+                  ? "form__fields-error"
+                  : "form__fields-error form__fields-error--hide"
+              }
+            >
+              <img src={error} alt="error" />
+              <p>This field is required</p>
+            </div>
               <label
                 className="form__contact__fields-label"
                 htmlFor="contactPhone"
@@ -284,8 +291,8 @@ function AddNewWarehouse() {
                 Phone Number
               </label>
               <input
-                className="form__contact__fields-input"
-                type="tel"
+                className="form1__contact__fields-input"
+                type="text"
                 name="contactPhone"
                 id="contactPhone"
                 placeholder="Phone Number in the format +1 (555) 555-5555"
@@ -310,7 +317,7 @@ function AddNewWarehouse() {
                 Email
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="mail"
                 name="contactEmail"
                 id="contactEmail"
@@ -319,7 +326,7 @@ function AddNewWarehouse() {
                 value={contactEmail}
                 onBlur={validateField(setValidateContactEmail)}
               />
-              <div
+          <div
                 className={
                   validateContactEmail
                     ? "form__fields-error"
@@ -331,10 +338,12 @@ function AddNewWarehouse() {
               </div>
             </div>
           </div>
+          </div>
+
         </div>
       </fieldset>
-      <div className="form__buttons">
-        <Button text="+Add Warehouse" type="submit" disabled={!isFormValid()} />
+      <div className="form1__buttons">
+
         <Button
           text="Cancel"
           type="submit"
@@ -344,6 +353,8 @@ function AddNewWarehouse() {
             navigate("/warehouses");
           }}
         />
+        <Button  text="+Add Warehouse" type="submit" disabled={!isFormValid()} />
+      </div>
       </div>
     </form>
   );

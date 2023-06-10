@@ -159,20 +159,20 @@ const validateField = (setState) => (event) => {
  
   return (
    
-    <form className="form" onSubmit={handleSubmit}>
-       <div className="form__bgBlue"></div>
-       <div className="form__wrapper">
+    <form className="form1" onSubmit={handleSubmit}>
+       <div className="form1__bgBlue"></div>
+       <div className="form1__wrapper">
 
-       <div className="form__header">
+       <div className="form1__header">
       <Link to="/">
           <img className="form__header-img" src={arrow_back} alt="back" />
         </Link>
-        <h1 className="form__header-title">Edit Warehouse</h1>
+        <h1 className="form1__header-title">Edit Warehouse</h1>
       </div>
-      <fieldset className="form__fieldset">
-        <div className="form__warehouse1">
-        <div className="form__display1">
-          <h2 className="form__warehouse-title">Warehouse Details</h2>
+      <fieldset className="form1__fieldset">
+        <div className="form1__warehouse1">
+        <div className="form1__display1">
+          <h2 className="form1__warehouse-title">Warehouse Details</h2>
           
           <div className="form__warehouse__fields">
             <label
@@ -182,7 +182,7 @@ const validateField = (setState) => (event) => {
               Warehouse Name
             </label>
             <input
-              className="form__warehouse1__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="warehouseName"
               id="warehouseName"
@@ -205,7 +205,7 @@ const validateField = (setState) => (event) => {
               Street Address
             </label>
             <input
-              className="form__warehouse1__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="address"
               id="address"
@@ -224,11 +224,11 @@ const validateField = (setState) => (event) => {
               <img src={error} alt="error" />
               <p>This field is required</p>
             </div>
-            <label className="form__warehouse__fields-label" htmlFor="city">
+            <label className="form1__warehouse__fields-label" htmlFor="city">
               City
             </label>
             <input
-              className="form__warehouse1__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="city"
               id="city"
@@ -247,11 +247,11 @@ const validateField = (setState) => (event) => {
               <img src={error} alt="error" />
               <p>This field is required</p>
             </div>
-            <label className="form__warehouse__fields-label" htmlFor="country">
+            <label className="form1__warehouse__fields-label" htmlFor="country">
               Country
             </label>
             <input
-              className="form__warehouse1__fields-input"
+              className="form1__warehouse1__fields-input"
               type="text"
               name="country"
               id="country"
@@ -272,10 +272,10 @@ const validateField = (setState) => (event) => {
             </div>
           </div>
           </div>
-          <div className="form__display2">
+          <div className="form1__display2">
 
           <div className="form__contact">
-            <h2 className="form__contact-title">Contact Details</h2>
+            <h2 className="form1__contact-title">Contact Details</h2>
             <div className="form__contact__fields">
               <label
                 className="form__contact__fields-label"
@@ -284,7 +284,7 @@ const validateField = (setState) => (event) => {
                 Contact Name
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="text"
                 name="contactName"
                 id="contactName"
@@ -310,7 +310,7 @@ const validateField = (setState) => (event) => {
                 Position
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="text"
                 name="contactPosition"
                 id="contactPosition"
@@ -336,11 +336,11 @@ const validateField = (setState) => (event) => {
                 Phone Number
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="text"
                 name="contactPhone"
                 id="contactPhone"
-                placeholder="Phone Number"
+                placeholder="Phone Number in the format +1 (555) 555-5555"
                 onChange={handleChangeInput(setContactPhone)}
                 value={contactPhone}
                 onBlur={validateField(setValidateContactPhone)}
@@ -362,7 +362,7 @@ const validateField = (setState) => (event) => {
                 Email
               </label>
               <input
-                className="form__contact__fields-input"
+                className="form1__contact__fields-input"
                 type="mail"
                 name="contactEmail"
                 id="contactEmail"
@@ -388,7 +388,7 @@ const validateField = (setState) => (event) => {
         </div>
       </fieldset>
     
-      <div className="form__buttons">
+      <div className="form1__buttons">
 
         <Button
           text="Cancel"
