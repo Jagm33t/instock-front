@@ -231,7 +231,9 @@ function WarehousesList(props) {
                       </div>
                     </div>
                     <div className="card__list-actions">
-                      <h4 className="card__list-title">Actions</h4>
+                      <h4 className="card__list-title hideinphonepage">
+                        Actions
+                      </h4>
                       <img
                         src={deleteImg}
                         alt={deleteImg}
@@ -239,7 +241,11 @@ function WarehousesList(props) {
                         onClick={() => handleDeleteWarehouse(warehouse)}
                       />
                       <Link to={`/warehouses/${warehouse.id}/edit`}>
-                        <img src={editImg} alt={editImg} className="editImg" />
+                        <img
+                          src={editImg}
+                          alt={editImg}
+                          className="editImg warehouse-editImg"
+                        />
                       </Link>
                     </div>
                   </li>

@@ -2,6 +2,24 @@
 @import "../../styles/fonts";
 @import "../../styles/mixin";
 
+@mixin phone() {
+  @media all and (max-width: 767px) {
+    @content;
+  }
+}
+
+@include phone {
+  .hideinphonepage {
+    display: none;
+  }
+}
+
+@include tablet {
+  .warehouse-editImg {
+    padding-top: 1.6rem;
+  }
+}
+
 .warehouses-list {
   &__wrapper {
     border: 1px solid orange;
