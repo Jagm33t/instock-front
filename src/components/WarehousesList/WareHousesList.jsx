@@ -9,6 +9,7 @@ import searchImg from "../../assets/icons/search-24px.svg";
 import deleteImg from "../../assets/icons/delete_outline-24px.svg";
 import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
+import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function WarehousesList(props) {
   const [warehouseList, setWarehouseList] = useState([]);
@@ -61,9 +62,9 @@ function WarehousesList(props) {
       <section className="card">
         <div className="card__bgBlue"></div>
         <div className="card__wrapper">
-          <div className="card__header">
+          <div className="card__header inventorypage_card_header">
             <h1 className="card__header-title">Warehouse</h1>
-            <div className="card__container">
+            <div className="card__container inventorypage__card_container">
               <div className="card__searchBox">
                 <input
                   type="search"
@@ -81,11 +82,11 @@ function WarehousesList(props) {
                   onClick={() => displayWarehouses()}
                 />
               </div>
-              <div className="btn">
+              <div className="inventorybtn">
                 <div className="btn__style-link">
                   <button
                     type="button"
-                    className="btn__style"
+                    className="btn__style inventorypage__btn__style"
                     onClick={() => navigate("/warehouses/add")}
                   >
                     + Add New Item
@@ -94,15 +95,99 @@ function WarehousesList(props) {
               </div>
             </div>
           </div>
+          <div className="card-table">
+            <div className="card-table__headings">
+              <div className="card-table__heading-wrapper">
+                <h4 className="card-table__heading inventorypage__heading">
+                  Warehouse
+                </h4>
+                <button className="card-table__heading-button">
+                  <img
+                    className="card-table__heading-icon"
+                    src={sortIcon}
+                    alt="sort icon"
+                    // onClick={() => {
+                    //   handleColumnClick("item_name");
+                    //   displayInventory();
+                    // }}
+                  />
+                </button>
+              </div>
+              <div className="card-table__heading-wrapper">
+                <h4 className="card-table__heading">Address</h4>
+                <button className="card-table__heading-button">
+                  <img
+                    className="card-table__heading-icon"
+                    src={sortIcon}
+                    alt="sort icon"
+                    // onClick={() => {
+                    //   handleColumnClick("category");
+                    //   displayInventory();
+                    // }}
+                  />
+                </button>
+              </div>
+              <div className="card-table__heading-wrapper">
+                <h4 className="card-table__heading">Contact Name</h4>
+                <button className="card-table__heading-button">
+                  <img
+                    className="card-table__heading-icon"
+                    src={sortIcon}
+                    alt="sort icon"
+                    // onClick={() => {
+                    //   handleColumnClick("status");
+                    //   displayInventory();
+                    // }}
+                  />
+                </button>
+              </div>
+              <div className="card-table__heading-wrapper">
+                <h4 className="card-table__heading">Contact Information</h4>
+                <button className="card-table__heading-button">
+                  <img
+                    className="card-table__heading-icon"
+                    src={sortIcon}
+                    alt="sort icon"
+                    // onClick={() => {
+                    //   handleColumnClick("quantity");
+                    //   displayInventory();
+                    // }}
+                  />
+                </button>
+              </div>
+              {/* <div className="card-table__heading-wrapper">
+              <h4 className="card-table__heading">Warehouse</h4>
+              <button className="card-table__heading-button">
+                <img
+                  className="card-table__heading-icon"
+                  src={sortIcon}
+                  alt="sort icon"
+                  // onClick={() => {
+                  //   handleColumnClick("warehouse_name");
+                  //   displayInventory();
+                  // }}
+                />
+              </button>
+            </div> */}
+            </div>
+            <div className="card-table__heading-wrapper card-table__heading-wrapper--actions ">
+              <h4 className="card-table__heading inventorypage__actions">
+                Actions
+              </h4>
+            </div>
+          </div>
 
           <ul>
             {warehouseList.length === 0
               ? null
               : warehouseList.map((warehouse) => (
-                  <li className="card__warehouse-list" key={warehouse.id}>
-                    <div className="card__list-content">
+                  <li
+                    className="card__list inventory__card__list"
+                    key={warehouse.id}
+                  >
+                    <div className="card__list-content inventorypage__gapchange">
                       <div className="card__list-content-left">
-                        <div className="card__list-wrap">
+                        <div className="card__list-wrap inventorypage__inventoryitem">
                           <h4 className="card__list-title ">Warehouse</h4>
                           <Link
                             to={`/warehouses/${warehouse.id}/details`}
@@ -118,15 +203,17 @@ function WarehousesList(props) {
                             />
                           </Link>
                         </div>
-                        <div className="card__list-wrap">
-                          <h4 className="card__list-title">Address</h4>
+                        <div className="card__list-wrap inventorypage__inventorycategory">
+                          <h4 className="card__list-title inventorypage__margintop">
+                            Address
+                          </h4>
                           <p className="card__list-text-item">
                             {warehouse.address}
                           </p>
                         </div>
                       </div>
-                      <div className="card__list-content-right">
-                        <div className="card__list-wrap">
+                      <div className="card__list-content-right inventorypage__contentright">
+                        <div className="card__list-wrap inventorypage__inventorystatus">
                           <h4 className="card__list-title">Contact Name</h4>
                           <p className="card__list-text-item">
                             {warehouse.contact_name}
