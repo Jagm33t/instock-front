@@ -40,7 +40,7 @@
 
     @include tablet {
       border: none;
-      padding: 1rem 2rem 1.2rem 2rem;
+      padding: 2rem 0 2rem 2.5rem;
     }
   }
 
@@ -72,8 +72,26 @@
   display: flex;
   flex-direction: column;
 
+  &__itemDetails-container {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+    }
+  }
+
   &__itemDetails {
-    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+
+    @include tablet {
+      width: 50%;
+
+      &--divider {
+        border-right: 1px solid $Cloud;
+      }
+    }
   }
 
   &__title {
@@ -111,7 +129,7 @@
   &__fieldset {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+
     border: 0 none;
   }
   &__warehouse {
@@ -147,11 +165,6 @@
     }
   }
 
-  &__itemDetails {
-    display: flex;
-    flex-direction: column;
-  }
-
   &__radioSection {
     display: flex;
     flex-direction: row;
@@ -175,12 +188,21 @@
     padding: 1.5rem 1rem;
     gap: 1rem;
     background-color: $Light-Grey;
+    position: relative;
+
+    @include tablet {
+      position: absolute;
+      gap: 4rem;
+      right: 4rem;
+      bottom: 2rem;
+      background: none;
+    }
   }
   &__fields {
     display: flex;
 
     &-error {
-      color: red;
+      color: $Red;
       font-size: 0.8rem;
       display: flex;
       flex-direction: row;
@@ -192,7 +214,7 @@
       }
     }
     &-error-border {
-      border: 1px solid red;
+      border: 1px solid $Red;
     }
   }
   &__img-err {
