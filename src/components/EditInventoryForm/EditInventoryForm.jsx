@@ -22,7 +22,7 @@ function EditInventoryForm() {
   const [quantity, setQuantity] = useState("");
   const [validateQuantity, setValidateQuantity] = useState("");
   const navigate = useNavigate();
-  console.log(warehouseId);
+
   const [itemStatus, setItemStatus] = useState("");
   const params = useParams();
 
@@ -37,7 +37,7 @@ function EditInventoryForm() {
         if (res.status === 404) {
           console.log(res);
         }
-        const inventoryData = res.data[0];
+        const inventoryData = res.data;
 
         setItemName(inventoryData.item_name);
         setDescription(inventoryData.description);
@@ -77,12 +77,18 @@ function EditInventoryForm() {
       event.target.classList.add("form__fields-error-border");
       setState(true);
     } else {
+      event.target.classList.remove("form__fields-error-border");
       setState(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log("form submit");
+
+    console.log(isFormValid());
+
     if (isFormValid()) {
       const editData = {
         warehouse_id: warehouseId,
@@ -125,11 +131,11 @@ function EditInventoryForm() {
         <form className="form" onSubmit={handleSubmit}>
           <div className="form__itemDetails">
             <h3 className="form__title">Item Details</h3>
-
             <label htmlFor="itemName" className="form__title-item">
               Item Name
             </label>
             <input
+              className="form__placeholder"
               id="itemName"
               type="text"
               name="item_name"
@@ -138,6 +144,7 @@ function EditInventoryForm() {
               onChange={(e) => setItemName(e.target.value)}
               onBlur={validadeField(setValidateItemName)}
             />
+
             <label htmlFor="description" className="form__title-item">
               Description
             </label>
@@ -157,7 +164,7 @@ function EditInventoryForm() {
               id="category"
               name="category"
               form="category"
-              className="form__category"
+              className="form__placeholder"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               onBlur={validadeField(setValidateCategory)}
@@ -172,8 +179,8 @@ function EditInventoryForm() {
           </div>
           <div className="form__itemDetails">
             <h3 className="form__title">Item Availability</h3>
-            <fieldset>
-              <legend>Status</legend>
+            <fieldset className="form__fieldset">
+              <legend className="form__title-item">Status</legend>
               <div className="form__radioSection">
                 <p>
                   <input
@@ -183,7 +190,9 @@ function EditInventoryForm() {
                     value="In stock"
                     onChange={handleItemStatus}
                   />
-                  <label htmlFor="instock">In stock</label>
+                  <label className="form__radio-text" htmlFor="instock">
+                    In stock
+                  </label>
                 </p>
                 <p>
                   <input
@@ -193,12 +202,14 @@ function EditInventoryForm() {
                     value="Out of stock"
                     onChange={handleItemStatus}
                   />
-                  <label htmlFor="outOfStock">Out of Stock</label>
+                  <label className="form__radio-text" htmlFor="outOfStock">
+                    Out of Stock
+                  </label>
                 </p>
               </div>
             </fieldset>
             {itemStatus === "In stock" && (
-              <div>
+              <div className="form__qty-container">
                 <label htmlFor="itemName" className="form__title-item">
                   Quantity
                 </label>
@@ -208,15 +219,18 @@ function EditInventoryForm() {
                   name="quantity"
                   placeholder={quantity}
                   value={quantity}
+                  className="form__placeholder"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
             )}
-            <label htmlFor="warehouse">Warehouse</label>
+            <label className="form__title-item" htmlFor="warehouse">
+              Warehouse
+            </label>
             <select
               id="warehouse"
               name="warehouse_name"
-              className="form__category"
+              className="form__placeholder"
               onChange={(e) => setwarehouseId(e.target.value)}
             >
               <option value="">Select Option</option>
@@ -227,7 +241,7 @@ function EditInventoryForm() {
               ))}
             </select>
           </div>
-          <div>
+          <div className="form__btn-container">
             <Button
               text="Cancel"
               addClassName={"btn__style--cancel"}
@@ -236,7 +250,7 @@ function EditInventoryForm() {
                 navigate("/inventory");
               }}
             />
-            <Button text="Submit" type="submit" />
+            <Button text="Submit" type="submit" disabled={!isFormValid()} />
           </div>
         </form>
       </div>
