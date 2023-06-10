@@ -1,4 +1,5 @@
 import { Link, useLocation, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import closeIcon from "../../assets/icons/close-24px.svg";
@@ -15,11 +16,12 @@ function WarehousesList(props) {
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const navigate = useNavigate();
+
   const displayWarehouses = () => {
     axios
       .get(`http://127.0.0.1:8080/api/warehouses?s=${searchTerm}`)
       .then((response) => {
-        console.log(response.data);
         setWarehouseList(response.data);
       })
       .catch((error) => {
@@ -81,7 +83,11 @@ function WarehousesList(props) {
               </div>
               <div className="btn">
                 <div className="btn__style-link">
-                  <button type="button" className="btn__style">
+                  <button
+                    type="button"
+                    className="btn__style"
+                    onClick={() => navigate("/warehouses/add")}
+                  >
                     + Add New Item
                   </button>
                 </div>
@@ -158,7 +164,10 @@ function WarehousesList(props) {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <div className="closeBtn"> <img  src={closeIcon} alt="cros"  onClick={closeModal} /></div>
+            <div className="closeBtn">
+              {" "}
+              <img src={closeIcon} alt="cros" onClick={closeModal} />
+            </div>
 
             <h3 className="headerwarehouse">
               Delete {selectedWarehouse && selectedWarehouse.warehouse_name}{" "}
