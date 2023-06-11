@@ -46,11 +46,11 @@ function InventoryDetailsPage() {
     <div>
       {inventoryItem ? (
         <>
-          <section className="card">
-            <div className="card__bgBlue"></div>
-            <div className="card__wrapper">
-              <div className="card__header">
-                <div className="card__header-tittle-container">
+          <section className="card1">
+            <div className="card1__bgBlue"></div>
+            <div className="card1__wrapper">
+              <div className="card1__header">
+                <div className="card1__header-tittle-container">
                   <Link
                     onClick={() => navigate(-1)}
                     type="button"
@@ -62,12 +62,12 @@ function InventoryDetailsPage() {
                       className="btn__noBG-img"
                     />
                   </Link>
-                  <h1 className="card__header-title">
+                  <h1 className="card1__header-title">
                     {inventoryItem.item_name}
                   </h1>
                 </div>
-
-                <div className="btn">
+                  <div>
+                  <div className="btn">
                   <div className="btn__style-link">
                     <button
                       type="button"
@@ -82,32 +82,36 @@ function InventoryDetailsPage() {
                     </button>
                   </div>
                 </div>
+                
+                
               </div>
 
-              <div className="card_body">
-                <div className="card_body-first">
-                  <div className="card_body-first__des">
-                    <p className="card_body-first__deslabel">
+            </div>
+
+            <div className="card1_body">
+                <div className="card1_body-first">
+                  <div className="card1_body-first__des">
+                    <p className="card1_body-first__deslabel">
                       ITEM DESCRIPTION:
                     </p>
-                    <p className="card_body-first__desvalue">
+                    <p className="card1_body-first__desvalue">
                       {inventoryItem.description}
                     </p>
                   </div>
 
-                  <div className="card_body-first__cat">
-                    <p className="card_body-first__catlabel">CATEGORY:</p>
-                    <p className="card_body-first__catvalue">
+                  <div className="card1_body-first__cat">
+                    <p className="card1_body-first__catlabel">CATEGORY:</p>
+                    <p className="card1_body-first__catvalue">
                       {inventoryItem.category}
                     </p>
                   </div>
                 </div>
-                <div className="card_body-second">
-                  <div className="card_body-second-statusqty">
-                    <div className="card_body-second__status">
-                      <p className="card_body-second__statuslabel">STATUS:</p>
+                <div className="card1_body-second">
+                  <div className="card1_body-second-statusqty">
+                    <div className="card1_body-second__status">
+                      <p className="card1_body-second__statuslabel">STATUS:</p>
                       <p
-                        className={`card_body-second__statusvalue ${checkStatusClass(
+                        className={`card1_body-second__statusvalue ${checkStatusClass(
                           inventoryItem.status
                         )}`}
                       >
@@ -115,21 +119,21 @@ function InventoryDetailsPage() {
                       </p>
                     </div>
 
-                    <div className="card_body-second__quantity">
+                    <div className="card1_body-second__quantity">
                       <p className="card_body-second__quantitylabel">
                         QUANTITY:
                       </p>
-                      <p className="card_body-second__quantityvalue">
+                      <p className="card1_body-second__quantityvalue">
                         {inventoryItem.quantity}
                       </p>
                     </div>
                   </div>
-                  <div className="card_body-thirdwarehouse">
-                    <div className="card_body-third__warehousename">
-                      <p className="card_body-third__warehousenamelabel">
+                  <div className="card1_body-thirdwarehouse">
+                    <div className="card1_body-third__warehousename">
+                      <p className="card1_body-third__warehousenamelabel">
                         Warehouse :{" "}
                       </p>
-                      <p className="card_body-third__warehousenamevalue">
+                      <p className="card1_body-third__warehousenamevalue">
                         {inventoryItem.warehouse_name}
                       </p>
                     </div>
