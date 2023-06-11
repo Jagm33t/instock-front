@@ -1,7 +1,6 @@
 import backArrowImg from "../../assets/icons/arrow_back-24px.svg";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "../Button/Button";
 import error from "../../assets/icons/error-24px.svg";
@@ -25,6 +24,7 @@ function EditInventoryForm() {
   const [quantity, setQuantity] = useState("");
   const [validateQuantity, setValidateQuantity] = useState(false);
   const [status, setStatus] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -37,9 +37,32 @@ function EditInventoryForm() {
 
   useEffect(() => {
     axios
+      .get(apiInventories)
+      .then((res) => {
+        const inventoryDataList = res.data;
+
+        const categorySet = inventoryDataList.reduce((set, item) => {
+          set.add(item.category);
+          return set;
+        }, new Set());
+
+        const categoryOptions = Array.from(categorySet);
+        setCategoryOptions(categoryOptions);
+      })
+      .catch((error) => {
+        console.log(
+          "Error fetching inventory data:",
+          error.response.data.message
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
       .get(`${apiInventories}/${params.id}`)
       .then((res) => {
         const inventoryData = res.data;
+
         setItemName(inventoryData.item_name);
         setDescription(inventoryData.description);
         setCategory(inventoryData.category);
@@ -49,6 +72,7 @@ function EditInventoryForm() {
 
         return inventoryData.warehouse_name;
       })
+
       .then((inventoryWarehouseName) => {
         axios.get(apiWarehouses).then((response) => {
           if (response.status === 404) {
@@ -205,14 +229,11 @@ function EditInventoryForm() {
                 onChange={(e) => setCategory(e.target.value)}
                 onBlur={validadeField(setValidateCategory)}
               >
-                <option value="" disabled defaultValue hidden>
-                  Select Option
-                </option>
-                <option value="accessories">Accessories</option>
-                <option value="apparel">Apparel</option>
-                <option value="electronics">Electronics</option>
-                <option value="gear">Gear</option>
-                <option value="health">Health</option>
+                {categoryOptions.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
               </select>
               <div
                 className={
@@ -274,7 +295,7 @@ function EditInventoryForm() {
                     value={quantity}
                     className="formEdit__placeholder"
                     onChange={(e) => setQuantity(e.target.value)}
-                    // onBlur={validateQuantityField}
+                    onBlur={validateQuantityField}
                   />
                 </div>
               )}

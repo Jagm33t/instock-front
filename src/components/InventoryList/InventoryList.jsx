@@ -21,7 +21,7 @@ function InventoryList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc"); //default
   const [sortColumn, setSortColumn] = useState("");
-
+  console.log(inventoryList);
   const navigate = useNavigate();
 
   const displayInventory = () => {
