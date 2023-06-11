@@ -12,18 +12,21 @@ function EditInventoryForm() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiWarehouses = apiInstockURL + "/api/inventories";
   const [warehouseData, setWarehouseData] = useState([]);
+  const [inventoryDataList, setInventoryDataList] = useState([]);
+  const [validateWarehouse, setValidateWarehouse] = useState(false);
   const [warehouseId, setWarehouseId] = useState("");
+  const [inventoryId, setInventoryId] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [validateItemName, setValidateItemName] = useState("");
   const [description, setDescription] = useState("");
   const [validateDescription, setValidateDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [validateCategory, setValidateCategory] = useState("");
+  const [validateCategory, setValidateCategory] = useState(false);
   const [status, setStatus] = useState("");
   const [validateStatus, setValidateStatus] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [validateQuantity, setValidateQuantity] = useState("");
+  const [validateQuantity, setValidateQuantity] = useState(false);
   const [itemStatus, setItemStatus] = useState("");
   const params = useParams();
   const navigate = useNavigate();
@@ -40,7 +43,8 @@ function EditInventoryForm() {
           console.log(res);
         }
         const inventoryData = res.data;
-
+        console.log(res.data);
+        setInventoryId(inventoryData.id);
         setItemName(inventoryData.item_name);
         setDescription(inventoryData.description);
         setCategory(inventoryData.category);
@@ -48,6 +52,23 @@ function EditInventoryForm() {
         setQuantity(inventoryData.quantity);
         setWarehouseId(inventoryData.warehouse_id);
         setWarehouseName(inventoryData.warehouse_name);
+        // setInventoryData(inventoryData);
+      })
+      .catch((error) => {
+        console.log("Error fetching inventory data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${apiWarehouses}`)
+      .then((res) => {
+        if (res.status === 404) {
+          console.log(res);
+        }
+        const inventoryDataList = res.data;
+
+        setInventoryDataList(inventoryDataList);
       })
       .catch((error) => {
         console.log("Error fetching inventory data:", error);
@@ -62,7 +83,7 @@ function EditInventoryForm() {
           console.log(res);
         }
         const warehouseData = res.data;
-
+        console.log(warehouseData);
         setWarehouseData(warehouseData);
       })
       .catch((error) => {
@@ -75,7 +96,7 @@ function EditInventoryForm() {
       !description ||
       !category ||
       !status ||
-      !quantity ||
+      // !quantity ||
       !warehouseName
     ) {
       return false;
@@ -91,6 +112,15 @@ function EditInventoryForm() {
       setState(false);
     }
   };
+  // const validateQuantityField = (event) => {
+  //   if (event.target.value.length < 1 || isNaN(event.target.value)) {
+  //     event.target.classList.add("form__fields-error-border");
+  //     setValidateQuantity(true);
+  //   } else {
+  //     event.target.classList.remove("form__fields-error-border");
+  //     setValidateQuantity(false);
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -198,6 +228,7 @@ function EditInventoryForm() {
                 form="category"
                 className="formEdit__placeholder"
                 value={category}
+                placeholder={category}
                 onChange={(e) => setCategory(e.target.value)}
                 onBlur={validadeField(setValidateCategory)}
               >
@@ -208,6 +239,16 @@ function EditInventoryForm() {
                 <option value="gear">Gear</option>
                 <option value="health">Health</option>
               </select>
+              <div
+                className={
+                  validateCategory
+                    ? "form__fields-error"
+                    : "form__fields-error form__fields-error--hide"
+                }
+              >
+                <img src={error} alt="error" className="form__img-err" />
+                <p>This field is required</p>
+              </div>
             </div>
             <div className="formEdit__itemDetails">
               <h3 className="formEdit__title">Item Availability</h3>
@@ -256,7 +297,7 @@ function EditInventoryForm() {
                     value={quantity}
                     className="formEdit__placeholder"
                     onChange={(e) => setQuantity(e.target.value)}
-                    onBlur={validadeField(setQuantity)}
+                    // onBlur={validateQuantityField}
                   />
                 </div>
               )}
@@ -280,12 +321,13 @@ function EditInventoryForm() {
                 name="warehouse_name"
                 form="warehouse"
                 value={warehouseName}
+                placeholder={warehouseName}
                 className="formEdit__placeholder"
                 onChange={(e) => {
                   setWarehouseName(e.target.value);
                   setWarehouseId(e.target.value);
                 }}
-                onBlur={validadeField(setWarehouseId)}
+                onBlur={validadeField(setValidateWarehouse)}
               >
                 <option value="">Select Option</option>
                 {warehouseData.map((warehouse) => (
@@ -294,6 +336,16 @@ function EditInventoryForm() {
                   </option>
                 ))}
               </select>
+              <div
+                className={
+                  validateWarehouse
+                    ? "form__fields-error"
+                    : "form__fields-error form__fields-error--hide"
+                }
+              >
+                <img src={error} alt="error" className="form__img-err" />
+                <p>This field is required</p>
+              </div>
             </div>
           </div>
           <div className="form__btn-container">
@@ -305,7 +357,7 @@ function EditInventoryForm() {
                 navigate(-1);
               }}
             />
-            <Button text="Submit" type="submit" disabled={!isFormValid()} />
+            <Button text="Save" type="submit" disabled={!isFormValid()} />
           </div>
         </form>
       </div>
