@@ -261,7 +261,7 @@ function EditInventoryForm() {
                   </p>
                 </div>
               </fieldset>
-              {status === "In stock" && (
+              {status.toUpperCase() === "In stock".toUpperCase() && (
                 <div className="formEdit__qty-container">
                   <label htmlFor="quantity" className="formEdit__title-item">
                     Quantity
