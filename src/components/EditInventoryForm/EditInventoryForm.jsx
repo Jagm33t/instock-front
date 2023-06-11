@@ -10,12 +10,11 @@ import "../Button/Button.scss";
 
 function EditInventoryForm() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
-  const apiWarehouses = apiInstockURL + "/api/inventories";
+  const apiInventories = apiInstockURL + "/api/inventories";
+  const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseData, setWarehouseData] = useState([]);
-  const [inventoryDataList, setInventoryDataList] = useState([]);
   const [validateWarehouse, setValidateWarehouse] = useState(false);
   const [warehouseId, setWarehouseId] = useState("");
-  const [inventoryId, setInventoryId] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [validateItemName, setValidateItemName] = useState("");
@@ -23,82 +22,57 @@ function EditInventoryForm() {
   const [validateDescription, setValidateDescription] = useState("");
   const [category, setCategory] = useState("");
   const [validateCategory, setValidateCategory] = useState(false);
-  const [status, setStatus] = useState("");
-  const [validateStatus, setValidateStatus] = useState("");
   const [quantity, setQuantity] = useState("");
   const [validateQuantity, setValidateQuantity] = useState(false);
-  const [itemStatus, setItemStatus] = useState("");
+  const [status, setStatus] = useState("");
   const params = useParams();
   const navigate = useNavigate();
 
   function handleItemStatus(event) {
-    setItemStatus(event.target.value);
+    if (event.target.value === "Out of stock") {
+      setQuantity(0);
+    }
+    setStatus(event.target.value);
   }
 
   useEffect(() => {
     axios
-      .get(`${apiWarehouses}/${params.id}`)
+      .get(`${apiInventories}/${params.id}`)
       .then((res) => {
-        if (res.status === 404) {
-          console.log(res);
-        }
         const inventoryData = res.data;
-        console.log(res.data);
-        setInventoryId(inventoryData.id);
         setItemName(inventoryData.item_name);
         setDescription(inventoryData.description);
         setCategory(inventoryData.category);
         setStatus(inventoryData.status);
         setQuantity(inventoryData.quantity);
-        setWarehouseId(inventoryData.warehouse_id);
         setWarehouseName(inventoryData.warehouse_name);
-        // setInventoryData(inventoryData);
+
+        return inventoryData.warehouse_name;
+      })
+      .then((inventoryWarehouseName) => {
+        axios.get(apiWarehouses).then((response) => {
+          if (response.status === 404) {
+            console.log(response);
+          }
+          const warehouseData = response.data;
+          setWarehouseData(warehouseData);
+          setWarehouseId(
+            warehouseData.find(
+              (warehouse) => warehouse.warehouse_name === inventoryWarehouseName
+            ).id
+          );
+        });
       })
       .catch((error) => {
-        console.log("Error fetching inventory data:", error);
+        console.log(
+          "Error fetching inventory data:",
+          error.response.data.message
+        );
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${apiWarehouses}`)
-      .then((res) => {
-        if (res.status === 404) {
-          console.log(res);
-        }
-        const inventoryDataList = res.data;
-
-        setInventoryDataList(inventoryDataList);
-      })
-      .catch((error) => {
-        console.log("Error fetching inventory data:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8080/api/warehouses`)
-      .then((res) => {
-        if (res.status === 404) {
-          console.log(res);
-        }
-        const warehouseData = res.data;
-        console.log(warehouseData);
-        setWarehouseData(warehouseData);
-      })
-      .catch((error) => {
-        console.log("Error fetching warehouse data:", error);
-      });
-  }, []);
   const isFormValid = () => {
-    if (
-      !itemName ||
-      !description ||
-      !category ||
-      !status ||
-      // !quantity ||
-      !warehouseName
-    ) {
+    if (!itemName || !description || !category || !status || !warehouseName) {
       return false;
     }
     return true;
@@ -112,15 +86,15 @@ function EditInventoryForm() {
       setState(false);
     }
   };
-  // const validateQuantityField = (event) => {
-  //   if (event.target.value.length < 1 || isNaN(event.target.value)) {
-  //     event.target.classList.add("form__fields-error-border");
-  //     setValidateQuantity(true);
-  //   } else {
-  //     event.target.classList.remove("form__fields-error-border");
-  //     setValidateQuantity(false);
-  //   }
-  // };
+  const validateQuantityField = (event) => {
+    if (event.target.value.length < 1 || isNaN(event.target.value)) {
+      event.target.classList.add("form__fields-error-border");
+      setValidateQuantity(true);
+    } else {
+      event.target.classList.remove("form__fields-error-border");
+      setValidateQuantity(false);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -128,19 +102,18 @@ function EditInventoryForm() {
     if (isFormValid()) {
       const editData = {
         warehouse_id: warehouseId,
-        warehouseName: warehouseName,
         item_name: itemName,
         description: description,
         category: category,
         status: status,
-        quantity: quantity,
+        quantity: String(quantity),
       };
 
       axios
-        .put(`${apiWarehouses}/${params.id}`, editData)
+        .put(`${apiInventories}/${params.id}`, editData)
         .then((res) => {
-          navigate("/inventory");
-          console.log("Form data updated successfully:", res.data);
+          navigate(-1);
+          alert("Item updated successfully:");
         })
         .catch((err) => {
           console.log("Error updating form data:", err);
@@ -232,7 +205,9 @@ function EditInventoryForm() {
                 onChange={(e) => setCategory(e.target.value)}
                 onBlur={validadeField(setValidateCategory)}
               >
-                <option value="">Select Option</option>
+                <option value="" disabled defaultValue hidden>
+                  Select Option
+                </option>
                 <option value="accessories">Accessories</option>
                 <option value="apparel">Apparel</option>
                 <option value="electronics">Electronics</option>
@@ -257,6 +232,7 @@ function EditInventoryForm() {
                 <div className="formEdit__radioSection">
                   <p>
                     <input
+                      checked={quantity ? true : false}
                       type="radio"
                       name="status"
                       id="instock"
@@ -269,6 +245,7 @@ function EditInventoryForm() {
                   </p>
                   <p>
                     <input
+                      checked={quantity ? false : true}
                       type="radio"
                       name="status"
                       id="outOfStock"
@@ -284,7 +261,7 @@ function EditInventoryForm() {
                   </p>
                 </div>
               </fieldset>
-              {itemStatus === "In stock" && (
+              {status === "In stock" && (
                 <div className="formEdit__qty-container">
                   <label htmlFor="quantity" className="formEdit__title-item">
                     Quantity
@@ -320,7 +297,8 @@ function EditInventoryForm() {
                 id="warehouse"
                 name="warehouse_name"
                 form="warehouse"
-                value={warehouseName}
+                value={warehouseId}
+                label={warehouseName}
                 placeholder={warehouseName}
                 className="formEdit__placeholder"
                 onChange={(e) => {
@@ -329,7 +307,9 @@ function EditInventoryForm() {
                 }}
                 onBlur={validadeField(setValidateWarehouse)}
               >
-                <option value="">Select Option</option>
+                <option value="" disabled defaultValue hidden>
+                  Select Option
+                </option>
                 {warehouseData.map((warehouse) => (
                   <option key={warehouse.id} value={warehouse.id}>
                     {warehouse.warehouse_name}
