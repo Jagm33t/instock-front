@@ -18,14 +18,25 @@
   .warehouse-editImg {
     padding-top: 1.6rem;
   }
+
+  .warehouses-list {
+    .card__searchBox-img {
+      right: 170px;
+      top: 55px;
+    }
+
+    .card__container {
+      margin-right: 20px;
+    }
+  }
 }
 
 .warehouses-list {
   &__wrapper {
-    border: 1px solid orange;
+    //border: 1px solid orange;
   }
   &__section1 {
-    border: 1px solid green;
+    //border: 1px solid green;
     display: flex;
     flex-direction: row;
     gap: 3rem;
@@ -38,7 +49,6 @@
     width: 274px;
     height: 38px;
     border: 1px solid $Cloud;
-    border-radius: 20px;
     img {
       order: 2;
       width: 28px;

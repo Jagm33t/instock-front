@@ -2,7 +2,7 @@
 @use "../../styles/mixin" as *;
 @use "../../styles/fonts" as *;
 
-.card {
+.card1 {
   background-color: $Light-Grey;
   width: 100%;
   height: 100vh;
@@ -24,6 +24,7 @@
     position: absolute;
     top: 9rem;
     width: calc(100% - 2rem);
+  
 
     @include tablet {
       top: 5.5rem;
@@ -42,7 +43,7 @@
     align-items: center;
 
     @include tablet {
-      border: none;
+
       padding: 1rem 4rem 1.2rem 2rem;
     }
   }
@@ -98,7 +99,15 @@
     justify-content: space-evenly;
     height: 4rem;
   }
-
+  &_body-first__desvalue{
+    width: 100%;
+    @include tablet{
+      width:80% ;
+    }
+    @include desktop{
+      width:100%
+    }
+  }
   &_body-first__deslabel,
   &_body-first__catlabel,
   &_body-second__quantitylabel,
@@ -151,8 +160,7 @@
   }
 }
 .btn {
-  width: 2.5rem;
-  height: 1.2rem;
+  
 
   &_noBG {
     @include tablet {
