@@ -5,7 +5,6 @@ import axios from "axios";
 import Button from "../Button/Button";
 import error from "../../assets/icons/error-24px.svg";
 import "./EditInventoryForm.scss";
-import "../Button/Button.scss";
 
 function EditInventoryForm() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;

@@ -361,6 +361,7 @@ function AddNewWarehouse() {
           <Button
             text="+Add Warehouse"
             type="submit"
+            addClassName={"inventorypage__btn__style"}
             disabled={!isFormValid()}
           />
         </div>

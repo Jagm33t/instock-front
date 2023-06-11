@@ -37,13 +37,14 @@
       background-color: $Cloud;
     }
     &--cancel {
-      color: $Instock-Indigo;
-      background-color: $White;
+      color: $Slate !important;
+      background-color: $White !important;
+      border: 1px solid $Cloud !important;
 
       &:hover {
-        color: $Instock-Indigo;
-        background-color: $White;
-        border: 1px solid $Instock-Indigo;
+        color: $Instock-Indigo !important;
+        background-color: $White !important;
+        border: 1px solid $Instock-Indigo !important;
       }
     }
   }
