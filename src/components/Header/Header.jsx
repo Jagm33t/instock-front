@@ -11,14 +11,6 @@ function Header() {
     setActiveLink(location.pathname);
   }, [location]);
 
-  // const isWarehouseActiveLink = (activeLink) => {
-  //     activeLink === "/" ||
-  //     activeLink === "/warehouses" ||
-  //     activeLink === "/warehouses/edit"
-  //       ? "header__nav-item-style--active-link"
-  //       : ""
-  // }
-
   return (
     <header className="header">
       <div className="header__wrapper">
@@ -33,7 +25,9 @@ function Header() {
                 className={`header__nav-item-style ${
                   activeLink === "/" ||
                   activeLink === "/warehouses" ||
-                  activeLink === "/warehouses/edit"
+                  activeLink === "/warehouses/:id/edit" ||
+                  activeLink === "/warehouses/add" ||
+                  activeLink === "/warehouses/:id/details"
                     ? "header__nav-item-style--active-link"
                     : ""
                 }`}
@@ -45,7 +39,10 @@ function Header() {
               <Link
                 to="/inventory"
                 className={`header__nav-item-style ${
-                  activeLink === "/inventory"
+                  activeLink === "/inventory" ||
+                  activeLink === "/inventory/:id/edit" ||
+                  activeLink === "/inventory/add" ||
+                  activeLink === "/inventories/:id/details"
                     ? "header__nav-item-style--active-link"
                     : ""
                 }`}
