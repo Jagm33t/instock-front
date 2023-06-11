@@ -9,6 +9,7 @@ function AddNewInventoryItem() {
   const navigate = useNavigate();
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiInventories = apiInstockURL + "/api/inventories";
+  const apiWarehouses = apiInstockURL + "/api/warehouses";
 
   const [isInstock, setIsInstock] = useState(true);
   const [warehouseList, setWarehouseList] = useState([]);
@@ -104,7 +105,7 @@ function AddNewInventoryItem() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/warehouses")
+      .get(apiWarehouses)
       .then((response) => {
         setWarehouseList(response.data);
       })
@@ -230,12 +231,13 @@ function AddNewInventoryItem() {
         <Button
           text="Cancel"
           className="form__cancel"
+          addClassName={"btn__style--cancel"}
           handleClick={(e) => {
             e.preventDefault();
             navigate(-1);
           }}
         />
-        <Button text="+Add Item" type="submit" />
+        <Button text="+Add Item" type="submit" disabled={!isFormValid()} />
       </div>
     </form>
   );
