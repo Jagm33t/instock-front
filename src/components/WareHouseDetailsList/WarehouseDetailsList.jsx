@@ -77,11 +77,11 @@ function WarehouseDetailsList() {
   }, []);
 
   return (
-    <section className="card">
-      <div className="card__bgBlue"></div>
-      <div className="card__wrapper">
-        <div className="card__header">
-          <div className="card__header-tittle-container">
+    <section className="card2">
+      <div className="card2__bgBlue"></div>
+      <div className="card2__wrapper">
+        <div className="card2__header">
+          <div className="card2__header-tittle-container">
             <Link
               onClick={() => navigate(-1)}
               type="button"
@@ -93,7 +93,7 @@ function WarehouseDetailsList() {
                 className="btn__noBG-img"
               />
             </Link>
-            <h1 className="card__header-title">
+            <h1 className="card2__header-title">
               {warehouseList.warehouse_name}
             </h1>
           </div>
@@ -118,17 +118,18 @@ function WarehouseDetailsList() {
           <div className="warehouseInfo__wrapper">
             <div className="warehouse__address">
               <h4 className="warehouseInfo__list-title">warehouse address:</h4>
-
-              <p className="card__list-text-item">{warehouseList.address}</p>
-              <p className="card__list-text-item">{`${warehouseList.city}, ${warehouseList.country}`}</p>
+              <div className="warehouseInfo__address-container">
+                <p className="card2__list-text-item">{`${warehouseList.address},`}</p>
+                <p className="card2__list-text-item">{`${warehouseList.city}, ${warehouseList.country}`}</p>
+              </div>
             </div>
             <div className="warehouseInfo__contact-container">
               <div className="warehouseInfo__contact">
                 <h4 className="warehouseInfo__list-title">contact name:</h4>
-                <p className="card__list-text-item">
+                <p className="card2__list-text-item">
                   {warehouseList.contact_name}
                 </p>
-                <p className="card__list-text-item">
+                <p className="card2__list-text-item">
                   {warehouseList.contact_position}
                 </p>
               </div>
@@ -136,10 +137,10 @@ function WarehouseDetailsList() {
                 <h4 className="warehouseInfo__list-title">
                   Contact information:
                 </h4>
-                <p className="card__list-text-item">
+                <p className="card2__list-text-item">
                   {warehouseList.contact_phone}
                 </p>
-                <p className="card__list-text-item">
+                <p className="card2__list-text-item">
                   {warehouseList.contact_email}
                 </p>
               </div>
@@ -198,55 +199,55 @@ function WarehouseDetailsList() {
           {WarehouseDetailsList.length === 0
             ? null
             : WarehouseDetailsList.map((inventory) => (
-                <li className="card__list" key={inventory.id}>
-                  <div className="card__list-content">
-                    <div className="card__list-content-left">
-                      <div className="card__list-wrap">
-                        <h4 className=" card__list-title  ">Inventory Item</h4>
+                <li className="card2__list" key={inventory.id}>
+                  <div className="card2__list-content">
+                    <div className="card2__list-content-left">
+                      <div className="card2__list-wrap">
+                        <h4 className=" card2__list-title  ">Inventory Item</h4>
                         <Link
                           to={`/inventories/${inventory.id}/details`}
-                          className="card__product-item"
+                          className="card2__product-item"
                         >
-                          <p className="card__list-text-item card__list-text-item--product">
+                          <p className="card2__list-text-item card2__list-text-item--product">
                             {inventory.item_name}
                           </p>
                           <img
                             src={chevronRight}
                             alt={chevronRight}
-                            className="card__product-item_chevron"
+                            className="card2__product-item_chevron"
                           />
                         </Link>
                       </div>
-                      <div className="card__list-wrap">
-                        <h4 className="card__list-title">Category</h4>
-                        <p className="card__list-text-item">
+                      <div className="card2__list-wrap">
+                        <h4 className="card2__list-title">Category</h4>
+                        <p className="card2__list-text-item">
                           {inventory.category}
                         </p>
                       </div>
                     </div>
-                    <div className="card__list-content-right">
-                      <div className="card__list-wrap">
-                        <h4 className="card__list-title">Status</h4>
+                    <div className="card2__list-content-right">
+                      <div className="card2__list-wrap">
+                        <h4 className="card2__list-title">Status</h4>
                         <p
                           className={
-                            "card__list-text-item-inStock" +
+                            "card2__list-text-item-inStock" +
                             (inventory.quantity === 0
-                              ? " card__list-text-item-outStock"
+                              ? " card2__list-text-item-outStock"
                               : "")
                           }
                         >
                           {inventory.status}
                         </p>
                       </div>
-                      <div className="card__list-wrap">
-                        <h4 className="card__list-title">Qty</h4>
-                        <p className="card__list-text-item">
+                      <div className="card2__list-wrap">
+                        <h4 className="card2__list-title">Qty</h4>
+                        <p className="card2__list-text-item">
                           {inventory.quantity}
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="card__list-actions">
+                  <div className="card2__list-actions">
                     <img
                       src={deleteImg}
                       alt={deleteImg}

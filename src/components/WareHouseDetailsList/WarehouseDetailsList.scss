@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 @import "../../styles/mixin";
 
-.card {
+.card2 {
   background-color: $Light-Grey;
   width: 100vw;
   height: 100vh;
@@ -39,7 +39,6 @@
     align-items: center;
 
     @include tablet {
-      border: none;
       padding: 1rem 2rem 1.2rem 2rem;
     }
   }
@@ -68,88 +67,6 @@
     }
   }
 
-  .warehouseInfo {
-    padding: 1rem 0;
-    border-bottom: 1.5px solid $Cloud;
-
-    &__wrapper {
-      margin: 0 1.5rem;
-
-      @include tablet {
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-        justify-content: space-between;
-        width: 100%;
-        flex-grow: 1;
-      }
-    }
-
-    &__list-title {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: #5c667e;
-      margin-bottom: 0.7rem;
-    }
-
-    &__contact-container {
-      display: flex;
-      gap: 6rem;
-      padding-top: 2rem;
-      width: 100%;
-
-      @include tablet {
-        width: 60%;
-        display: flex;
-        flex-direction: row;
-        padding: 0 0 0 2.5rem;
-        border-left: 1.5px solid $Cloud;
-      }
-    }
-
-    &__contact {
-      width: 50%;
-    }
-  }
-  .cardTable {
-    display: none;
-
-    @include tablet {
-      display: flex;
-      justify-content: space-between;
-      background-color: $Light-Grey;
-      display: flex;
-      flex-direction: row;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: #5c667e;
-      padding: 0.5rem 2rem;
-    }
-
-    &__headings {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-    }
-
-    &__header-wrapper {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      margin: 0 1rem;
-      width: 15%;
-      justify-content: flex-end;
-    }
-
-    &__header-button {
-      border: none;
-      background-color: $Light-Grey;
-    }
-    &__header-img {
-      width: 1rem;
-    }
-  }
-
   &__list {
     list-style-type: none;
     border-bottom: 1.5px solid $Cloud;
@@ -163,6 +80,8 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 0 2rem;
+      width: 100%;
+      width: calc(100% - 2rem);
     }
   }
 
@@ -170,6 +89,10 @@
     margin: 1rem;
     display: flex;
     gap: 6rem;
+    @include tablet {
+      justify-content: space-between;
+      width: 75%;
+    }
   }
 
   &__list-content-left,
@@ -180,6 +103,7 @@
     @include tablet {
       display: flex;
       flex-direction: row;
+      justify-content: inherit;
     }
   }
 
@@ -187,7 +111,7 @@
     @include tablet {
       width: 40%;
       display: flex;
-      justify-content: space-between;
+      justify-content: inherit;
     }
   }
   &__list-content-right {
@@ -195,7 +119,6 @@
       width: 40%;
       display: flex;
       justify-content: space-between;
-      // display: none;
     }
   }
   &__list-title {
@@ -242,7 +165,7 @@
     padding: 0.35rem 0.7rem;
     margin-bottom: 0.9rem;
     text-align: center;
-    width: 5rem;
+    width: 7rem;
 
     @include tablet {
       font-size: 0.75rem;
@@ -281,6 +204,102 @@
       margin: 0;
     }
   }
+
+  .warehouseInfo {
+    padding: 1rem 0;
+    border-bottom: 1.5px solid $Cloud;
+
+    &__wrapper {
+      margin: 0 1.5rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        justify-content: space-between;
+        width: 100%;
+        flex-grow: 1;
+        margin: 0 3rem;
+        width: calc(100% - 6rem);
+      }
+    }
+
+    &__list-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #5c667e;
+      margin-bottom: 0.7rem;
+    }
+
+    &__address-container {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+
+      @include tablet {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    &__contact-container {
+      display: flex;
+      gap: 6rem;
+      padding-top: 2rem;
+      width: 100%;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0 0 0 2.5rem;
+        border-left: 1.5px solid $Cloud;
+        justify-content: inherit;
+        width: 60%;
+      }
+    }
+
+    &__contact {
+      width: 50%;
+    }
+  }
+  .cardTable {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      background-color: $Light-Grey;
+      display: flex;
+      flex-direction: row;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #5c667e;
+      padding: 0.5rem 2rem;
+    }
+
+    &__headings {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__header-wrapper {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin: 0 1rem;
+      width: 15%;
+      justify-content: flex-end;
+    }
+
+    &__header-button {
+      border: none;
+      background-color: $Light-Grey;
+    }
+    &__header-img {
+      width: 1rem;
+    }
+  }
 }
 
 .btn {
@@ -298,7 +317,7 @@
     background-color: #2e66e5;
     align-items: center;
     border-radius: 2rem;
-    // transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 
     @include tablet {
       width: 5rem;
@@ -306,6 +325,7 @@
       flex-direction: row;
       padding: 0.4rem 0rem;
       justify-content: center;
+      margin-right: 2.5rem;
     }
   }
   &__img {
