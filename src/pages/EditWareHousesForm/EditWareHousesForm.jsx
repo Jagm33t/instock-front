@@ -382,7 +382,7 @@ function EditWarehouse() {
               addClassName={"btn__style--cancel"}
               handleClick={(e) => {
                 e.preventDefault();
-                navigate("/warehouses");
+                navigate(-1);
               }}
             />
             <Button text="Save" type="submit" disabled={!isFormValid()} />
