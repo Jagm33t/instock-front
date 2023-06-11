@@ -1,4 +1,4 @@
-import { Link, useLocation, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -11,7 +11,7 @@ import editImg from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 
-function WarehousesList(props) {
+function WarehousesList() {
   const apiInstockURL = process.env.REACT_APP_API_SERVER;
   const apiWarehouses = apiInstockURL + "/api/warehouses";
   const [warehouseList, setWarehouseList] = useState([]);
@@ -226,8 +226,13 @@ function WarehousesList(props) {
                             Contact Information
                           </h4>
                           <div>
-                            <p>{warehouse.contact_phone}</p>
-                            <p>{warehouse.contact_email}</p>
+                            <p className="card__list-text-item">
+                              {warehouse.contact_phone}
+                            </p>
+                            <p className="card__list-text-item">
+                              {" "}
+                              {warehouse.contact_email}
+                            </p>
                           </div>
                         </div>
                       </div>

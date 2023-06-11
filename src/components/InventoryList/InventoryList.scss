@@ -55,7 +55,6 @@
   }
 
   .inventory__card__list.card__list {
-    // justify-content: space-between;
     padding: 0 1rem;
   }
 
@@ -68,7 +67,6 @@
   }
 
   .inventorypage__inventoryitem {
-    // margin-right: 1.5rem;
     white-space: nowrap;
     min-width: 7rem;
     margin-right: 0.01rem;
@@ -87,7 +85,6 @@
   }
 
   .inventorypage__contentright.card__list-content-right {
-    // width: 10rem;
     width: 35%;
   }
 
@@ -96,8 +93,7 @@
     flex: 1;
     justify-content: flex-start;
 
-    > .card__list-content-left {
-      // width: 20vw;
+    .card__list-content-left {
       width: 38%;
     }
   }
@@ -117,8 +113,8 @@
   }
 
   img.card__searchBox-img {
-    right: 170px;
-    top: 55px;
+    right: 2.9rem;
+    top: 6.4rem;
   }
 }
 
@@ -163,9 +159,6 @@
   }
 
   &__header-title {
-    // padding-top: 1rem;
-    // font-size: 1.8rem;
-    // font-weight: 600;
     font-family: "Titillium Web";
     font-style: normal;
     font-weight: 600;
@@ -218,16 +211,8 @@
 
   &__searchBox-img {
     position: absolute;
-
-    @include phone {
-      right: 2.9rem;
-      top: 5.4rem;
-    }
-
-    @include tablet {
-      right: 12.8rem;
-      top: 2.6rem;
-    }
+    right: -1rem;
+    top: 5.4rem;
   }
 
   &__list {
@@ -241,6 +226,7 @@
     @include tablet {
       display: flex;
       flex-direction: row;
+      align-items: center;
     }
   }
 
@@ -271,7 +257,6 @@
       width: 40%;
       display: flex;
       justify-content: space-between;
-      // display: none;
     }
   }
   &__list-title {
@@ -318,6 +303,7 @@
     padding: 0.35rem 0.7rem;
     margin-bottom: 0.9rem;
     text-align: center;
+    width: 7rem;
   }
 
   &__list-text-item-outStock {
@@ -330,6 +316,7 @@
     padding: 0.35rem 0.7rem;
     margin-bottom: 0.9rem;
     text-align: center;
+    width: 8rem;
   }
 
   &__product-item_chevron {
@@ -341,9 +328,11 @@
     justify-content: space-between;
     margin: 0 1rem 1.5rem 1rem;
 
-    // @include tablet {
-    //   display: none;
-    // }
+    @include tablet {
+      display: block;
+      gap: 1rem;
+      margin: 0;
+    }
   }
 }
 .card-table {
@@ -357,7 +346,6 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     color: #5c667e;
-    // padding: 0.5rem 0;
     padding: 0.9rem 2rem;
   }
   &__headings {
@@ -369,8 +357,7 @@
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    // margin: 0 1rem;
-    // width: 15%;
+
     margin-left: 1rem;
   }
 

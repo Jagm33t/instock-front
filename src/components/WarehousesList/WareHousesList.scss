@@ -15,10 +15,6 @@
 }
 
 @include tablet {
-  .warehouse-editImg {
-    padding-top: 1.6rem;
-  }
-
   .warehouses-list {
     .card__searchBox-img {
       right: 170px;
@@ -31,12 +27,27 @@
   }
 }
 
-.warehouses-list {
-  &__wrapper {
-    //border: 1px solid orange;
+.card {
+  &__list-content {
+    width: 100%;
   }
+  &__list-content-left,
+  &__list-content-right {
+    width: 50%;
+  }
+
+  img.card__searchBox-img {
+    right: 2rem;
+    top: 5.3rem;
+    @include tablet {
+      right: 205px;
+      top: 57px;
+    }
+  }
+}
+
+.warehouses-list {
   &__section1 {
-    //border: 1px solid green;
     display: flex;
     flex-direction: row;
     gap: 3rem;
@@ -63,7 +74,7 @@
     width: 168px;
     height: 38px;
     top: 124px;
-    //border: 1px solid blue;
+
     button {
       background-color: $Instock-Indigo;
       border-radius: 10px;
