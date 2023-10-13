@@ -8,6 +8,7 @@ function WareHousesPage() {
   
   return (
     <>
+    
     <WarehousesList/>
     
     </>
